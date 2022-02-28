@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
-def account(request):
-    return render(request, 'account.html')
+def register(request):
+    return render(request, 'register.html')
+
+def about(request):
+    return render(request, 'about.html')
 # Create your views here.
