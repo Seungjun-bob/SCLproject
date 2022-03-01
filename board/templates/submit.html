@@ -113,7 +113,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Submit new property</h1>
+                        <h1 class="page-title">리뷰 작성 페이지</h1>
                     </div>
                 </div>
             </div>
@@ -127,83 +127,23 @@
                     <div class="wizard-container">
 
                         <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                            <form action="" method="">
-                                <div class="wizard-header">
+                            <div class="wizard-header">
                                     <h3>
-                                        <b>Submit</b> YOUR PROPERTY <br>
+                                        <b>리뷰를 작성하세요</b> <br>
                                         <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
                                     </h3>
                                 </div>
-
-                                <ul>
-                                    <li><a href="#step1" data-toggle="tab">Step 1 </a></li>
-                                    <li><a href="#step2" data-toggle="tab">Step 2 </a></li>
-                                    <li><a href="#step3" data-toggle="tab">Step 3 </a></li>
-                                    <li><a href="#step4" data-toggle="tab">Finished </a></li>
-                                </ul>
+                            <form action="" method="">
 
                                 <div class="tab-content">
-
-                                    <div class="tab-pane" id="step1">
-                                        <div class="row p-b-15  ">
-                                            <h4 class="info-text"> Let's start with the basic information (with validation)</h4>
-                                            <div class="col-sm-4 col-sm-offset-1">
-                                                <div class="picture-container">
-                                                    <div class="picture">
-                                                        <img src="{% static 'assets/img/default-property.jpg' %}" class="picture-src" id="wizardPicturePreview" title=""/>
-                                                        <input type="file" id="wizard-picture">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Property name <small>(required)</small></label>
-                                                    <input name="propertyname" type="text" class="form-control" placeholder="Super villa ...">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>Property price <small>(required)</small></label>
-                                                    <input name="propertyprice" type="text" class="form-control" placeholder="3330000">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Telephone <small>(empty if you wanna use default phone number)</small></label>
-                                                    <input name="phone" type="text" class="form-control" placeholder="+1 473 843 7436">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <!--  End step 1 -->
 
-                                    <div class="tab-pane" id="step2">
+                                    <div>
                                         <h4 class="info-text"> How much your Property is Beautiful ? </h4>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>Property Description :</label>
-                                                        <textarea name="discrition" class="form-control" ></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <label>Property State :</label>
-                                                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
-                                                            <option>Seoul</option>
-                                                            <option>Paris</option>
-                                                            <option>Casablanca</option>
-                                                            <option>Tokyo</option>
-                                                            <option>Marraekch</option>
-                                                            <option>kyoto , shibua</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <label>Property City :</label>
-                                                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
+                                            <form action="" class=" form-inline">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="도서관명을 입력하세요">
                                                             <option>New york, CA</option>
                                                             <option>Paris</option>
                                                             <option>Casablanca</option>
@@ -213,28 +153,13 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
+                                            </form>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-12">
                                                     <div class="form-group">
-                                                        <label>Property Statue  :</label>
-                                                        <select id="basic" class="selectpicker show-tick form-control">
-                                                            <option> -Status- </option>
-                                                            <option>Rent </option>
-                                                            <option>Boy</option>
-                                                            <option>used</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <label>Property Statue  :</label>
-                                                        <select id="basic" class="selectpicker show-tick form-control">
-                                                            <option> -Status- </option>
-                                                            <option>Rent </option>
-                                                            <option>Boy</option>
-                                                            <option>used</option>
-
-                                                        </select>
+                                                        <label>Property Description :</label>
+                                                        <textarea rows="10" name="discrition" class="form-control" ></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -249,300 +174,51 @@
                                                         <b class="pull-right color">120</b>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
-
-                                                    <div class="form-group">
-                                                        <label for="price-range">Min baths :</label>
-                                                        <input type="text" class="span2" value="" data-slider-min="0"
-                                                               data-slider-max="600" data-slider-step="5"
-                                                               data-slider-value="[250,450]" id="min-baths" ><br />
-                                                        <b class="pull-left color">1</b>
-                                                        <b class="pull-right color">120</b>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-
-                                                    <div class="form-group">
-                                                        <label for="property-geo">Property geo (m2) :</label>
-                                                        <input type="text" class="span2" value="" data-slider-min="0"
-                                                               data-slider-max="600" data-slider-step="5"
-                                                               data-slider-value="[50,450]" id="property-geo" ><br />
-                                                        <b class="pull-left color">40m</b>
-                                                        <b class="pull-right color">12000m</b>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 padding-top-15">
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Swimming Pool
-                                                            </label>
+                                                <div class="tab-pane" id="step3">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                             <div class="form-group">
+                                                             <label for="property-images">Chose Images :</label>
+                                                            <input class="form-control" type="file" id="property-images">
+                                                            <p class="help-block">Select multipel images for your property .</p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> 2 Stories
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Emergency Exit
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Fire Place
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 padding-bottom-15">
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Laundry Room
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Jog Path
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Ceilings
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox"> Dual Sinks
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                    <!-- End step 2 -->
-
-                                    <div class="tab-pane" id="step3">
-                                        <h4 class="info-text">Give us somme images and videos ? </h4>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="property-images">Chose Images :</label>
-                                                    <input class="form-control" type="file" id="property-images">
-                                                    <p class="help-block">Select multipel images for your property .</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="property-video">Property video :</label>
-                                                    <input class="form-control" value="" placeholder="http://www.youtube.com, http://vimeo.com" name="property_video" type="text">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input class="form-control" value="" placeholder="http://www.youtube.com, http://vimeo.com" name="property_video" type="text">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input class="form-control" value="" placeholder="http://www.youtube.com, http://vimeo.com" name="property_video" type="text">
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!--  End step 3 -->
-
-
-                                    <div class="tab-pane" id="step4">
-                                        <h4 class="info-text"> Finished and submit </h4>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="">
-                                                    <p>
-                                                        <label><strong>Terms and Conditions</strong></label>
-                                                        By accessing or using  GARO ESTATE services, such as
-                                                        posting your property advertisement with your personal
-                                                        information on our website you agree to the
-                                                        collection, use and disclosure of your personal information
-                                                        in the legal proper manner
-                                                    </p>
-
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" /> <strong>Accept termes and conditions.</strong>
-                                                        </label>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--  End step 4 -->
-
-                                </div>
 
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-primary' name='next' value='Next' />
                                         <input type='button' class='btn btn-finish btn-primary ' name='finish' value='Finish' />
                                     </div>
-
-                                    <div class="pull-left">
-                                        <input type='button' class='btn btn-previous btn-default' name='previous' value='Previous' />
-                                    </div>
-                                    <div class="clearfix"></div>
                                 </div>
                             </form>
                         </div>
+
                         <!-- End submit form -->
                     </div>
                 </div>
             </div>
         </div>
-
-          <!-- Footer area-->
+        <br>
+           <!-- Footer area-->
         <div class="footer-area">
 
             <div class=" footer">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                        <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
                             <div class="single-footer">
-                                <h4>About us </h4>
+                                <h4 style="text-align: center">About us </h4>
                                 <div class="footer-title-line"></div>
+                                <span style="margin: 20px">권진우</span>
+                                <span style="margin: 20px">강승준</span>
+                                <span style="margin: 20px">성민아</span>
+                                <span style="margin: 20px">조민석</span>
 
-                                <img src="{% static 'assets/img/footer-logo.png' %}" alt="" class="wow pulse" data-wow-delay="1s">
-                                <p>Lorem ipsum dolor cum necessitatibus su quisquam molestias. Vel unde, blanditiis.</p>
-                                <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
-                                    <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
-                                </ul>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                            <div class="single-footer">
-                                <h4>Quick links </h4>
-                                <div class="footer-title-line"></div>
-                                <ul class="footer-menu">
-                                    <li><a href="properties.html">Properties</a>  </li>
-                                    <li><a href="#">Services</a>  </li>
-                                    <li><a href="submit-property.html">Submit property </a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
-                                    <li><a href="faq.html">fqa</a>  </li>
-                                    <li><a href="faq.html">Terms </a>  </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                            <div class="single-footer">
-                                <h4>Last News</h4>
-                                <div class="footer-title-line"></div>
-                                <ul class="footer-blog">
-                                    <li>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/img/demo/small-proerty-2.jpg' %}">
-                                            </a>
-                                            <span class="blg-date">12-12-2016</span>
-
-                                        </div>
-                                        <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                            <h6> <a href="single.html">Add news functions </a></h6>
-                                            <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/img/demo/small-proerty-2.jpg' %}">
-                                            </a>
-                                            <span class="blg-date">12-12-2016</span>
-
-                                        </div>
-                                        <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                            <h6> <a href="single.html">Add news functions </a></h6>
-                                            <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/img/demo/small-proerty-2.jpg' %}">
-                                            </a>
-                                            <span class="blg-date">12-12-2016</span>
-
-                                        </div>
-                                        <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                            <h6> <a href="single.html">Add news functions </a></h6>
-                                            <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                        </div>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                            <div class="single-footer news-letter">
-                                <h4>Stay in touch</h4>
-                                <div class="footer-title-line"></div>
-                                <p>Lorem ipsum dolor sit amet, nulla  suscipit similique quisquam molestias. Vel unde, blanditiis.</p>
-
-                                <form>
-                                    <div class="input-group">
-                                        <input class="form-control" type="text" placeholder="E-mail ... ">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary subscribe" type="button"><i class="pe-7s-paper-plane pe-2x"></i></button>
-                                        </span>
-                                    </div>
-                                    <!-- /input-group -->
-                                </form>
-
-                                <div class="social pull-right">
-                                    <ul>
-                                        <li><a class="wow fadeInUp animated" href="https://twitter.com/kimarotec"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://www.facebook.com/kimarotec" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://plus.google.com/kimarotec" data-wow-delay="0.3s"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.4s"><i class="fa fa-instagram"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.6s"><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -551,15 +227,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="pull-left">
-                            <span> (C) <a href="http://www.KimaroTec.com">KimaroTheme</a> , All rights reserved 2016  </span>
-                        </div>
-                        <div class="bottom-menu pull-right">
-                            <ul>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s">Home</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.3s">Property</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.4s">Faq</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.6s">Contact</a></li>
-                            </ul>
+                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                         </div>
                     </div>
                 </div>

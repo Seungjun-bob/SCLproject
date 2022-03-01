@@ -1792,8 +1792,9 @@ proerty-th-list
 }
 
 .proerty-th-list .col-md-4 .item-entry{
-    width:60%;
-    float: left;
+    width:100%;
+    float: left right;
+    padding-left: 15px;
     padding-right: 15px;
 }
 

@@ -101,7 +101,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">List Layout With Sidebar</h1>
+                        <h1 class="page-title">도서관 검색</h1>
                     </div>
                 </div>
             </div>
@@ -117,31 +117,55 @@
                             <form action="" class=" form-inline">
                                 <div class="col-md-12">
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="Key word">
+                                        <input type="text" class="form-control" placeholder="도서관명">
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
-                                            <option>New york, CA</option>
-                                            <option>Paris</option>
-                                            <option>Casablanca</option>
-                                            <option>Tokyo</option>
-                                            <option>Marraekch</option>
-                                            <option>kyoto , shibua</option>
+                                        <select id="lunchBegins" class="selectpicker" title="도서관 구분">
+                                            <option>전체</option>
+                                            <option>공공도서관</option>
+                                            <option>국립도서관</option>
+                                            <option>대표도서관</option>
+                                            <option>작은도서관</option>
+                                            <option>장애인도서관</option>
+                                            <option>전문도서관</option>
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="basic" class="selectpicker show-tick form-control">
-                                            <option> -Status- </option>
-                                            <option>Rent </option>
-                                            <option>Boy</option>
-                                            <option>used</option>
+                                        <select id="basic" class="selectpicker show-tick form-control" title="자치구" style="overflow: scroll;">
+                                            <option>전체</option>
+                                            <option>강남구</option>
+                                            <option>강동구</option>
+                                            <option>강북구</option>
+                                            <option>강서구</option>
+                                            <option>관악구</option>
+                                            <option>광진구</option>
+                                            <option>구로구</option>
+                                            <option>금천구</option>
+                                            <option>노원구</option>
+                                            <option>도봉구</option>
+                                            <option>동대문구</option>
+                                            <option>동작구</option>
+                                            <option>마포구</option>
+                                            <option>서대문구</option>
+                                            <option>서초구</option>
+                                            <option>성동구</option>
+                                            <option>성북구</option>
+                                            <option>송파구</option>
+                                            <option>양천구</option>
+                                            <option>영등포구</option>
+                                            <option>용산구</option>
+                                            <option>은평구</option>
+                                            <option>종로구</option>
+                                            <option>중구</option>
+                                            <option>중랑구</option>
+
                                         </select>
 
                                     </div>
                                         <div class="row">
  <!--                                                수정 확인용-->
                                             <div id=search_button class="col-xs-12">
-                                                <input class="button btn largesearch-btn" value="Search" type="submit">
+                                                <input class="button btn largesearch-btn" value="검 색" type="submit">
                                             </div>
                                         </div>
                                 </div>
@@ -153,21 +177,9 @@
 
                     <div class="col-md-12  clear">
                         <div class="col-xs-10 page-subheader sorting pl0">
-                            <ul class="sort-by-list">
-                                <li class="active">
-                                    <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
-                                        Property Date <i class="fa fa-sort-amount-asc"></i>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
-                                        Property Price <i class="fa fa-sort-numeric-desc"></i>
-                                    </a>
-                                </li>
-                            </ul><!--/ .sort-by-list-->
 
                             <div class="items-per-page">
-                                <label for="items_per_page"><b>Property per page :</b></label>
+                                <label for="items_per_page"><b>&nbsp 페이지당 검색 수 :</b></label>
                                 <div class="sel">
                                     <select id="items_per_page" name="per_page">
                                         <option value="3">3</option>
@@ -184,13 +196,11 @@
                         </div>
 
                         <div class="col-xs-2 layout-switcher">
-                            <a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
-                            <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
                         </div><!--/ .layout-switcher-->
                     </div>
 
                     <div class="col-md-12 clear ">
-                        <div id="list-type" class="proerty-th">
+                        <div id="list-type" class="proerty-th-list">
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
@@ -203,233 +213,7 @@
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)
-                                        </div>
                                     </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-2.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="{% static 'assets/img/icon/bed.png' %}">(5)|
-                                            <img src="{% static 'assets/img/icon/shawer.png' %}">(2)|
-                                            <img src="{% static 'assets/img/icon/cars.png' %}">(1)
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item proerty-item-ads">
-                                    <a href="" ><img src="{% static 'assets/img/pro-ads.jpg' %}"></a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-3.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="{% static 'assets/img/icon/bed.png' %}">(5)|
-                                            <img src="{% static 'assets/img/icon/shawer.png' %}">(2)|
-                                            <img src="{% static 'assets/img/icon/cars.png' %}">(1)
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-1.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="{% static 'assets/img/icon/bed.png' %}">(5)|
-                                            <img src="{% static 'assets/img/icon/shawer.png' %}">(2)|
-                                            <img src="{% static 'assets/img/icon/cars.png' %}">(1)
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-2.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="{% static 'assets/img/icon/bed.png' %}">(5)|
-                                            <img src="{% static 'assets/img/icon/shawer.png' %}">(2)|
-                                            <img src="{% static 'assets/img/icon/cars.png' %}">(1)
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-3.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="{% static 'assets/img/icon/bed.png' %}">(5)|
-                                            <img src="{% static 'assets/img/icon/shawer.png' %}">(2)|
-                                            <img src="{% static 'assets/img/icon/cars.png' %}">(1)
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-2.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="{% static 'assets/img/icon/bed.png' %}">(5)|
-                                            <img src="{% static 'assets/img/icon/shawer.png' %}">(2)|
-                                            <img src="{% static 'assets/img/icon/cars.png' %}">(1)
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-1.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="{% static 'assets/img/icon/bed.png' %}">(5)|
-                                            <img src="{% static 'assets/img/icon/shawer.png' %}">(2)|
-                                            <img src="{% static 'assets/img/icon/cars.png' %}">(1)
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item proerty-item-ads">
-                                    <a href="" ><img src="{% static 'assets/img/pro-ads.jpg' %}"></a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-2.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="{% static 'assets/img/icon/bed.png' %}">(5)|
-                                            <img src="{% static 'assets/img/icon/shawer.png' %}">(2)|
-                                            <img src="{% static 'assets/img/icon/cars.png' %}">(1)
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-1.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="{% static 'assets/img/icon/bed.png' %}">(5)|
-                                            <img src="{% static 'assets/img/icon/shawer.png' %}">(2)|
-                                            <img src="{% static 'assets/img/icon/cars.png' %}">(1)
-                                        </div>
-                                    </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -459,114 +243,17 @@
             <div class=" footer">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                        <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
                             <div class="single-footer">
-                                <h4>About us </h4>
+                                <h4 style="text-align: center">About us </h4>
                                 <div class="footer-title-line"></div>
+                                <span style="margin: 20px">권진우</span>
+                                <span style="margin: 20px">강승준</span>
+                                <span style="margin: 20px">성민아</span>
+                                <span style="margin: 20px">조민석</span>
 
-                                <img src="{% static 'assets/img/footer-logo.png' %}" alt="" class="wow pulse" data-wow-delay="1s">
-                                <p>Lorem ipsum dolor cum necessitatibus su quisquam molestias. Vel unde, blanditiis.</p>
-                                <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
-                                    <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
-                                </ul>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                            <div class="single-footer">
-                                <h4>Quick links </h4>
-                                <div class="footer-title-line"></div>
-                                <ul class="footer-menu">
-                                    <li><a href="properties.html">Properties</a>  </li>
-                                    <li><a href="#">Services</a>  </li>
-                                    <li><a href="submit-property.html">Submit property </a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
-                                    <li><a href="faq.html">fqa</a>  </li>
-                                    <li><a href="faq.html">Terms </a>  </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                            <div class="single-footer">
-                                <h4>Last News</h4>
-                                <div class="footer-title-line"></div>
-                                <ul class="footer-blog">
-                                    <li>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/img/demo/small-proerty-2.jpg' %}">
-                                            </a>
-                                            <span class="blg-date">12-12-2016</span>
-
-                                        </div>
-                                        <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                            <h6> <a href="single.html">Add news functions </a></h6>
-                                            <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/img/demo/small-proerty-2.jpg' %}">
-                                            </a>
-                                            <span class="blg-date">12-12-2016</span>
-
-                                        </div>
-                                        <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                            <h6> <a href="single.html">Add news functions </a></h6>
-                                            <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/img/demo/small-proerty-2.jpg' %}">
-                                            </a>
-                                            <span class="blg-date">12-12-2016</span>
-
-                                        </div>
-                                        <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
-                                            <h6> <a href="single.html">Add news functions </a></h6>
-                                            <p style="line-height: 17px; padding: 8px 2px;">Lorem ipsum dolor sit amet, nulla ...</p>
-                                        </div>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                            <div class="single-footer news-letter">
-                                <h4>Stay in touch</h4>
-                                <div class="footer-title-line"></div>
-                                <p>Lorem ipsum dolor sit amet, nulla  suscipit similique quisquam molestias. Vel unde, blanditiis.</p>
-
-                                <form>
-                                    <div class="input-group">
-                                        <input class="form-control" type="text" placeholder="E-mail ... ">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary subscribe" type="button"><i class="pe-7s-paper-plane pe-2x"></i></button>
-                                        </span>
-                                    </div>
-                                    <!-- /input-group -->
-                                </form>
-
-                                <div class="social pull-right">
-                                    <ul>
-                                        <li><a class="wow fadeInUp animated" href="https://twitter.com/kimarotec"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://www.facebook.com/kimarotec" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://plus.google.com/kimarotec" data-wow-delay="0.3s"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.4s"><i class="fa fa-instagram"></i></a></li>
-                                        <li><a class="wow fadeInUp animated" href="https://instagram.com/kimarotec" data-wow-delay="0.6s"><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -575,21 +262,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="pull-left">
-                            <span> (C) <a href="http://www.KimaroTec.com">KimaroTheme</a> , All rights reserved 2016  </span>
-                        </div>
-                        <div class="bottom-menu pull-right">
-                            <ul>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s">Home</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.3s">Property</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.4s">Faq</a></li>
-                                <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.6s">Contact</a></li>
-                            </ul>
+                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
+
 
        <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
         <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
