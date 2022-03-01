@@ -2224,14 +2224,14 @@ single property page
 Welcom 
 ======================================*/
 .Welcome-area{
-    background: #F3F3F3 url("../../assets/img/welcome-bg.png") no-repeat scroll left top;
+    background: #F3F3F3 url("../../assets/img/library.png") no-repeat scroll left top;
     position: relative;
 
 
 }
 .Welcome-area .container .Welcome-entry{    
     overflow: hidden;
-    padding: 50px 10px 45px; 
+    padding: 50px 10px 45px;
 }
 .welcome-icon {
     height: 90px;
@@ -2291,14 +2291,21 @@ Welcom
     text-transform: uppercase;
     background-color: #FFF;
     position: absolute;
-    top: 126px;
+    top: 100px;
     right: 26px;
     font-weight: 500;
-    font-size: 35px;
+    font-size: 80px;
     border-radius: 50%;
-    padding: 35px 10px;
-    width: 170px;
-    height: 160px;
+    padding: 80px 10px;
+    width: 250px;
+    height: 250px;
+}
+.welcome_text .page-title img {
+    padding: 100px 50px;
+    width: 1000px;
+    height: 550px;
+
+
 }
 /*===================================================
 count-area
