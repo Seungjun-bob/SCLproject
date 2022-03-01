@@ -113,7 +113,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Submit new property</h1>
+                        <h1 class="page-title">리뷰 작성 페이지</h1>
                     </div>
                 </div>
             </div>
@@ -127,21 +127,19 @@
                     <div class="wizard-container">
 
                         <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                            <form action="" method="">
-                                <div class="wizard-header">
+                            <div class="wizard-header">
                                     <h3>
-                                        <b>Submit</b> YOUR PROPERTY <br>
+                                        <b>리뷰를 작성하세요</b> <br>
                                         <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
                                     </h3>
                                 </div>
-
+                            <form action="" method="">
                                 <ul>
                                     <li><a href="#step1" data-toggle="tab">Step 1 </a></li>
                                     <li><a href="#step2" data-toggle="tab">Step 2 </a></li>
                                     <li><a href="#step3" data-toggle="tab">Step 3 </a></li>
                                     <li><a href="#step4" data-toggle="tab">Finished </a></li>
                                 </ul>
-
                                 <div class="tab-content">
 
                                     <div class="tab-pane" id="step1">
@@ -176,12 +174,26 @@
 
                                     <div class="tab-pane" id="step2">
                                         <h4 class="info-text"> How much your Property is Beautiful ? </h4>
+                                            <form action="" class=" form-inline">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4">
+                                                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="도서관명을 입력하세요">
+                                                            <option>New york, CA</option>
+                                                            <option>Paris</option>
+                                                            <option>Casablanca</option>
+                                                            <option>Tokyo</option>
+                                                            <option>Marraekch</option>
+                                                            <option>kyoto , shibua</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
                                                         <label>Property Description :</label>
-                                                        <textarea name="discrition" class="form-control" ></textarea>
+                                                        <textarea rows="10" name="discrition" class="form-control" ></textarea>
                                                     </div>
                                                 </div>
                                             </div>
