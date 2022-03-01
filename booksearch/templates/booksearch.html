@@ -101,7 +101,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">List Layout With Sidebar</h1>
+                        <h1 class="page-title">도서 검색</h1>
                     </div>
                 </div>
             </div>
@@ -117,31 +117,18 @@
                             <form action="" class=" form-inline">
                                 <div class="col-md-12">
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="Key word">
+                                        <input type="text" class="form-control" placeholder="도서명">
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
-                                            <option>New york, CA</option>
-                                            <option>Paris</option>
-                                            <option>Casablanca</option>
-                                            <option>Tokyo</option>
-                                            <option>Marraekch</option>
-                                            <option>kyoto , shibua</option>
-                                        </select>
+                                        <input type="text" class="form-control" placeholder="저자">
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="basic" class="selectpicker show-tick form-control">
-                                            <option> -Status- </option>
-                                            <option>Rent </option>
-                                            <option>Boy</option>
-                                            <option>used</option>
-                                        </select>
+                                        <input type="text" class="form-control" placeholder="ISBN">
 
                                     </div>
                                         <div class="row">
- <!--                                                수정 확인용-->
                                             <div id=search_button class="col-xs-12">
-                                                <input class="button btn largesearch-btn" value="Search" type="submit">
+                                                <input class="button btn largesearch-btn" value="검 색" type="submit">
                                             </div>
                                         </div>
                                 </div>
@@ -153,21 +140,8 @@
 
                     <div class="col-md-12  clear">
                         <div class="col-xs-10 page-subheader sorting pl0">
-                            <ul class="sort-by-list">
-                                <li class="active">
-                                    <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
-                                        Property Date <i class="fa fa-sort-amount-asc"></i>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
-                                        Property Price <i class="fa fa-sort-numeric-desc"></i>
-                                    </a>
-                                </li>
-                            </ul><!--/ .sort-by-list-->
-
                             <div class="items-per-page">
-                                <label for="items_per_page"><b>Property per page :</b></label>
+                                <label for="items_per_page"><b>&nbsp 페이지당 검색 수 :</b></label>
                                 <div class="sel">
                                     <select id="items_per_page" name="per_page">
                                         <option value="3">3</option>
@@ -201,11 +175,6 @@
                                         <span class="pull-left"><b> Area :</b> 120m </span>
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)
-                                        </div>
                                     </div>
                                 </div>
                             </div>
