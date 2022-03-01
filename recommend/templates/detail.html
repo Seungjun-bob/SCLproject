@@ -79,14 +79,14 @@
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'about' %}" class="active">About</a>
+                            <a href="{% url 'about' %}" class="">About</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend' %}">도서 추천</a>
+                            <a class="active" href="{% url 'recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a active="" href="{% url 'board' %}">게시판</a>
@@ -132,7 +132,8 @@
                                 </div>
                             </div>
                             <p class="intro">사서 추천 글</p>
-                                <a href="detail" class="btn btn-default btn-border">읽기</a>
+                            <p class="read-more">
+                                <a href=" /recommend " class="btn btn-default btn-border">목록</a>
                             </p>
                         </section>
                     </div>
