@@ -2300,12 +2300,18 @@ Welcom
     width: 250px;
     height: 250px;
 }
-.welcome_text .page-title img {
-    padding: 100px 50px;
-    width: 1000px;
-    height: 550px;
-
-
+.welcome_text .page-title h1 {
+    color: #ffd100;
+    text-transform: uppercase;
+    position: absolute;
+    top: -60px;
+    left: -50px;
+    font-weight: 500;
+    font-size: 100px;
+    border-radius: 0%;
+    padding: 80px 10px;
+    width: 250px;
+    height: 250px;
 }
 /*===================================================
 count-area
