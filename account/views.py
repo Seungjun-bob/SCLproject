@@ -8,3 +8,6 @@ def about(request):
 
 def changepassword(request):
     return render(request, 'change_password.html')
+
+def login(request):
+    return render(request, 'login.html')
