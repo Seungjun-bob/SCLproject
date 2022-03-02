@@ -2819,11 +2819,11 @@ padding-bottom: 15px;
 /*FOOOTER*/
 .footer-area{
 border-top: 1px solid #D1D1D1;
-background: #555 url("../../assets/img/bg-footer.jpg") repeat scroll 0% 0%;
+background: #555 url("") repeat scroll 0% 0%;
 color: #535353;
 }
 .footer{
-padding: 0px 0px 60px;
+padding: 0px 0px 10px;
 background: rgba(255, 255, 255, 0.89) none repeat scroll 0% 0%;
 }
 .footer ul li i { 
@@ -2863,10 +2863,10 @@ padding-top: 7px;
     border-bottom: 3px solid #FDC600;
 }
 .footer-title-line {
-    width: 100px;
+    width: auto;
     height: 2px;
-    background: #FFA600;
-    margin: 0px 0px 33px;
+    background: grey;
+    margin: 0px 0px 20px;
     position: relative;
     top: -2px;
 }
