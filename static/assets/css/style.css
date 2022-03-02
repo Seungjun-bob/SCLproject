@@ -737,7 +737,7 @@ label small{
 }
 
 .navbar-nav.navbar-right:last-child{
-    margin-right: 20px
+    margin-right: 20px;
 }
 .navbar-brand {
 
@@ -746,7 +746,7 @@ label small{
     padding-top: 10px;
 }
 .button.navbar-right {
-    padding-top: 10px;
+    padding-top: 5px;
 }
 .nav-button {
     background-color: #c2c2c2;
@@ -1106,8 +1106,8 @@ page-header
 .page-head-content .page-title {
     margin: 0px;
     padding: 10px 16px;
-    font-size: 30px;
-    font-weight: 300;
+    font-size: 50px;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #808080;
@@ -2232,7 +2232,7 @@ Welcom
 ======================================*/
 .Welcome-area{
     background: url("../../assets/img/bg-img.jpg") no-repeat scroll center top;
-    height: 60vh;
+    height: 70vh;
     background-size : cover;
     position: relative;
 
@@ -2240,7 +2240,7 @@ Welcom
 }
 .Welcome-area .container .Welcome-entry{
     overflow: hidden;
-    padding: 50px 10px 45px;
+    padding: 100px 10px 45px;
 }
 .welcome-icon {
     height: 90px;
@@ -2313,7 +2313,7 @@ Welcom
     position: absolute;
     top: -50px;
     left: -160px;
-    font-weight: 100;
+    font-weight: bold;
     font-size: 100px;
     border-radius: 0%;
     padding: 80px 10px;
@@ -2468,6 +2468,7 @@ count-area
     transition: all 0.2s ease 0s;
     box-shadow: none;
     background-color: #FFF;
+    margin: 0px 200px 0px 200px;
 }
 .more-entry a{
     color: #000;
@@ -2638,6 +2639,7 @@ padding-bottom: 15px;
 .login-blocks h2 ,.register-blocks h2  {
     display: inline-block;
     text-transform: uppercase;
+    margin-left:30px;
     margin-bottom: 15px;
     background: transparent none repeat scroll 0% 0%;
     border-bottom: 2px solid #FDC600;
@@ -2916,7 +2918,7 @@ font-size: 13px;
     font-weight: 500;
 } 
 .footer img{
-    height: 32px;
+    height: 0px;
 }
 ul.footer-blog li {
     width: 100%;
