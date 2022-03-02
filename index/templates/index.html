@@ -14,14 +14,20 @@
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+<!--        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>-->
+<!--        Nanum font       -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'assets/css/Nanumfont.css' %}">
+
         <!-- Place favicon.ico  the root directory -->
         <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
         <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
         <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/fontello.css' %}">
+<!--        <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">-->
+<!--        <link rel="stylesheet" href="{% static 'assets/css/fontello.css' %}">-->
         <link href="{% static 'assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css' %}" rel="stylesheet">
         <link href="{% static 'assets/fonts/icon-7-stroke/css/helper.css' %}" rel="stylesheet">
         <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" media="screen">
@@ -69,7 +75,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt=""></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -79,18 +85,15 @@
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'about' %}" class="">About</a>
-                        </li>
+                            <a href="{% url 'about' %}" class="">About</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend' %}">도서 추천</a>
-                        </li>
+                            <a class="" href="{% url 'recommend' %}">도서 추천</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board' %}">게시판</a>
-                        </li>
+                            <a href="{% url 'board' %}">게시판</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -98,7 +101,7 @@
         <!-- End of nav bar -->
 
         <!--Welcome area -->
-        <div class="Welcome-area">
+        <div style="width:100% height:100%" class="Welcome-area">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 Welcome-entry  col-sm-12">
@@ -120,7 +123,7 @@
                                             <div class="welcome-icon" onClick="location.href='{% url 'libsearch' %}'">
                                                 <i class="pe-7s-home pe-4x"></i>
                                             </div>
-                                            <h3>도서관 검색</h3>
+                                            <h4>도서관 검색</h4>
                                         </div>
                                     </div>
                                     <div class="col-xs-6 m-padding">
@@ -128,7 +131,7 @@
                                             <div class="welcome-icon" onClick="location.href='{% url 'booksearch' %}'">
                                                 <i class="pe-7s-users pe-4x"></i>
                                             </div>
-                                            <h3>도서 검색</h3>
+                                            <h4>도서 검색</h4>
                                         </div>
                                     </div>
 
@@ -142,7 +145,7 @@
                                             <div class="welcome-icon" onClick="location.href='{% url 'recommend' %}'">
                                                 <i class="pe-7s-notebook pe-4x"></i>
                                             </div>
-                                            <h3>추천 도서</h3>
+                                            <h4>추천 도서</h4>
                                         </div>
                                     </div>
                                     <div class="col-xs-6 m-padding">
@@ -150,7 +153,7 @@
                                             <div class="welcome-icon" onClick="location.href='{% url 'board' %}'">
                                                 <i class="pe-7s-help2 pe-4x"></i>
                                             </div>
-                                            <h3>리뷰 게시판</h3>
+                                            <h4>리뷰 게시판</h4>
                                         </div>
                                     </div>
 
