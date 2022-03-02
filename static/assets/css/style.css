@@ -1093,8 +1093,8 @@ font-weight: 500;
 page-header
 ======================================================*/
 .page-head{
-    background: #494C53 url("../../assets/img/page-header.jpg") 
-        no-repeat scroll center top / cover;
+    background: #494C53 url("../../assets/img/title-img.jpg")
+        no-repeat scroll center center / cover;
     color:#FFF;
     position: relative;
     min-height: 140px;
@@ -1110,6 +1110,7 @@ page-header
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color: #808080;
 }
 .content-area{
     background-color: #FCFCFC; padding-bottom: 55px;
