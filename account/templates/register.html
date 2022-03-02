@@ -3,28 +3,34 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>SCL | Register page</title>
+        <title>SCL | Booksearch</title>
         <meta name="description" content="GARO is a real-estate template">
         <meta name="author" content="Kimarotec">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+<!--        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>-->
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'assets/css/Notofont.css' %}">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
         <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
         <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/fontello.css' %}">
+<!--        <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">-->
+<!--        <link rel="stylesheet" href="{% static 'assets/css/fontello.css' %}">-->
         <link href="{% static 'assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css' %}" rel="stylesheet">
         <link href="{% static 'assets/fonts/icon-7-stroke/css/helper.css' %}" rel="stylesheet">
-        <link href="{% static 'assets/css/animate.css" rel="stylesheet' %}" media="screen">
+        <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'assets/css/icheck.min_all.css' %}">
@@ -75,7 +81,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login" onclick="location.href='{% url 'register' %}'" data-wow-delay="0.1s">로그인</button>
+                        <button class="navbar-btn nav-button wow bounceInRight login" onclick="location.href='{% url 'login' %}'" data-wow-delay="0.1s">로그인</button>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
@@ -112,8 +118,7 @@
         <!-- register-area -->
         <div class="register-area" style="background-color: rgb(249, 249, 249);">
             <div class="container">
-
-                <div class="col-md-6">
+                <div class="col-md-12" >
                     <div class="box-for overflow">
                         <div class="col-md-12 register-blocks">
                             <h2>회원가입</h2>
@@ -132,46 +137,21 @@
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label for="email">비밀번호</label>
-                                    <input type="text" class="form-control" id="email">
+                                    <input type="password" class="form-control" id="email">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label for="password">비밀번호 확인</label>
                                     <input type="password" class="form-control" id="password">
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-default">회원가입</button>
+                                    <button type="submit" href="{% url 'register' %}" class="btn btn-default">회원가입</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div class="box-for overflow">
-                        <div class="col-md-12 col-xs-12 login-blocks">
-                            <h2>로그인</h2>
-                            <form action="" method="post">
-                                <div class="form-group">
-                                    <label for="email">이메일</label>
-                                    <input type="text" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">비밀번호</label>
-                                    <input type="password" class="form-control" id="password">
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-default">로그인</button>
-                                </div>
-                            </form>
-                            <br>
-                        </div>
-
-                    </div>
                 </div>
-
             </div>
-        </div>
-
           <!-- Footer area-->
         <div class="footer-area">
 

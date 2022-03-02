@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -8,24 +8,29 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>SCL | Review</title>
+        <title>SCL | Home page</title>
         <meta name="description" content="GARO is a real-estate template">
         <meta name="author" content="Kimarotec">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+<!--        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>-->
+<!--        Nanum font       -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'assets/css/Notofont.css' %}">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- Place favicon.ico  the root directory -->
         <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
         <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
         <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/fontello.css' %}">
+<!--        <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">-->
+<!--        <link rel="stylesheet" href="{% static 'assets/css/fontello.css' %}">-->
         <link href="{% static 'assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css' %}" rel="stylesheet">
         <link href="{% static 'assets/fonts/icon-7-stroke/css/helper.css' %}" rel="stylesheet">
-        <link href="{% static 'assets/css/animate.css" rel="stylesheet' %}" media="screen">
+        <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'assets/css/icheck.min_all.css' %}">
@@ -70,28 +75,25 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt=""></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login" onclick="location.href='{% url 'register' %}'" data-wow-delay="0.1s">로그인</button>
+                        <button class="navbar-btn nav-button wow bounceInRight login" onclick="location.href='{% url 'login' %}'" data-wow-delay="0.1s">로그인</button>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'about' %}" class="">About</a>
-                        </li>
+                            <a href="{% url 'about' %}" class="">About</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend' %}">도서 추천</a>
-                        </li>
+                            <a class="" href="{% url 'recommend' %}">도서 추천</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="active" href="{% url 'board' %}">게시판</a>
-                        </li>
+                            <a href="{% url 'board' %}">게시판</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -237,7 +239,7 @@
                             <div class="col-sm-6 col-md-4 p0">
                                     <div class="box-two proerty-item">
                                         <div class="item-entry overflow">
-                                            <h5><a href="property-1.html"> 서울시 도서관 </a></h5>
+                                            <h5><a href="result"> 서울시 도서관 </a></h5>
                                             <div class="dot-hr"></div>
                                             <span class="pull-left"><b> Area :</b> 120m </span>
                                             <span class="proerty-price pull-right"> $ 300,000</span>

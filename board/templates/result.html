@@ -1,3 +1,4 @@
+<!--주석 지울것-->
 <!DOCTYPE html>
 {% load static %}
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -6,22 +7,22 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
     <head>
-         <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>SCL | Recommend</title>
-        <meta name="description" content="company is a real-estate template">
+        <title>SCL | Home page</title>
+        <meta name="description" content="GARO is a real-estate template">
         <meta name="author" content="Kimarotec">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>-->
-
+<!--        Nanum font       -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'assets/css/Notofont.css' %}">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- Place favicon.ico  the root directory -->
         <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
         <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
@@ -47,6 +48,7 @@
             <div id="status">&nbsp;</div>
         </div>
         <!-- Body content -->
+
 
         <div class="header-connect">
             <div class="container">
@@ -74,7 +76,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt=""></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -84,29 +86,26 @@
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'about' %}" class="">About</a>
-                        </li>
+                            <a href="{% url 'about' %}" class="">About</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="active" href="{% url 'recommend' %}">도서 추천</a>
-                        </li>
+                            <a class="" href="{% url 'recommend' %}">도서 추천</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board' %}">게시판</a>
-                        </li>
+                            <a href="{% url 'board' %}">게시판</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head">
+        <div class="page-head"> 
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">도서 추천</h1>
+                        <h1 class="page-title">리뷰 게시판</h1>
                     </div>
                 </div>
             </div>
@@ -117,41 +116,103 @@
             <div class="container">
                 <div class="row">
                     <div class="blog-lst col-md-12 pl0">
-                        <section class="post">
-                            <div class="text-center padding-b-50">
-                                <h2 class="wow fadeInLeft animated">추천 도서</h2>
-                                <div class="title-line wow fadeInRight animated"></div>
+                        <section id="id-100" class="post single">
+
+                            <div class="post-header single">
+                                <div class="">
+                                    <h2 class="wow fadeInLeft animated">FASHIN NOW 2016</h2>
+                                    <div class="title-line wow fadeInRight animated"></div>
+                                </div>
+                                <div class="row wow fadeInRight animated">
+                                    <div class="col-sm-6">
+                                        <p class="author-category">
+                                            By <a href="#">John Snow</a>
+                                            in <a href="blog.html">Webdesign</a>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6 right" >
+                                        <p class="date-comments">
+                                            <a href="single.html"><i class="fa fa-calendar-o"></i> June 20, 2013</a>
+                                            <a href="single.html"><i class="fa fa-comment-o"></i> 8 Comments</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="image wow fadeInRight animated"> 
+                                    <img src="{% static 'assets/img/blog2.jpg' %}" class="img-responsive" alt="Example blog post alt">
+                                </div>
+                            </div> 
+
+                            <div id="post-content" class="post-body single wow fadeInLeft animated">
+                                <p>
+                                    <strong>Pellentesque habitant morbi tristique</strong> 
+                                    senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                                    semper. <em>Aenean ultricies mi vitae est.</em> 
+                                    Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean
+                                    fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+
+                            </div>
+                            <div class="post-footer single wow fadeInBottum animated">
+                                <ul class="pager">
+                                    <li class="next disabled"><a href="{% url 'board' %}">목록<i class=""></i> </a></li>
+                                </ul>
                             </div>
 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p class="author-category">
-                                        추천 도서 1
+                        </section> 
+
+                        <section class="about-autor">
+
+                        </section>
+
+                        <section id="comments" class="comments wow fadeInRight animated"> 
+                            <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
+
+
+                            <div class="row comment">
+                                <div class="col-sm-3 col-md-2 text-center-xs">
+                                    <p>
+                                        <img src="{% static 'assets/img/client-face1.png' %}" class="img-responsive img-circle" alt="">
                                     </p>
                                 </div>
-                        <section class="post">
-                             <div class="row">
-                                <div class="col-sm-6 right" >
-                                    <p class="date-comments">
-                                        <i class="fa fa-calendar-o"></i> June 20, 2013&nbsp
-                                        <i class="fa fa-comment-o"></i>Comments
+                                <div class="col-sm-9 col-md-10">
+                                    <h5 class="text-uppercase">Julie Alma</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
+                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
                                     </p>
                                 </div>
                             </div>
-                            <div class="image wow fadeInLeft animated">
-                                    <img src="assets/img/blog2.jpg" class="img-responsive" alt="Example blog post alt">
-                            </div>
-                            <p class="intro">사서 추천 글</p>
-                            <p class="read-more">
-                                <a href="detail" class="btn btn-default btn-border">읽기</a>
-                            </p>
-                    </div>
+                            <!-- /.comment -->
+
+                        </section>
+
+                        <section id="comment-form" class="add-comments">
+                            <h4 class="text-uppercase wow fadeInLeft animated">댓글 쓰기</h4>
+                            <form>
+                                <div class="row wow fadeInLeft animated">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="comment">Comment <span class="required">*</span>
+                                            </label>
+                                            <textarea class="form-control" id="comment" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row wow fadeInLeft animated">
+                                    <div class="col-sm-12 text-right">
+                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i>등록</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
+                    </div>                                 
                 </div>
 
             </div>
         </div>
 
-     <!-- Footer area-->
+          <!-- Footer area-->
         <div class="footer-area">
 
             <div class=" footer">
@@ -181,9 +242,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
         <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
@@ -201,6 +260,6 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
-
+       
     </body>
 </html>

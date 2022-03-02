@@ -1093,8 +1093,8 @@ font-weight: 500;
 page-header
 ======================================================*/
 .page-head{
-    background: #494C53 url("../../assets/img/page-header.jpg") 
-        no-repeat scroll center top / cover;
+    background: #494C53 url("../../assets/img/title-img.jpg")
+        no-repeat scroll center center / cover;
     color:#FFF;
     position: relative;
     min-height: 140px;
@@ -1110,6 +1110,7 @@ page-header
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color: #808080;
 }
 .content-area{
     background-color: #FCFCFC; padding-bottom: 55px;
@@ -2230,12 +2231,14 @@ single property page
 Welcom 
 ======================================*/
 .Welcome-area{
-    background: #F3F3F3 url("../../assets/img/library.png") no-repeat scroll left top;
+    background: url("../../assets/img/bg-img.jpg") no-repeat scroll center top;
+    height: 60vh;
+    background-size : cover;
     position: relative;
 
 
 }
-.Welcome-area .container .Welcome-entry{    
+.Welcome-area .container .Welcome-entry{
     overflow: hidden;
     padding: 50px 10px 45px;
 }
@@ -2264,10 +2267,8 @@ Welcom
     text-align: center;
     fill: #FFF;
 }
-.welcome-estate h3 {
-    font: 600 14px "Open Sans",sans-serif;
-    text-transform: uppercase;
-    margin: 20px 0px 0px;
+.welcome-estate h5 {
+    margin: 25px 0px 0px;
 }
 .welcome_text ul {
     padding-left: 0px;
@@ -2292,14 +2293,14 @@ Welcom
     position: relative;
     z-index: 1000;
 }
-.welcome_text .page-title h2 {
+.welcome_text .page-title h3 {
     color: #9B9B9B;
     text-transform: uppercase;
     background-color: #FFF;
     position: absolute;
     top: 100px;
     right: 26px;
-    font-weight: 500;
+    font-weight: 100;
     font-size: 80px;
     border-radius: 50%;
     padding: 80px 10px;
@@ -2310,9 +2311,9 @@ Welcom
     color: #ffd100;
     text-transform: uppercase;
     position: absolute;
-    top: -60px;
-    left: -50px;
-    font-weight: 500;
+    top: -50px;
+    left: -160px;
+    font-weight: 100;
     font-size: 100px;
     border-radius: 0%;
     padding: 80px 10px;
@@ -2819,11 +2820,11 @@ padding-bottom: 15px;
 /*FOOOTER*/
 .footer-area{
 border-top: 1px solid #D1D1D1;
-background: #555 url("../../assets/img/bg-footer.jpg") repeat scroll 0% 0%;
+background: #555 url("") repeat scroll 0% 0%;
 color: #535353;
 }
 .footer{
-padding: 0px 0px 60px;
+padding: 0px 0px 10px;
 background: rgba(255, 255, 255, 0.89) none repeat scroll 0% 0%;
 }
 .footer ul li i { 
@@ -2838,7 +2839,7 @@ background: rgba(255, 255, 255, 0.89) none repeat scroll 0% 0%;
 padding-top: 7px;
 }
 .single-footer{
-    margin-top: 35px
+    margin-top: 10px
 }
 .footer img{
     margin-bottom: 20px;
@@ -2863,10 +2864,10 @@ padding-top: 7px;
     border-bottom: 3px solid #FDC600;
 }
 .footer-title-line {
-    width: 100px;
+    width: auto;
     height: 2px;
-    background: #FFA600;
-    margin: 0px 0px 33px;
+    background: grey;
+    margin: 0px 0px 20px;
     position: relative;
     top: -2px;
 }
