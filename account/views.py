@@ -11,6 +11,7 @@ def index(request) :
     return render(request, 'index.html', context)
 
 def register(request):
+  
     res_data = None
     if request.method =='POST':
         useremail = request.POST.get('useremail')
@@ -62,4 +63,4 @@ def about(request):
     return redirect("about")
 
 def changepassword(request):
-    return redirect("changepassword")
+    return render(request, 'change_password.html')
