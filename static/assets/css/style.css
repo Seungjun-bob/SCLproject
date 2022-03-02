@@ -2266,8 +2266,8 @@ Welcom
     text-align: center;
     fill: #FFF;
 }
-.welcome-estate h4 {
-    margin: 20px 0px 0px;
+.welcome-estate h5 {
+    margin: 25px 0px 0px;
 }
 .welcome_text ul {
     padding-left: 0px;
