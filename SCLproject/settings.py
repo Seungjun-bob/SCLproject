@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'libsearch',
     'booksearch',
     'recommend',
-    'board'
+    'board',
 ]
 
 MIDDLEWARE = [

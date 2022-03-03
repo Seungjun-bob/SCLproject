@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load libsearch_extras %}
 {% load static %}
 <html class="no-js">
     <head>
@@ -177,14 +178,21 @@
                             </form>
                         </div>
                     </div>
+        <div>
+            <p>
+                검색수: {{ num }}<br>
+                필터: {{ request.GET.code_value }} {{ request.GET.lbrry_se_name }}
+            </p>
+        </div>
+
         {% for list in total %}
         <div class="cod-md-4">
-            <h4>도서관 이름: {{ list.lbrry_name | default_if_none:''}}</h4>
-            오픈 시간: {{ list.op_time | default_if_none:''}} <br>
-            {{ list.fdrm_close_date | default_if_none:''}} <br>
-            전화번호 :{{ list.tel_no | default_if_none:''}} <br>
-            홈페이지 :{{ list.hmpg_url | default_if_none:''}} <br>
-            {{ list.adres | default_if_none:''}} <br>
+            <h4>{{ list.lbrry_name | default_if_none:''}}</h4>
+            오픈시간 : {{ list.op_time | default_if_none:''}} <br>
+            휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
+            전화번호 : {{ list.tel_no | default_if_none:''}} <br>
+            홈페이지 : <a href="{{ list.hmpg_url }}">{{ list.hmpg_url | default_if_none:''}}</a><br>
+            주소 : {{ list.adres | default_if_none:''}} <br>
             <hr>
         </div>
         {% endfor %}
@@ -194,7 +202,7 @@
                                 <ul class="pagination justify-content-center">
                                     {% if total.has_previous %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ total.previous_page_number }}">이전</a>
+                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
                                     </li>
                                     {% else %}
                                     <li class="page-item disabled">
@@ -206,11 +214,11 @@
                                     {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
                                         {% if page_number == total.number %}
                                         <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
                                         {% else %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
                                         {% endif %}
                                     {% endif %}
@@ -218,7 +226,7 @@
                                     <!-- 다음 페이지 -->
                                     {% if total.has_next %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ total.next_page_number }}">다음</a>
+                                            <a class="page-link" href="?{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
                                         </li>
                                     {% else %}
                                         <li class="page-item disabled">
@@ -231,6 +239,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
 
 

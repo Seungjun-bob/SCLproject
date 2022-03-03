@@ -7,7 +7,7 @@ def libsearch(request):
     library_div = request.GET.get("lbrry_se_name", "")
     library_gu = request.GET.get("code_value", "")
     library_info = Library.objects.all()
-    print(search, library_div, library_gu)
+
     if library_div=='전체' and library_gu=='전체':
         library_div = ""
         library_gu = ""
@@ -29,13 +29,14 @@ def libsearch(request):
                                     code_value__icontains=library_gu,
                                     lbrry_name__icontains=search)
 
-
+    num = total.count()
     page = request.GET.get('page', '1')
 
     paginator = Paginator(total, 5)
     page_obj = paginator.get_page(page)
     context = {
-        "total": page_obj,
+        "total" : page_obj,
+        "num" : num
     }
 
     return render(request, 'libsearch.html', context)
