@@ -123,7 +123,7 @@
                                         <input type="text" class="form-control" placeholder="도서관명">
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="lunchBegins" class="selectpicker" title="도서관 구분">
+                                        <select id="lunchBegins" class="selectpicker" title="도서관 구분" name="lbrry_se_name">
                                             <option>전체</option>
                                             <option>공공도서관</option>
                                             <option>국립도서관</option>
@@ -134,7 +134,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="basic" class="selectpicker show-tick form-control" title="자치구" style="overflow: scroll;">
+                                        <select id="basic" class="selectpicker show-tick form-control" title="자치구" style="overflow: scroll;" name="code_value">
                                             <option>전체</option>
                                             <option>강남구</option>
                                             <option>강동구</option>
@@ -221,6 +221,11 @@
                             </div>
                         </div>
                     </div>
+                    {% for list in div_gu_list %}
+                        {{ list.lbrry_name }} <br>
+
+                    {% endfor %}
+
 
                     <div class="col-md-12 clear">
                         <div class="pull-right">
