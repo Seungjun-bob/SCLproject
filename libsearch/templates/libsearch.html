@@ -120,7 +120,7 @@
                             <form action="" class=" form-inline">
                                 <div class="col-md-12">
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="도서관명">
+                                        <input type="text" class="form-control" placeholder="도서관명" name="search">
                                     </div>
                                     <div class="col-md-4">
                                         <select id="lunchBegins" class="selectpicker" title="도서관 구분" name="lbrry_se_name">
@@ -177,73 +177,63 @@
                             </form>
                         </div>
                     </div>
-
-                    <div class="col-md-12  clear">
-                        <div class="col-xs-10 page-subheader sorting pl0">
-
-                            <div class="items-per-page">
-                                <label for="items_per_page"><b>&nbsp 페이지당 검색 수 :</b></label>
-                                <div class="sel">
-                                    <select id="items_per_page" name="per_page">
-                                        <option value="3">3</option>
-                                        <option value="6">6</option>
-                                        <option value="9">9</option>
-                                        <option selected="selected" value="12">12</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                        <option value="60">60</option>
-                                    </select>
-                                </div><!--/ .sel-->
-                            </div><!--/ .items-per-page-->
-                        </div>
-
-                        <div class="col-xs-2 layout-switcher">
-                        </div><!--/ .layout-switcher-->
-                    </div>
-
-                    <div class="col-md-12 clear ">
-                        <div id="list-type" class="proerty-th-list">
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-3.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% for list in div_gu_list %}
-                        {{ list.lbrry_name }} <br>
-
-                    {% endfor %}
-
-
+        {% for list in total %}
+        <div class="cod-md-4">
+            <h4>도서관 이름: {{ list.lbrry_name | default_if_none:''}}</h4>
+            오픈 시간: {{ list.op_time | default_if_none:''}} <br>
+            {{ list.fdrm_close_date | default_if_none:''}} <br>
+            전화번호 :{{ list.tel_no | default_if_none:''}} <br>
+            홈페이지 :{{ list.hmpg_url | default_if_none:''}} <br>
+            {{ list.adres | default_if_none:''}} <br>
+            <hr>
+        </div>
+        {% endfor %}
                     <div class="col-md-12 clear">
                         <div class="pull-right">
                             <div class="pagination">
-                                <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">Next</a></li>
+                                <ul class="pagination justify-content-center">
+                                    {% if total.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ total.previous_page_number }}">이전</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                                    </li>
+                                    {% endif %}
+                                    <!-- 페이지 번호 -->
+                                    {% for page_number in total.paginator.page_range %}
+                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
+                                        {% if page_number == total.number %}
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                        </li>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    <!-- 다음 페이지 -->
+                                    {% if total.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ total.next_page_number }}">다음</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                                        </li>
+                                    {% endif %}
+                                <!-- 페이징처리 끝 -->
+<!--                                    <li><a href="#">Next</a></li>-->
                                 </ul>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+
+
+
 
           <!-- Footer area-->
         <div class="footer-area">

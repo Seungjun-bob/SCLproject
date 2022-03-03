@@ -1,32 +1,42 @@
 from django.shortcuts import render
 from libsearch.models import Library
+from django.core.paginator import Paginator
 
 def libsearch(request):
-    library_div = request.GET.get("lbrry_se_name", None)
-    library_gu = request.GET.get("code_value", None)
+    search = request.GET.get('search', "")
+    library_div = request.GET.get("lbrry_se_name", "")
+    library_gu = request.GET.get("code_value", "")
     library_info = Library.objects.all()
-    div_gu_list = library_info.filter(lbrry_se_name=library_div, code_value=library_gu)
-    context = {
-        "div_gu_list": div_gu_list,
-    }
-    # if library_div and library_gu:
-    #     div_gu_list = library_info.filter(lbrry_se_name=library_div, code_value=library_gu)
-    #     context = {
-    #         "div_gu_list": div_gu_list,
-    #     }
-    # elif library_div:
-    #     div_list = library_info.filter(lbrry_se_name=library_div)
-    #     context = {
-    #         "div_list": div_list,
-    #     }
-    # elif library_gu:
-    #     gu_list = library_info.filter(code_value=library_gu)
-    #     context = {
-    #         "gu_list": gu_list,
-    #     }
-    # else:
-    #     context = None
+    print(search, library_div, library_gu)
+    if library_div=='전체' and library_gu=='전체':
+        library_div = ""
+        library_gu = ""
+        total = library_info.filter(lbrry_se_name__icontains=library_div,
+                                    code_value__icontains=library_gu,
+                                    lbrry_name__icontains=search)
+    elif library_div=='전체':
+        library_div = ""
+        total = library_info.filter(lbrry_se_name__icontains=library_div,
+                                    code_value__icontains=library_gu,
+                                    lbrry_name__icontains=search)
+    elif library_gu=='전체':
+        library_gu = ""
+        total = library_info.filter(lbrry_se_name__icontains=library_div,
+                                    code_value__icontains=library_gu,
+                                    lbrry_name__icontains=search)
+    else:
+        total = library_info.filter(lbrry_se_name__icontains=library_div,
+                                    code_value__icontains=library_gu,
+                                    lbrry_name__icontains=search)
 
+
+    page = request.GET.get('page', '1')
+
+    paginator = Paginator(total, 5)
+    page_obj = paginator.get_page(page)
+    context = {
+        "total": page_obj,
+    }
 
     return render(request, 'libsearch.html', context)
 
