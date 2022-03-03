@@ -38,7 +38,7 @@ def login(request):
         print(useremail, password)
         if user is not None :
             auth.login(request, user)
-            return redirect("index")
+            return render(request, 'index.html')
         else :
             return render(request, 'login.html', {'error': '사용자 아이디 또는 패스워드가 틀립니다.'})
     else :
@@ -47,7 +47,7 @@ def login(request):
 def logout(request):
     if request.user.is_authenticated:
         auth.logout(request)
-    return redirect("index")
+    return render(request, "index.html")
 
 def only_member(request) :
     context = None
