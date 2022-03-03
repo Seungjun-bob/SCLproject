@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SCL | Home Page</title>
+        <title>SCL | Register</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-        </div>         
+        </div>
         <!--End top header -->
 
         <nav class="navbar navbar-default ">
@@ -68,99 +68,98 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         {% if user.is_authenticated %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'myreview' %}'">작성글</button>
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'logout' %}'">로그아웃</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
                         {% else %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'login' %}'">로그인</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
                         {% endif %}
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'about' %}" class="">About</a></li>
+                            <a href="{% url 'index:about' %}" class="">About</a>
+                        </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'libsearch' %}">도서관 검색</a></li>
+                            <a class="" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'booksearch' %}">도서 검색</a></li>
+                            <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend' %}">도서 추천</a></li>
+                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                        </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board' %}">게시판</a></li>
+                            <a href="{% url 'board:board' %}">게시판</a>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
 
-        <!--Welcome area -->
-        <div style="width:100% height:100%" class="Welcome-area">
+        <div class="page-head">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 Welcome-entry  col-sm-12">
-                        <div class="col-md-5 col-md-offset-2 col-sm-6 col-xs-12">
-                            <div class="welcome_text wow fadeInLeft" data-wow-delay="0.3s" data-wow-offset="100">
-                                <div class="row">
-                                    <div class="col-md-12 col-md-offset-1 col-sm-12 page-title">
-                                        <h1>SEOUL<br>CITY<br>LIBRARY</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5 col-sm-6 col-xs-12">
-                            <div  class="welcome_services wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
-                                <div class="row">
-                                    <div class="col-xs-6 m-padding">
-                                        <div class="welcome-estate">
-                                            <div class="welcome-icon" onClick="location.href='{% url 'libsearch' %}'">
-                                                <i class="pe-7s-home pe-4x"></i>
-                                            </div>
-                                            <h5>도서관 검색</h5>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 m-padding">
-                                        <div class="welcome-estate">
-                                            <div class="welcome-icon" onClick="location.href='{% url 'booksearch' %}'">
-                                                <i class="pe-7s-users pe-4x"></i>
-                                            </div>
-                                            <h5>도서 검색</h5>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-xs-12 text-center">
-                                        <i class="welcome-circle"></i>
-                                    </div>
-
-                                    <div class="col-xs-6 m-padding">
-                                        <div class="welcome-estate">
-                                            <div class="welcome-icon" onClick="location.href='{% url 'recommend' %}'">
-                                                <i class="pe-7s-notebook pe-4x"></i>
-                                            </div>
-                                            <h5>추천 도서</h5>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 m-padding">
-                                        <div class="welcome-estate">
-                                            <div class="welcome-icon" onClick="location.href='{% url 'board' %}'">
-                                                <i class="pe-7s-help2 pe-4x"></i>
-                                            </div>
-                                            <h5>리뷰 게시판</h5>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                    <div class="page-head-content">
+                        <h1 class="page-title">회원가입</h1>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- End page header -->
+
+
+        <!-- register-area -->
+
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="box-for overflow">
+                <div class="col-md-12 col-xs-12 register-blocks">
+                    <h2>회원가입</h2>
+                        <div class="row">
+                            <div class="col-md-12 text-center" style="color:red">
+                                {{error}}
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <form method="POST" action="{% url 'index:register' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="useremail">이메일</label>
+                                        <input type="email" class="form-control"  placeholder="이메일" name="useremail" required>
+                                        <small id="emailHelp" class="form-text text-muted">이메일 주소를 아이디로 사용합니다.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="usernickname">닉네임</label>
+                                        <input type="text" class="form-control"  placeholder="닉네임" name="usernickname" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">이름</label>
+                                        <input type="text" class="form-control"  placeholder="이름" name="username" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">비밀번호</label>
+                                        <input type="password" class="form-control" placeholder="비밀번호" name="password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="re-password">비밀번호 확인</label>
+                                        <input type="password" class="form-control" placeholder="비밀번호 확인" name="re-password" required>
+                                    </div>
+                                    <button style="float:right;" type="submit" class="btn btn-primary">회원가입</button>
+                                </form>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
           <!-- Footer area-->
         <div class="footer-area">
 
@@ -204,13 +203,12 @@
         <script src="{% static 'assets/js/jquery.easypiechart.min.js' %}"></script>
 
         <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
-
         <script src="{% static 'assets/js/wow.js' %}"></script>
 
         <script src="{% static 'assets/js/icheck.min.js' %}"></script>
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
-      
+
     </body>
 </html>
