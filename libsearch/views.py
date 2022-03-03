@@ -1,4 +1,44 @@
 from django.shortcuts import render
+from libsearch.models import Library
+from django.core.paginator import Paginator
 
 def libsearch(request):
-    return render(request, 'libsearch.html')
+    search = request.GET.get('search', "")
+    library_div = request.GET.get("lbrry_se_name", "")
+    library_gu = request.GET.get("code_value", "")
+    library_info = Library.objects.all()
+
+    if library_div=='전체' and library_gu=='전체':
+        library_div = ""
+        library_gu = ""
+        total = library_info.filter(lbrry_se_name__icontains=library_div,
+                                    code_value__icontains=library_gu,
+                                    lbrry_name__icontains=search)
+    elif library_div=='전체':
+        library_div = ""
+        total = library_info.filter(lbrry_se_name__icontains=library_div,
+                                    code_value__icontains=library_gu,
+                                    lbrry_name__icontains=search)
+    elif library_gu=='전체':
+        library_gu = ""
+        total = library_info.filter(lbrry_se_name__icontains=library_div,
+                                    code_value__icontains=library_gu,
+                                    lbrry_name__icontains=search)
+    else:
+        total = library_info.filter(lbrry_se_name__icontains=library_div,
+                                    code_value__icontains=library_gu,
+                                    lbrry_name__icontains=search)
+
+    num = total.count()
+    page = request.GET.get('page', '1')
+
+    paginator = Paginator(total, 5)
+    page_obj = paginator.get_page(page)
+    context = {
+        "total" : page_obj,
+        "num" : num
+    }
+
+    return render(request, 'libsearch.html', context)
+
+

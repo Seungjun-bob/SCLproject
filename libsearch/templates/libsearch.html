@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load libsearch_extras %}
 {% load static %}
 <html class="no-js">
     <head>
@@ -67,32 +68,32 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         {% if user.is_authenticated %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'myreview' %}'">작성글</button>
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'logout' %}'">로그아웃</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
                         {% else %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'login' %}'">로그인</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
                         {% endif %}
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'about' %}" class="">About</a>
+                            <a href="{% url 'index:about' %}" class="">About</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="active" href="{% url 'libsearch' %}">도서관 검색</a></li>
+                            <a class="" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'booksearch' %}">도서 검색</a></li>
+                            <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend' %}">도서 추천</a>
+                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board' %}">게시판</a>
+                            <a href="{% url 'board:board' %}">게시판</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -120,10 +121,10 @@
                             <form action="" class=" form-inline">
                                 <div class="col-md-12">
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="도서관명">
+                                        <input type="text" class="form-control" placeholder="도서관명" name="search">
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="lunchBegins" class="selectpicker" title="도서관 구분">
+                                        <select id="lunchBegins" class="selectpicker" title="도서관 구분" name="lbrry_se_name">
                                             <option>전체</option>
                                             <option>공공도서관</option>
                                             <option>국립도서관</option>
@@ -134,7 +135,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="basic" class="selectpicker show-tick form-control" title="자치구" style="overflow: scroll;">
+                                        <select id="basic" class="selectpicker show-tick form-control" title="자치구" style="overflow: scroll;" name="code_value">
                                             <option>전체</option>
                                             <option>강남구</option>
                                             <option>강동구</option>
@@ -177,61 +178,66 @@
                             </form>
                         </div>
                     </div>
+        <div>
+            <p>
+                검색수: {{ num }}<br>
+                필터: {{ request.GET.code_value }} {{ request.GET.lbrry_se_name }}
+            </p>
+        </div>
 
-                    <div class="col-md-12  clear">
-                        <div class="col-xs-10 page-subheader sorting pl0">
-
-                            <div class="items-per-page">
-                                <label for="items_per_page"><b>&nbsp 페이지당 검색 수 :</b></label>
-                                <div class="sel">
-                                    <select id="items_per_page" name="per_page">
-                                        <option value="3">3</option>
-                                        <option value="6">6</option>
-                                        <option value="9">9</option>
-                                        <option selected="selected" value="12">12</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                        <option value="60">60</option>
-                                    </select>
-                                </div><!--/ .sel-->
-                            </div><!--/ .items-per-page-->
-                        </div>
-
-                        <div class="col-xs-2 layout-switcher">
-                        </div><!--/ .layout-switcher-->
-                    </div>
-
-                    <div class="col-md-12 clear ">
-                        <div id="list-type" class="proerty-th-list">
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-3.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+        {% for list in total %}
+        <div class="cod-md-4">
+            <h4>{{ list.lbrry_name | default_if_none:''}}</h4>
+            오픈시간 : {{ list.op_time | default_if_none:''}} <br>
+            휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
+            전화번호 : {{ list.tel_no | default_if_none:''}} <br>
+            홈페이지 : <a href="{{ list.hmpg_url }}"
+                      onclick="window.open(this.href,'팝업창','width=800,height=800');return false;">
+                        {{ list.hmpg_url | default_if_none:''}}
+                    </a><br>
+            주소 : {{ list.adres | default_if_none:''}} <br>
+            <hr>
+        </div>
+        {% endfor %}
                     <div class="col-md-12 clear">
                         <div class="pull-right">
                             <div class="pagination">
-                                <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">Next</a></li>
+                                <ul class="pagination justify-content-center">
+                                    {% if total.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                                    </li>
+                                    {% endif %}
+                                    <!-- 페이지 번호 -->
+                                    {% for page_number in total.paginator.page_range %}
+                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
+                                        {% if page_number == total.number %}
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                                        </li>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    <!-- 다음 페이지 -->
+                                    {% if total.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                                        </li>
+                                    {% endif %}
+                                <!-- 페이징처리 끝 -->
+<!--                                    <li><a href="#">Next</a></li>-->
                                 </ul>
                             </div>
                         </div>
@@ -239,6 +245,9 @@
                 </div>
             </div>
         </div>
+
+
+
 
           <!-- Footer area-->
         <div class="footer-area">
