@@ -123,14 +123,14 @@
                                                 <label for="useremail">이메일</label>
                                                 <input type="text" class="form-control" id="useremail" name="useremail">
                                             </div>
-                                            <div class=form-group">
+                                            <div class="form-group" style="padding: 0 0 3px 0">
                                                 <label for="password">비밀번호</label>
                                                 <input type="password" class="form-control" id="password" name="password">
                                             </div>
                                         </div>
-                                        <div class="col-md-3" style="padding:25px 0px 0px 0px">
+                                        <div class="col-md-3" style="padding:40px 0px 0px 0px">
                                         <div style="align:center;">
-                                            <button style="height:150px; width:120px; display:block; margin:auto; " type="submit" class="btn btn-default" value="login">로그인</button>
+                                            <button style="height:120px; width:90px; display:block; margin:auto; " type="submit" class="btn btn-default" value="login">로그인</button>
                                         </div>
                                         </div>
 
@@ -139,8 +139,8 @@
                             <div align="center">
                                 <p style="color:red">{{error}}</p>
                             </div>
-                            <div style="text-align:center">
-                            <a style="color:grey;"  href="{% url 'register' %}">아직 회원이 아니신가요?</a>
+                            <div style="text-align:center; padding:10px;">
+                            <a style="color:grey; padding:10px"  href="{% url 'register' %}">아직 회원이 아니신가요?</a>
                             </div>
                             <br>
                         </div>
