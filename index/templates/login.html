@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SCL | change password</title>
+        <title>SCL | Login</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -41,6 +41,7 @@
         </div>
         <!-- Body content -->
 
+
         <div class="header-connect">
             <div class="container">
                 <div class="row">
@@ -67,32 +68,27 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        {% if user.is_authenticated %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'myreview' %}'">작성글</button>
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'logout' %}'">로그아웃</button>
-                        {% else %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'login' %}'">로그인</button>
-                        {% endif %}
+                        <button class="navbar-btn nav-button login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'account:about' %}" class="">About</a>
+                            <a href="{% url 'index:about' %}" class="">About</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'libsearch' %}">도서관 검색</a></li>
+                            <a class="" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'booksearch' %}">도서 검색</a></li>
+                            <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend' %}">도서 추천</a>
+                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board' %}">게시판</a>
+                            <a href="{% url 'board:board' %}">게시판</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -104,58 +100,58 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">비밀번호 변경</h1>
+                        <h1 class="page-title">로그인</h1>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End page header -->
 
-        <!-- property area -->
-        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+
+        <!-- register-area -->
+        <div class="register-area" style="background-color: rgb(249, 249, 249);">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                <div class="col-md-12">
+                    <div class="box-for overflow">
+                        <div class="col-md-12 col-xs-12 login-blocks">
+                            <h2>로그인</h2>
+                                <form method="POST" action="{% url 'index:login' %}">
+                                    {% csrf_token %}
+                                    <div class="col-md-12">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label for="useremail">이메일</label>
+                                                <input type="text" class="form-control" id="useremail" name="useremail">
+                                            </div>
+                                            <div class=form-group">
+                                                <label for="password">비밀번호</label>
+                                                <input type="password" class="form-control" id="password" name="password">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3" style="padding:25px 0px 0px 0px">
+                                        <div style="align:center;">
+                                            <button style="height:150px; width:120px; display:block; margin:auto; " type="submit" class="btn btn-default" value="login">로그인</button>
+                                        </div>
+                                        </div>
 
-                        <form action="" method="">
-
-                            <div class="profiel-header">
-                                <h3>
-                                    <b>비밀번호 변경<br>
-                                </h3>
-                                <hr>
+                                    </div>
+                                </form>
+                            <div align="center">
+                                <p style="color:red">{{error}}</p>
                             </div>
-
-                            <div class="clear">
-
-                                <div class="col-sm-10 col-sm-offset-1">
-                                    <div class="form-group">
-                                        <label>현재 비밀번호</small></label>
-                                        <input name="Password" type="password" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>변경할 비밀번호</small></label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>변경할 비밀번호 확인</small></label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 col-sm-offset-1">
-                                    <input type='button' class='btn btn-finish btn-primary pull-right' name='update' value='변경' />
-                                </div>
-
+                            <div style="text-align:center">
+                            <a style="color:grey;"  href="{% url 'index:register' %}">아직 회원이 아니신가요?</a>
                             </div>
-                    </form>
+                            <br>
+                        </div>
 
+                    </div>
                 </div>
-            </div><!-- end row -->
 
+            </div>
         </div>
-    </div>
 
-  <!-- Footer area-->
+          <!-- Footer area-->
         <div class="footer-area">
 
             <div class=" footer">
