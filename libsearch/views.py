@@ -28,15 +28,29 @@ def libsearch(request):
         total = library_info.filter(lbrry_se_name__icontains=library_div,
                                     code_value__icontains=library_gu,
                                     lbrry_name__icontains=search)
-
+    # paging
     num = total.count()
     page = request.GET.get('page', '1')
 
     paginator = Paginator(total, 5)
     page_obj = paginator.get_page(page)
+
+    # gmap
+    ydnts = [];
+    xcnts = [];
+    hname = [];
+    for data in total:
+        xcnts.append(data.xcnts)
+        ydnts.append(data.ydnts)
+        hname.append(data.lbrry_name)
+
+    # 결과 출력
     context = {
-        "total" : page_obj,
-        "num" : num
+        'total' : page_obj,
+        'num' : num, # 도서관 검색 출력 수
+        'xcnts' : xcnts,
+        'ydnts' : ydnts,
+        'hname' : hname
     }
 
     return render(request, 'libsearch.html', context)
