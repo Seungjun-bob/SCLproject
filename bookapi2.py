@@ -30,7 +30,7 @@ dic = ['libName', 'callNo', 'title', 'author', 'publisher', 'pubYear', 'isbn']
 def book(code):
 
     for page in range(1,2):
-        url = open_url + f'&title=&manageCd={code}&numOfRows=100&pageNo=' + str(page)
+        url = open_url + f'&title=&manageCd={code}&numOfRows=50&pageNo=' + str(page)
         res = requests.get(url)
         xpars = xmltodict.parse(res.text)
         jsonDump = json.dumps(xpars)
