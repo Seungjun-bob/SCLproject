@@ -5,8 +5,7 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 # ------------------------------------------------------------------------
 import requests
-from bs4 import BeautifulSoup
-from booksearch.models import Book
+from booksearch.models import Book, Test
 import time
 import xmltodict
 import json
@@ -24,13 +23,13 @@ isbn: 낱권ISBN
 open_url = 'http://openapi-lib.sen.go.kr/openapi/service/lib/openApi?serviceKey=0OhBU7ZCGIobDVKDeBJDpmDRqK3IRNF6jlf%2FJB2diFAf%2FfR2czYO9A4UTGcsOwppV6W2HVUeho%2FFPwXoL6DwqA%3D%3D'
 code = ['MA','MB','MC','MD','ME','MF','MG','MH','MV','MJ','MK'
         ,'ML','MX','MM','MP','MW','MN','MQ','MR','MS','MT','MU']
-
-# 함수 -------------------------------------------------------
 dic = ['libName', 'callNo', 'title', 'author', 'publisher', 'pubYear', 'isbn']
-def book(code):
 
+#  ---------------------------함수----------------------------
+
+def book(code):
     for page in range(1,2):
-        url = open_url + f'&title=&manageCd={code}&numOfRows=50&pageNo=' + str(page)
+        url = open_url + f'&title=&manageCd={code}&numOfRows=1000&pageNo=' + str(page)
         res = requests.get(url)
         xpars = xmltodict.parse(res.text)
         jsonDump = json.dumps(xpars)
@@ -55,9 +54,17 @@ def book(code):
                      isbn=None).save()
 
     return
+
+#------------------------- 실행 --------------------------------
+
+first_start = time.time()
+
 for c in code:
     start = time.time()
     book(code=c)
     print(c,'걸린시간:', time.time() - start)
+
+print('총 걸린시간:', time.time()-first_start)
+
 
 
