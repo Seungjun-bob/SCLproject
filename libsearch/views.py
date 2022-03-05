@@ -2,7 +2,7 @@ from django.shortcuts import render
 from libsearch.models import Library
 from django.core.paginator import Paginator
 
-def booksearch(request):
+def libsearch(request):
     search = request.GET.get('search', "")
     library_div = request.GET.get("lbrry_se_name", "")
     library_gu = request.GET.get("code_value", "")
@@ -10,18 +10,18 @@ def booksearch(request):
 
     if library_div == "" and library_gu == "" and search == "":
         total = []
-    elif library_div=='전체' and library_gu=='전체':
+    elif library_div == '전체' and library_gu == '전체':
         library_div = ""
         library_gu = ""
         total = library_info.filter(lbrry_se_name__icontains=library_div,
                                     code_value__icontains=library_gu,
                                     lbrry_name__icontains=search)
-    elif library_div=='전체':
+    elif library_div == '전체':
         library_div = ""
         total = library_info.filter(lbrry_se_name__icontains=library_div,
                                     code_value__icontains=library_gu,
                                     lbrry_name__icontains=search)
-    elif library_gu=='전체':
+    elif library_gu == '전체':
         library_gu = ""
         total = library_info.filter(lbrry_se_name__icontains=library_div,
                                     code_value__icontains=library_gu,
@@ -39,11 +39,7 @@ def booksearch(request):
     page_obj = paginator.get_page(page)
 
     # gmap
-    ydnts = [];
-    xcnts = [];
-    hname = [];
-    adres = [];
-    hmpg_url = [];
+    ydnts = []; xcnts = []; hname = []; adres = []; hmpg_url = [];
     for data in total:
             xcnts.append(data.xcnts)
             ydnts.append(data.ydnts)
@@ -63,6 +59,6 @@ def booksearch(request):
         'hmpg_url' : hmpg_url,
     }
 
-    return render(request, 'booksearch.html', context)
+    return render(request, 'libsearch.html', context)
 
 
