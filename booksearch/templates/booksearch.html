@@ -120,13 +120,13 @@
                             <form action="" class=" form-inline">
                                 <div class="col-md-12">
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="도서명">
+                                        <input type="text" class="form-control" placeholder="도서명" name="booksearch">
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="저자">
+                                        <input type="text" class="form-control" placeholder="저자" name="authorsearch">
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="ISBN">
+                                        <input type="text" class="form-control" placeholder="ISBN" name="isbnsearch">
 
                                     </div>
                                         <div class="row">
@@ -140,27 +140,31 @@
                             </form>
                         </div>
                     </div>
-        <div>
-            <p>
-                검색수: {{ num }}<br>
-                필터: {{ request.GET.code_value }} {{ request.GET.lbrry_se_name }}
-            </p>
-        </div>
-    <div clas="=col-md-12">
-        <div class="col-md-4" style="overflow-y:scroll; height:700px;">
-        {% for list in total %}
-            <h4>{{ list.lbrry_name | default_if_none:''}}</h4>
-            오픈시간 : {{ list.op_time | default_if_none:''}} <br>
-            휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
-            전화번호 : {{ list.tel_no | default_if_none:''}} <br>
-            홈페이지 : <a href="{{ list.hmpg_url }}"
-                      onclick="window.open(this.href,'팝업창','width=800,height=800');return false;">
-                        {{ list.hmpg_url | default_if_none:''}}
-                    </a><br>
-            주소 : {{ list.adres | default_if_none:''}} <br>
-            <hr>
-        {% endfor %}
-            </div>
+
+
+                    <div class="col-md-12 clear ">
+                        <div id="list-type" class="proerty-th-list">
+                            <div class="col-sm-12 col-md-12 p0">
+                                <div class="box-two proerty-item">
+                                    <div class="item-entry overflow">
+                                        {{ total }}
+                                        {% for list in total %}
+                                            <h4>{{ list.title | default_if_none:''}}</h4>
+                                                저자 : {{ list.author  | default_if_none:''}} <br>
+                                                청구기호 : {{ list.callno  | default_if_none:''}} <br>
+                                                ISBN  : {{ list.isbn  | default_if_none:''}} <br>
+                                                소장도서관  : {{ list.libname  | default_if_none:''}} <br>
+                                                발행년도  : {{ list.pubyear  | default_if_none:''}} <br>
+                                                출판사  : {{ list.publisher  | default_if_none:''}} <br>
+                                                <hr>
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="col-md-12 clear">
                         <div class="pull-right">
