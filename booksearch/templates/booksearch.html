@@ -125,6 +125,7 @@
                             </form>
                         </div>
                     </div>
+
                     <div class="col-md-12;">
                         {% if total %}
                             {% for list in total %}
@@ -142,6 +143,7 @@
                         {% else %}
                             <div style="height:400px;"></div>
                         {% endif %}
+
                     </div>
 
                     <!--        페이징작업            -->
@@ -152,6 +154,7 @@
                                     {% if total.has_previous %}
                                     <li>
                                         <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
+
                                     </li>
                                     {% else %}
                                     <li>
@@ -159,9 +162,11 @@
                                     </li>
                                     {% endif %}
                                     <!-- 페이지 번호 -->
+
                                     {% for page_number in total.paginator.page_range %}
                                     {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
                                         {% if page_number == total.number %}
+
                                         <li class="page-item active" aria-current="page">
                                             <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
@@ -176,6 +181,7 @@
                                     {% if total.has_next %}
                                         <li>
                                             <a class="page-link" href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
+
                                         </li>
                                     {% else %}
                                         <li>
@@ -183,9 +189,15 @@
                                         </li>
                                     {% endif %}
                                 <!-- 페이징처리 끝 -->
+
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
                 </div>
             </div>
         </div>

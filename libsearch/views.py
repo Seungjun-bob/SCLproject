@@ -2,7 +2,7 @@ from django.shortcuts import render
 from libsearch.models import Library
 from django.core.paginator import Paginator
 
-def libsearch(request):
+def booksearch(request):
     search = request.GET.get('search', "")
     library_div = request.GET.get("lbrry_se_name", "")
     library_gu = request.GET.get("code_value", "")
@@ -63,6 +63,6 @@ def libsearch(request):
         'hmpg_url' : hmpg_url,
     }
 
-    return render(request, 'libsearch.html', context)
+    return render(request, 'booksearch.html', context)
 
 
