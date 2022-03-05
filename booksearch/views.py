@@ -3,6 +3,7 @@ from booksearch.models import Book
 from django.core.paginator import Paginator
 
 def booksearch(request):
+
     title = request.GET.get('title', "")
     author = request.GET.get("author", "")
     isbn = request.GET.get("isbn", "")
@@ -23,11 +24,17 @@ def booksearch(request):
     page_obj = paginator.get_page(page)
 
 
+
     # 결과 출력
     context = {
+
         'total' : total,
+
         'page' :page_obj,
+
     }
 
     return render(request, 'booksearch.html', context)
+
+
 
