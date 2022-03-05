@@ -42,22 +42,6 @@
         </div>
         <!-- Body content -->
 
-        <div class="header-connect">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5 col-sm-8  col-xs-12">
-                        <div class="header-half header-call">
-                            <p>
-                                <span><i class="pe-7s-call"></i> +1 234 567 7890</span>
-                                <span><i class="pe-7s-mail"></i> your@company.com</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End top header -->
-
         <nav class="navbar navbar-default ">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -164,40 +148,40 @@
                                             <option>중랑구</option>
 
                                         </select>
-
                                     </div>
                                         <div class="row">
- <!--                                                수정 확인용-->
                                             <div id=search_button class="col-xs-12">
                                                 <input class="button btn largesearch-btn" value="검 색" type="submit">
                                             </div>
                                         </div>
                                 </div>
-
-                                        <!-- End of  -->
                             </form>
                         </div>
                     </div>
-        <div>
-            <p>
+
+        <!-- 검색 영역 -->
+        <div class="col-md-12">
+            <p class="col-md-12">
                 검색수: {{ num }}<br>
                 필터: {{ request.GET.code_value }} {{ request.GET.lbrry_se_name }}
             </p>
         </div>
+
     <div clas="=col-md-12">
         <div class="col-md-4" style="overflow-y:scroll; height:700px;">
-        {% for list in total %}
-            <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
-            오픈시간 : {{ list.op_time | default_if_none:''}} <br>
-            휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
-            전화번호 : {{ list.tel_no | default_if_none:''}} <br>
-            홈페이지 : <a href="{{ list.hmpg_url }}"
-                      onclick="window.open(this.href,'팝업창','width=800,height=800');return false;">
-                        {{ list.hmpg_url | default_if_none:''}}
-                    </a><br>
-            주소 : {{ list.adres | default_if_none:''}} <br>
-            <hr>
-        {% endfor %}
+            {% for list in total %}
+                <div class="col-md-12">
+                    <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
+                    오픈시간 : {{ list.op_time | default_if_none:''}} <br>
+                    휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
+                    전화번호 : {{ list.tel_no | default_if_none:''}} <br>
+                    홈페이지 : <a href="{{ list.hmpg_url }}" target="_blank">
+                                {{ list.hmpg_url | default_if_none:''}}
+                            </a><br>
+                    주소 : {{ list.adres | default_if_none:''}} <br>
+                    <hr>
+                </div>
+            {% endfor %}
             </div>
         <div class="col-md-8">
             <div id="libmap"></div>
@@ -309,6 +293,8 @@
             var ydntss = {{ ydnts }};
             {% autoescape off %}
             var hname = {{ hname }};
+            var adres = {{ adres }};
+            var hmpg_url = {{ hmpg_url }};
             {% endautoescape %}
 
             function average(array) {
@@ -370,7 +356,11 @@
                 var infowindow = new Array(lennum);
                 for(i=0; i<lennum; i++) {
                     var location = {lat: xcntss[i], lng: ydntss[i]}
-                    var contentString = hname[i] + "<br>"
+                    var contentString = "<h4 style='color:#AC7D0C; font-weight:bold;'>" +
+                                        "<a href='" + hmpg_url[i]+ "' target='_blank'>" + hname[i] + "</a>" + "</h4>" +
+                                        "<hr style='margin:0 0 5px 0;'>" +
+                                        "<p style='padding:0 0 0 0; font-weight:bold;'>" + "주소" + "</p>" +
+                                        "<p style='padding:0 0 0 0;'>" + adres[i] + "</p>"
                     var myinfowindow = new google.maps.InfoWindow({
 			            content: contentString
 			        });
@@ -385,7 +375,7 @@
                        old.close();
                        this.infowindow.open(map, this);
                        map.setCenter(this.getPosition());
-                       map.setZoom(14);
+                       map.setZoom(17);
                        old = this.infowindow;
                     });
                 };

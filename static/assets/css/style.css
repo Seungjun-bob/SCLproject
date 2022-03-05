@@ -75,7 +75,7 @@ p {
     margin:0;
 }
 a {
-    color: #d27e04;
+    color: #AC7D0C;
     outline: 0;
     font-weight: bold;
     -webkit-transition: all .8s ease;
@@ -2225,7 +2225,7 @@ single property page
     margin: 4px;
 }
 .register-area{
-    padding: 40px;
+    padding: 100px;
 }
 
 /*=====================================
@@ -2233,7 +2233,7 @@ Welcom
 ======================================*/
 .Welcome-area{
     background: url("../../assets/img/bg-img.jpg") no-repeat scroll center top;
-    height: 70vh;
+    height: 73vh;
     background-size : cover;
     position: relative;
 
@@ -2241,7 +2241,7 @@ Welcom
 }
 .Welcome-area .container .Welcome-entry{
     overflow: hidden;
-    padding: 100px 10px 45px;
+    padding: 30px 10px 0px;
 }
 .welcome-icon {
     height: 90px;
@@ -2313,12 +2313,12 @@ Welcom
     color: #ffd100;
     text-transform: uppercase;
     position: absolute;
-    top: -50px;
+    top: 0px;
     left: -100px;
     font-weight: bold;
-    font-size: 100px;
+    font-size: 120px;
     border-radius: 0%;
-    padding: 80px 10px;
+    padding: 100px 0px;
     width: 250px;
     height: 250px;
 }
@@ -2614,7 +2614,7 @@ padding-bottom: 15px;
     border-radius: 0px;
 }
 .large-search{
-    padding: 25px 25px 40px;
+    padding: 25px 25px 0px;
 }
 .large-search .search-form {
     background-color: #FFF;
@@ -2634,6 +2634,30 @@ padding-bottom: 15px;
     width:100%;
 }
 .large-search .search-row{
+    overflow: hidden;
+}
+
+.large-search2{
+    padding: 30px 0px 0px;
+}
+.large-search2 .search-form {
+    background-color: #FFF;
+    border-radius: 1px;
+    padding: 20px 0px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 9;
+    border: 1px solid #E6E6E6;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0);
+    display: inline-block;
+    width: 100%;
+}
+.large-search2 .search-form .form-inline .form-control, .form-inline .form-control,
+.large-search2 .search-form .bootstrap-select button.dropdown-toggle ,
+.large-search2 .search-form .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+    width:100%;
+}
+.large-search2 .search-row{
     overflow: hidden;
 }
 

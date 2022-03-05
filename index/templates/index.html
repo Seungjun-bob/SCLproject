@@ -41,23 +41,6 @@
         </div>
         <!-- Body content -->
 
-
-        <div class="header-connect">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5 col-sm-8  col-xs-12">
-                        <div class="header-half header-call">
-                            <p>
-                                <span><i class="pe-7s-call"></i> +1 234 567 7890</span>
-                                <span><i class="pe-7s-mail"></i> your@company.com</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>         
-        <!--End top header -->
-
         <nav class="navbar navbar-default ">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -111,6 +94,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                         <div class="col-md-5 col-sm-6 col-xs-12">
                             <div  class="welcome_services wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
@@ -153,14 +138,88 @@
                                             <h4>리뷰 게시판</h4>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
+
+                    <div class="col-md-12 large-search2" >
+                        <div class="search-form wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
+                            <form action="{% url 'libsearch:libsearch' %}" class=" form-inline" method="get">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="도서관명" name="search">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select id="lunchBegins" class="selectpicker" title="구분" name="lbrry_se_name">
+                                            <option>전체</option>
+                                            <option>공공도서관</option>
+                                            <option>국립도서관</option>
+                                            <option>대표도서관</option>
+                                            <option>작은도서관</option>
+                                            <option>장애인도서관</option>
+                                            <option>전문도서관</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select id="basic" class="selectpicker show-tick form-control" data-size="15" title="자치구" style="overflow: scroll;" name="code_value">
+                                            <option>전체</option>
+                                            <option>강남구</option>
+                                            <option>강동구</option>
+                                            <option>강북구</option>
+                                            <option>강서구</option>
+                                            <option>관악구</option>
+                                            <option>광진구</option>
+                                            <option>구로구</option>
+                                            <option>금천구</option>
+                                            <option>노원구</option>
+                                            <option>도봉구</option>
+                                            <option>동대문구</option>
+                                            <option>동작구</option>
+                                            <option>마포구</option>
+                                            <option>서대문구</option>
+                                            <option>서초구</option>
+                                            <option>성동구</option>
+                                            <option>성북구</option>
+                                            <option>송파구</option>
+                                            <option>양천구</option>
+                                            <option>영등포구</option>
+                                            <option>용산구</option>
+                                            <option>은평구</option>
+                                            <option>종로구</option>
+                                            <option>중구</option>
+                                            <option>중랑구</option>
+
+                                        </select>
+                                    </div>
+                                        <div class="row">
+                                            <div id=search_button class="col-xs-12">
+                                                <input type="submit" class="button btn largesearch-btn" value="검 색">
+                                            </div>
+                                        </div>
+                                </div>
+                            </form>
                         </div>
+                </div>
+
+
+
+
+                        </div>
+
+
+
+
+
+
                     </div>
+
                 </div>
             </div>
         </div>
+
+
+
+
+
           <!-- Footer area-->
         <div class="footer-area">
 
@@ -211,6 +270,13 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
-      
+
+        <script>
+        function search(content){
+                content.action = "{% url 'libsearch:libsearch' %}";
+                content.method = "get";
+                content.submit();
+            }
+        </script>
     </body>
 </html>

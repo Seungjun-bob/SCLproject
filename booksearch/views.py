@@ -21,12 +21,9 @@ def booksearch(request):
     # num = total.count()
     page = request.GET.get('page', '1')
 
-    paginator = Paginator(total, 10)
+    paginator = Paginator(total, 5)
     page_obj = paginator.get_page(page)
 
-    # gmap
-    for list in total:
-        print(list.author, list.title)
 
 
     # 결과 출력
