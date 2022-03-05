@@ -294,7 +294,6 @@
             {% autoescape off %}
             var hname = {{ hname }};
             var adres = {{ adres }};
-            var hmpg_url = {{ hmpg_url }};
             {% endautoescape %}
 
             function average(array) {
@@ -315,49 +314,50 @@
 
             function initialize() {
                 var location = { lat: avgxc, lng: avgyd };
-                var lennum = xcntss.length;
-                console.log(lennum)
-                if(lennum==0) {
+                var lennum = hname.length;
+
+                if(lennum==0){
                     map = new google.maps.Map(
                     document.getElementById('libmap'), {
-                      zoom: 12,
-                      center: { lat: 37.501256, lng: 127.039581 }
+                      zoom: 13,
+                      center: { lat: avgxc, lag: avgyd}
                     });
                 }
-                if(0<lennum<=5) {
+                else if(lennum<=5){
                     map = new google.maps.Map(
                     document.getElementById('libmap'), {
-                      zoom: 17,
+                      zoom: 16,
                       center: location
                     });
                 }
-                if(5<lennum<=20) {
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 12,
-                      center: location
-                    });
-                }
-                if(20<lennum<=100) {
+                else if(lennum<=15){
                     map = new google.maps.Map(
                     document.getElementById('libmap'), {
                       zoom: 13,
                       center: location
                     });
                 }
-                if(lennum>100) {
+                else if(lennum<=100){
                     map = new google.maps.Map(
                     document.getElementById('libmap'), {
-                      zoom: 12,
+                      zoom: 13,
                       center: location
                     });
                 }
+                else if(100<lennum){
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 11,
+                      center: location
+                    });
+                }
+
+
                 var marker = new Array(lennum);
                 var infowindow = new Array(lennum);
                 for(i=0; i<lennum; i++) {
                     var location = {lat: xcntss[i], lng: ydntss[i]}
-                    var contentString = "<h4 style='color:#AC7D0C; font-weight:bold;'>" +
-                                        "<a href='" + hmpg_url[i]+ "' target='_blank'>" + hname[i] + "</a>" + "</h4>" +
+                    var contentString = "<h4 style='color:#AC7D0C; font-weight:bold;'>" + hname[i] + "</h4>" +
                                         "<hr style='margin:0 0 5px 0;'>" +
                                         "<p style='padding:0 0 0 0; font-weight:bold;'>" + "주소" + "</p>" +
                                         "<p style='padding:0 0 0 0;'>" + adres[i] + "</p>"
@@ -375,7 +375,7 @@
                        old.close();
                        this.infowindow.open(map, this);
                        map.setCenter(this.getPosition());
-                       map.setZoom(17);
+                       map.setZoom(15);
                        old = this.infowindow;
                     });
                 };
