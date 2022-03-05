@@ -184,10 +184,10 @@
                 필터: {{ request.GET.code_value }} {{ request.GET.lbrry_se_name }}
             </p>
         </div>
-
+    <div clas="=col-md-12">
+        <div class="col-md-4" style="overflow-y:scroll; height:700px;">
         {% for list in total %}
-        <div class="cod-md-4">
-            <h4>{{ list.lbrry_name | default_if_none:''}}</h4>
+            <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
             오픈시간 : {{ list.op_time | default_if_none:''}} <br>
             휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
             전화번호 : {{ list.tel_no | default_if_none:''}} <br>
@@ -197,18 +197,23 @@
                     </a><br>
             주소 : {{ list.adres | default_if_none:''}} <br>
             <hr>
-        </div>
         {% endfor %}
+            </div>
+        <div class="col-md-8">
+            <div id="libmap"></div>
+        </div>
+    </div>
+                    <!--        페이징작업            -->
                     <div class="col-md-12 clear">
                         <div class="pull-right">
                             <div class="pagination">
-                                <ul class="pagination justify-content-center">
+                                <ul>
                                     {% if total.has_previous %}
-                                    <li class="page-item">
+                                    <li>
                                         <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
                                     </li>
                                     {% else %}
-                                    <li class="page-item disabled">
+                                    <li>
                                         <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
                                     </li>
                                     {% endif %}
@@ -220,7 +225,7 @@
                                             <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
                                         {% else %}
-                                        <li class="page-item">
+                                        <li>
                                             <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
                                         {% endif %}
@@ -228,16 +233,15 @@
                                     {% endfor %}
                                     <!-- 다음 페이지 -->
                                     {% if total.has_next %}
-                                        <li class="page-item">
+                                        <li>
                                             <a class="page-link" href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
                                         </li>
                                     {% else %}
-                                        <li class="page-item disabled">
+                                        <li>
                                             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
                                         </li>
                                     {% endif %}
                                 <!-- 페이징처리 끝 -->
-<!--                                    <li><a href="#">Next</a></li>-->
                                 </ul>
                             </div>
                         </div>
@@ -283,7 +287,7 @@
         </div>
 
 
-       <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
+        <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
         <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
@@ -294,6 +298,108 @@
         <script src="{% static 'assets/js/wow.js' %}"></script>
         <script src="{% static 'assets/js/icheck.min.js' %}"></script>
         <script src="{% static 'assets/js/price-range.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+            <!--        gmaps        -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U&callback=initialize"></script>
+<!--        <script src="{% static 'assets/js/gmaps-lib.js' %}"></script>-->
+        <script>
+            var map;
+            var xcntss = {{ xcnts }};
+            var ydntss = {{ ydnts }};
+            {% autoescape off %}
+            var hname = {{ hname }};
+            {% endautoescape %}
+
+            function average(array) {
+                var sum = 0.0;
+                      for (var i = 0; i < array.length; i++)
+                        sum += array[i];
+                      return sum / array.length;
+                    }
+
+            var avgxc = average(xcntss);
+            var avgyd = average(ydntss);
+            var old;
+            if(isNaN(avgxc)) {
+                avgxc = 37.501256
+                avgyd = 127.039581
+            }
+
+
+            function initialize() {
+                var location = { lat: avgxc, lng: avgyd };
+                var lennum = xcntss.length;
+                console.log(lennum)
+                if(lennum==0) {
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 12,
+                      center: { lat: 37.501256, lng: 127.039581 }
+                    });
+                }
+                if(0<lennum<=5) {
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 17,
+                      center: location
+                    });
+                }
+                if(5<lennum<=20) {
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 12,
+                      center: location
+                    });
+                }
+                if(20<lennum<=100) {
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 13,
+                      center: location
+                    });
+                }
+                if(lennum>100) {
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 12,
+                      center: location
+                    });
+                }
+                var marker = new Array(lennum);
+                var infowindow = new Array(lennum);
+                for(i=0; i<lennum; i++) {
+                    var location = {lat: xcntss[i], lng: ydntss[i]}
+                    var contentString = hname[i] + "<br>"
+                    var myinfowindow = new google.maps.InfoWindow({
+			            content: contentString
+			        });
+
+                    var marker = new google.maps.Marker({
+                                            position: location,
+                                            map: map,
+                                            infowindow: myinfowindow
+                    });
+                    marker.addListener('click', function() {      // 클릭 이벤트 발생 시 지도와 마커 출력
+                       if(old)
+                       old.close();
+                       this.infowindow.open(map, this);
+                       map.setCenter(this.getPosition());
+                       map.setZoom(14);
+                       old = this.infowindow;
+                    });
+                };
+            };
+            function mypanTo(x, y) {
+                var latLng = new google.maps.LatLng(x, y);
+                map.panTo(latLng);
+
+                return false;
+
+            }
+
+
+        </script>
         <script src="{% static 'assets/js/main.js' %}"></script>
     </body>
 </html>
