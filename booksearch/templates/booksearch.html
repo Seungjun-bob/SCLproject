@@ -140,49 +140,27 @@
                             </form>
                         </div>
                     </div>
-
-                    <div class="col-md-12  clear">
-                        <div class="col-xs-10 page-subheader sorting pl0">
-                            <div class="items-per-page">
-                                <label for="items_per_page"><b>&nbsp 페이지당 검색 수 :</b></label>
-                                <div class="sel">
-                                    <select id="items_per_page" name="per_page">
-                                        <option value="3">3</option>
-                                        <option value="6">6</option>
-                                        <option value="9">9</option>
-                                        <option selected="selected" value="12">12</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                        <option value="60">60</option>
-                                    </select>
-                                </div><!--/ .sel-->
-                            </div><!--/ .items-per-page-->
-                        </div>
-
-                        <div class="col-xs-2 layout-switcher">
-                        </div><!--/ .layout-switcher-->
-                    </div>
-
-                    <div class="col-md-12 clear ">
-                        <div id="list-type" class="proerty-th-list">
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-3.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div>
+            <p>
+                검색수: {{ num }}<br>
+                필터: {{ request.GET.code_value }} {{ request.GET.lbrry_se_name }}
+            </p>
+        </div>
+    <div clas="=col-md-12">
+        <div class="col-md-4" style="overflow-y:scroll; height:700px;">
+        {% for list in total %}
+            <h4>{{ list.lbrry_name | default_if_none:''}}</h4>
+            오픈시간 : {{ list.op_time | default_if_none:''}} <br>
+            휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
+            전화번호 : {{ list.tel_no | default_if_none:''}} <br>
+            홈페이지 : <a href="{{ list.hmpg_url }}"
+                      onclick="window.open(this.href,'팝업창','width=800,height=800');return false;">
+                        {{ list.hmpg_url | default_if_none:''}}
+                    </a><br>
+            주소 : {{ list.adres | default_if_none:''}} <br>
+            <hr>
+        {% endfor %}
+            </div>
 
                     <div class="col-md-12 clear">
                         <div class="pull-right">
