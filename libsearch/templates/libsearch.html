@@ -184,7 +184,7 @@
                 필터: {{ request.GET.code_value }} {{ request.GET.lbrry_se_name }}
             </p>
         </div>
-    <div clas="=col-md-12">
+    <div class="=col-md-12">
         <div class="col-md-4" style="overflow-y:scroll; height:700px;">
         {% for list in total %}
             <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
