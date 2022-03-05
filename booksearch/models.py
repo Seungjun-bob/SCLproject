@@ -16,3 +16,12 @@ class Book(models.Model):
     publisher = models.CharField(max_length=45, null=True)
     pubyear = models.CharField(max_length=45, null=True)
     isbn = models.CharField(max_length=45, null=True)
+
+class Test(models.Model):
+    libname = models.CharField(max_length=45, null=True)
+    callno = models.CharField(max_length=45, null=True)
+    title = models.CharField(max_length=45, null=True)
+    author = models.CharField(max_length=45, null=True)
+    publisher = models.CharField(max_length=45, null=True)
+    pubyear = models.CharField(max_length=45, null=True)
+    isbn = models.CharField(max_length=45, null=True)
