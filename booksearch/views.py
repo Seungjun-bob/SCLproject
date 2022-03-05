@@ -25,7 +25,7 @@ def booksearch(request):
 
 
 
-    # 결과 출력
+    # 결과 출력d
     context = {
 
         'total' : total,
