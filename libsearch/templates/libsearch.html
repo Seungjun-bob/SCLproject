@@ -316,14 +316,13 @@
                 var location = { lat: avgxc, lng: avgyd };
                 var lennum = hname.length;
 
-                if(lennum==0){
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 13,
-                      center: { lat: avgxc, lag: avgyd}
-                    });
-                }
-                else if(lennum<=5){
+                map = new google.maps.Map(
+                document.getElementById('libmap'), {
+                  zoom: 13,
+                  center: { lat: avgxc, lag: avgyd}
+                });
+
+                if(lennum<=5){
                     map = new google.maps.Map(
                     document.getElementById('libmap'), {
                       zoom: 16,
