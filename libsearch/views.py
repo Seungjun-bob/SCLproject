@@ -42,20 +42,25 @@ def booksearch(request):
     ydnts = [];
     xcnts = [];
     hname = [];
+    adres = [];
+    hmpg_url = [];
     for data in total:
             xcnts.append(data.xcnts)
             ydnts.append(data.ydnts)
             hname.append(data.lbrry_name)
-
-
+            adres.append(data.adres)
+            hmpg_url.append(data.hmpg_url)
+    num = len(total)
 
     # 결과 출력
     context = {
         'total' : page_obj,
-        # 'num' : num, # 도서관 검색 출력 수
+        'num' : num, # 도서관 검색 출력 수
         'xcnts' : xcnts,
         'ydnts' : ydnts,
-        'hname' : hname
+        'hname' : hname,
+        'adres' : adres,
+        'hmpg_url' : hmpg_url,
     }
 
     return render(request, 'booksearch.html', context)
