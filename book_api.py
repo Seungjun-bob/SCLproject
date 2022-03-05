@@ -5,7 +5,7 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 # ------------------------------------------------------------------------
 import requests
-from booksearch.models import Book, Test
+from booksearch.models import Book
 import time
 import xmltodict
 import json
