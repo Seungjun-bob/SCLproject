@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load libsearch_extras %}
 {% load static %}
 <html class="no-js">
     <head>
@@ -120,13 +121,13 @@
                             <form action="" class=" form-inline">
                                 <div class="col-md-12">
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="도서명">
+                                        <input type="text" class="form-control" placeholder="도서명" name="title">
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="저자">
+                                        <input type="text" class="form-control" placeholder="저자" name="author">
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="ISBN">
+                                        <input type="text" class="form-control" placeholder="ISBN" name="isbn">
 
                                     </div>
                                         <div class="row">
@@ -141,63 +142,71 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12  clear">
-                        <div class="col-xs-10 page-subheader sorting pl0">
-                            <div class="items-per-page">
-                                <label for="items_per_page"><b>&nbsp 페이지당 검색 수 :</b></label>
-                                <div class="sel">
-                                    <select id="items_per_page" name="per_page">
-                                        <option value="3">3</option>
-                                        <option value="6">6</option>
-                                        <option value="9">9</option>
-                                        <option selected="selected" value="12">12</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                        <option value="60">60</option>
-                                    </select>
-                                </div><!--/ .sel-->
-                            </div><!--/ .items-per-page-->
-                        </div>
-
-                        <div class="col-xs-2 layout-switcher">
-                        </div><!--/ .layout-switcher-->
+                    <div>
+                        {% for list in total %}
+                            <h4>{{ list.title | default_if_none:''}}</h4>
+                                저자 : {{ list.author  | default_if_none:''}} <br>
+                                청구기호 : {{ list.callno  | default_if_none:''}} <br>
+                                ISBN  : {{ list.isbn  | default_if_none:''}} <br>
+                                소장도서관  : {{ list.libname  | default_if_none:''}} <br>
+                                발행년도  : {{ list.pubyear  | default_if_none:''}} <br>
+                                출판사  : {{ list.publisher  | default_if_none:''}} <br>
+                                <hr>
+                        {% endfor %}
                     </div>
 
-                    <div class="col-md-12 clear ">
-                        <div id="list-type" class="proerty-th-list">
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-3.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <!--        페이징작업            -->
                     <div class="col-md-12 clear">
                         <div class="pull-right">
                             <div class="pagination">
                                 <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">Next</a></li>
+                                    {% if total.has_previous %}
+                                    <li>
+                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
+
+                                    </li>
+                                    {% else %}
+                                    <li>
+                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                                    </li>
+                                    {% endif %}
+                                    <!-- 페이지 번호 -->
+
+                                    {% for page_number in total.paginator.page_range %}
+                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
+                                        {% if page_number == total.number %}
+
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                                        </li>
+                                        {% else %}
+                                        <li>
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                                        </li>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    <!-- 다음 페이지 -->
+                                    {% if total.has_next %}
+                                        <li>
+                                            <a class="page-link" href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
+
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                                        </li>
+                                    {% endif %}
+                                <!-- 페이징처리 끝 -->
+
                                 </ul>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
                 </div>
             </div>
         </div>
