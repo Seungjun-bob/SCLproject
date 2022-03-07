@@ -93,11 +93,79 @@
         <!-- End page header -->
 
         <!-- property area -->
-        <div class="properties-area recent-property" style="background-color: #FFF;">
+
+
+<div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container">
                 <div class="row">
+<div class="col-md-10  pr0 padding-top-40 properties-page" style="margin:0 100px">
+                    <div class="col-md-12 clear">
+                        <div class="col-xs-10 page-subheader sorting pl0">
+                            <ul class="sort-by-list">
+                                <li class="active">
+                                    <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
+                                        날짜 정렬 <i class="fa fa-sort-amount-asc"></i>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
+                                        추천 수 정렬 <i class="fa fa-sort-numeric-desc"></i>
+                                    </a>
+                                </li>
+                            </ul><!--/ .sort-by-list-->
 
-                <div class="col-md-3 p0 padding-top-40">
+                            <div class="items-per-page">
+                                <label for="items_per_page"><b>페이지당 검색 수:</b></label>
+                                <div class="sel">
+                                    <select id="items_per_page" name="per_page">
+                                        <option value="3">3</option>
+                                        <option value="6">6</option>
+                                        <option value="9">9</option>
+                                        <option selected="selected" value="12">12</option>
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                        <option value="60">60</option>
+                                    </select>
+                                </div><!--/ .sel-->
+                            </div><!--/ .items-per-page-->
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 clear">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">도서관명</th>
+                        <th scope="col">평점</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">좋아요</th>
+                        <th scope="col">조회수</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  {% for dlist in vlist %}
+                    <tr>
+                      <th scope="row" widht="3%">{{ dlist.id }}</th>
+                      <td width="15%">{{ dlist.library.lbrry_name }}</td>
+                      <td width="10%">{{ dlist.starpoint }}</td>
+                        <td width="50%"><a href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
+                        <td width="5%">{{ dlist.author }}</td>
+                        <td width="7%">{{ dlist.like }}</td>
+                        <td width="7%">{{ dlist.view_cnt }}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                    <button onclick="location.href='{% url 'board:submit' %}'">작성하기</button>
+                    </div>
+
+                <!----------- 검색 ------------->
+                <div class="col-md-6 p0 padding-top-40">
                     <div class="blog-asside-right pr0">
                         <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                             <div class="panel-heading">
@@ -180,82 +248,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-9  pr0 padding-top-40 properties-page">
-                    <div class="col-md-12 clear">
-                        <div class="col-xs-10 page-subheader sorting pl0">
-                            <ul class="sort-by-list">
-                                <li class="active">
-                                    <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
-                                        날짜 정렬 <i class="fa fa-sort-amount-asc"></i>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
-                                        추천 수 정렬 <i class="fa fa-sort-numeric-desc"></i>
-                                    </a>
-                                </li>
-                            </ul><!--/ .sort-by-list-->
-
-                            <div class="items-per-page">
-                                <label for="items_per_page"><b>페이지당 검색 수:</b></label>
-                                <div class="sel">
-                                    <select id="items_per_page" name="per_page">
-                                        <option value="3">3</option>
-                                        <option value="6">6</option>
-                                        <option value="9">9</option>
-                                        <option selected="selected" value="12">12</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                        <option value="60">60</option>
-                                    </select>
-                                </div><!--/ .sel-->
-                            </div><!--/ .items-per-page-->
-                        </div>
-                    </div>
-
-                    <div class="col-md-12 clear">
-                        {{ login_session }}
-                <table class="table">
-
-
-                    <thead>
-
-                    <tr>
-
-                        <th scope="col">#</th>
-                        <th scope="col">도서관명</th>
-                        <th scope="col">평점</th>
-                        <th scope="col">제목</th>
-                        <th scope="col">작성자</th>
-                        <th scope="col">좋아요</th>
-                        <th scope="col">조회수</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                  {% for dlist in vlist %}
-                    <tr>
-                      <th scope="row">{{ dlist.id }}</th>
-                      <td>{{ dlist.library.lbrry_name }}</td>
-                      <td>{{ dlist.starpoint }}</td>
-                        <td><a href='/board/result/{{ dlist.id }}'>{{ dlist.title }}</a></td>
-                        <td>{{ dlist.author }}</td>
-                        <td>{{ dlist.like }}</td>
-                        <td>{{ dlist.view_cnt }}</td>
-                    </tr>
-                  {% endfor %}
-                  </tbody>
-                </table>
-                    <button onclick="location.href='{% url 'board:submit' %}'">작성하기</button>
-                    </div>
-           <div class="col-md-12">
-
-           </div>
-                    </div>
-
-
 
 
                 </div>

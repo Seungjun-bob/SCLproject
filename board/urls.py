@@ -5,6 +5,6 @@ urlpatterns = [
     path('', views.board, name='board'),
     path('myreview/', views.my_review, name='myreview'),
     path('submit/', views.submit, name='submit'),
-    path('result/<int:pk>', views.result, name='result'),
-    path('replyC', views.comment, name='rC')
+    path('<int:pk>', views.result, name='result'),
+    path('<int:pk>/comments/', views.comment, name='comments')
 ]

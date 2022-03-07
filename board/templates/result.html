@@ -96,7 +96,7 @@
         <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
                 <div class="row">
-                    <div class="blog-lst col-md-12 pl0">
+                    <div class="blog-lst col-md-8" style="margin:0 200px;">
                         <section id="id-100" class="post single">
 
                             <div class="post-header single">
@@ -128,45 +128,35 @@
                                 </ul>
                             </div>
 
-                        </section> 
-
-                        <section class="about-autor">
-
                         </section>
+                        <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
+                        <hr>
+                        {% for comment in comments %}
 
                         <section id="comments" class="comments wow fadeInRight animated"> 
-                            <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
+
 
 
                             <div class="row comment">
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="{% static 'assets/img/client-face1.png' %}" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
+                                <div class="col-sm-9 col-md-8">
 
-                                {% for dlist in context %}
-
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">{ dlist }</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> 댓글 내용</p>
+                                    <h5 class="text-uppercase">작성자: {{ user_name }}</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> {{ comment.comment }}</p>
                                     <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
                                     </p>
                                 </div>
-                                {% endfor %}
                             </div>
+                            <hr>
+                            {% endfor %}
                             <!-- /.comment -->
-
                         </section>
                         <section id="comment-form" class="add-comments">
-                            <h4 class="text-uppercase wow fadeInLeft animated">댓글 쓰기</h4>
-                            <form method="POST" action='{% url "board:rC" %}'>
+                            <h4 class="text-uppercase wow fadeInLeft animated">댓글 쓰기*</h4>
+                            <form method="POST" action="{% url 'board:comments' result.id %}">
                                 {% csrf_token %}
                                 <div class="row wow fadeInLeft animated">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label for="comment">Comment <span class="required">*</span>
-                                            </label>
                                             <textarea class="form-control" id="comment" rows="4" name="content"></textarea>
                                         </div>
                                     </div>
