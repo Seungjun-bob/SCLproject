@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Review, Library, Comment
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
@@ -7,7 +7,7 @@ def board(request) :
 
     page = request.GET.get('page', 1)
     vlist = Review.objects.all()
-    paginator = Paginator(vlist, 5)
+    paginator = Paginator(vlist, 10)
     #print(paginator)
     vlistpage = paginator.get_page(page)
     #print(type(vlistpage))
@@ -42,30 +42,38 @@ def submit(request):
             return render(request, 'submit.html')
 
 def result(request, pk):
-    result = Review.objects.get(pk=pk)
-    user_name = User.objects.get(pk=pk).last_name
+    # result = Review.objects.get(pk=pk)
+    result = get_object_or_404(Review, id=pk)
+
+    # 유저 정보 가져오기
+    user_pk = result.author_id
+    user_name = User.objects.get(pk=user_pk).last_name
+
+    comments = result.comment_set.order_by('-id').all()
 
     context = {
-        'pk': pk,
         'result': result,
         'user_name': user_name,
+        'comments': comments
     }
     return render(request, 'result.html', context)
 
-def comment(request):
+def comment(request, pk):
     content = request.POST['content']
     author = request.user.id
-
-    print(content)
+    comment = Comment()
+    comment.review_id = pk
+    print(author)
     Comment(comment=content,
-            user_id=author
+            user_id=author,
+            review_id=pk
             ).save()
     context = {
         'content': content,
         'author': author
     }
 
-    return render(request, 'board.html', context)
+    return redirect('board:result', pk)
 
 
 def my_review(request):
