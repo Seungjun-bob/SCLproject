@@ -7,7 +7,7 @@ def board(request) :
 
     page = request.GET.get('page', 1)
     vlist = Review.objects.all()
-    paginator = Paginator(vlist, 5)
+    paginator = Paginator(vlist, 10)
     #print(paginator)
     vlistpage = paginator.get_page(page)
     #print(type(vlistpage))
@@ -43,8 +43,9 @@ def submit(request):
 
 def result(request, pk):
     result = Review.objects.get(pk=pk)
-    user_name = User.objects.get(pk=pk).last_name
-
+    user_pk = result.author_id
+    user_name = User.objects.get(pk=user_pk).last_name
+    print(result)
     context = {
         'pk': pk,
         'result': result,
