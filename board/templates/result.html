@@ -93,7 +93,6 @@
             </div>
         </div>
         <!-- End page header -->
-
         <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
                 <div class="row">
@@ -102,14 +101,13 @@
 
                             <div class="post-header single">
                                 <div class="">
-                                    <h2 class="wow fadeInLeft animated">FASHIN NOW 2016</h2>
+                                    <h2 class="wow fadeInLeft animated">{{ result.title }}</h2>
                                     <div class="title-line wow fadeInRight animated"></div>
                                 </div>
                                 <div class="row wow fadeInRight animated">
                                     <div class="col-sm-6">
                                         <p class="author-category">
-                                            By <a href="#">John Snow</a>
-                                            in <a href="blog.html">Webdesign</a>
+                                            By <a href="#">{{ user_name }}</a>
                                         </p>
                                     </div>
                                     <div class="col-sm-6 right" >
@@ -119,19 +117,10 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="image wow fadeInRight animated"> 
-                                    <img src="{% static 'assets/img/blog2.jpg' %}" class="img-responsive" alt="Example blog post alt">
-                                </div>
-                            </div> 
+                            </div>
 
                             <div id="post-content" class="post-body single wow fadeInLeft animated">
-                                <p>
-                                    <strong>Pellentesque habitant morbi tristique</strong> 
-                                    senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-                                    semper. <em>Aenean ultricies mi vitae est.</em> 
-                                    Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean
-                                    fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-
+                                <p>{{ result.content }}</p>
                             </div>
                             <div class="post-footer single wow fadeInBottum animated">
                                 <ul class="pager">
@@ -155,39 +144,42 @@
                                         <img src="{% static 'assets/img/client-face1.png' %}" class="img-responsive img-circle" alt="">
                                     </p>
                                 </div>
+
+                                {% for dlist in context %}
+
                                 <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Julie Alma</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                    <h5 class="text-uppercase">{ dlist }</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> 댓글 내용</p>
                                     <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
                                     </p>
                                 </div>
+                                {% endfor %}
                             </div>
                             <!-- /.comment -->
 
                         </section>
-
                         <section id="comment-form" class="add-comments">
                             <h4 class="text-uppercase wow fadeInLeft animated">댓글 쓰기</h4>
-                            <form>
+                            <form method="POST" action='{% url "board:rC" %}'>
+                                {% csrf_token %}
                                 <div class="row wow fadeInLeft animated">
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label for="comment">Comment <span class="required">*</span>
                                             </label>
-                                            <textarea class="form-control" id="comment" rows="4"></textarea>
+                                            <textarea class="form-control" id="comment" rows="4" name="content"></textarea>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row wow fadeInLeft animated">
                                     <div class="col-sm-12 text-right">
-                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i>등록</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-comment-o"></i>등록</button>
                                     </div>
                                 </div>
                             </form>
                         </section>
+
                     </div>                                 
                 </div>
 

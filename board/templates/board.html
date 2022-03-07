@@ -216,35 +216,39 @@
                     </div>
 
                     <div class="col-md-12 clear">
-                        <table class="table table-bordered">
-                  <thead>
+                        {{ login_session }}
+                <table class="table">
+
+
+                    <thead>
+
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
+
+                        <th scope="col">#</th>
+                        <th scope="col">도서관명</th>
+                        <th scope="col">평점</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">좋아요</th>
+                        <th scope="col">조회수</th>
                     </tr>
                   </thead>
                   <tbody>
+
+                  {% for dlist in vlist %}
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
+                      <th scope="row">{{ dlist.id }}</th>
+                      <td>{{ dlist.library.lbrry_name }}</td>
+                      <td>{{ dlist.starpoint }}</td>
+                        <td><a href='/board/result/{{ dlist.id }}'>{{ dlist.title }}</a></td>
+                        <td>{{ dlist.author }}</td>
+                        <td>{{ dlist.like }}</td>
+                        <td>{{ dlist.view_cnt }}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
+                  {% endfor %}
                   </tbody>
                 </table>
+                    <button onclick="location.href='{% url 'board:submit' %}'">작성하기</button>
                     </div>
            <div class="col-md-12">
 
