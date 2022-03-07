@@ -216,6 +216,7 @@
                     </div>
 
                     <div class="col-md-12 clear">
+                        {{ login_session }}
                 <table class="table">
 
 
@@ -233,20 +234,21 @@
                     </tr>
                   </thead>
                   <tbody>
+
                   {% for dlist in vlist %}
                     <tr>
                       <th scope="row">{{ dlist.id }}</th>
                       <td>{{ dlist.library.lbrry_name }}</td>
                       <td>{{ dlist.starpoint }}</td>
-                        <td>{{ dlist.title }}</td>
+                        <td><a href='/board/result/{{ dlist.id }}'>{{ dlist.title }}</a></td>
                         <td>{{ dlist.author }}</td>
                         <td>{{ dlist.like }}</td>
                         <td>{{ dlist.view_cnt }}</td>
                     </tr>
                   {% endfor %}
                   </tbody>
-
                 </table>
+                    <button onclick="location.href='{% url 'board:submit' %}'">작성하기</button>
                     </div>
            <div class="col-md-12">
 
