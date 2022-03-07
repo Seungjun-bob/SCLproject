@@ -29,7 +29,6 @@ recomload = json.loads(json.dumps(recomxpar))
 data = recomload['channel']['list']
 for i in data:
     data = i.get('item')
-    print(data)
     try:
         Recommend(recomNo=data['recomNo'],
                   drCode=data['drCode'],
