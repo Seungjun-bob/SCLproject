@@ -71,8 +71,10 @@ def recommend(request):
                                   drCodeName__icontains=drCodeName,
                                   recomtitle__icontains=search)
 
+
+
     # paging
-    # num = total.count()
+    num = len(total)
     page = request.GET.get('page', '1')
 
     paginator = Paginator(total, 5)
@@ -81,11 +83,13 @@ def recommend(request):
     # 결과 출력
     context = {
         'total' : page_obj,
-        # 'num' : num, # 도서관 검색 출력 수
+        'num' : num,
     }
+
 
     return render(request, 'recommend.html', context)
 
+    #
 
 def detail(request):
     return render(request, 'detail.html')
