@@ -15,4 +15,4 @@ class Review(models.Model):
 class Comment(models.Model):
     comment = models.TextField()
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-    board = models.ForeignKey(Review, on_delete=models.CASCADE)
+    review = models.ForeignKey("Review", on_delete=models.CASCADE)
