@@ -37,7 +37,7 @@ for i in data:
     recomcontens = re.sub('&nbsp;|&lt;|&gt;|&hellip;|&amp;', ' ', recomcontens)
     recomcontens = re.sub('&quot;|&ldquo;|&rdquo;', '"', recomcontens)
     recomcontens = re.sub('&#039|&lsquo;|&rsquo;|&laquo;|&raquo;', "'", recomcontens)
-    recommokcha = re.sub('(<([^>]+)>)|&middot;', '', data['recommokcha'])
+    recommokcha = re.sub('(<([^>]+)>)|&middot;', '', str(data['recommokcha']))
     recommokcha = re.sub('&nbsp;|&lt;|&gt;|&hellip;|&amp;', ' ', recommokcha)
     recommokcha = re.sub('&quot;|&ldquo;|&rdquo;', '"', recommokcha)
     recommokcha = re.sub('&#039|&lsquo;|&rsquo;|&laquo;|&raquo;', "'", recommokcha)
