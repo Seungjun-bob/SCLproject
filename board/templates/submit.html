@@ -105,49 +105,36 @@
                             <div class="wizard-header">
                                     <h3>
                                         <b>리뷰를 작성하세요</b> <br>
-                                        <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
                                     </h3>
                                 </div>
-                            <form action="" method="">
-
+                            <form action="{% url 'board:submit' %}" method="POST">
+                                {% csrf_token %}
                                 <div class="tab-content">
                                     <!--  End step 1 -->
-
                                     <div>
-                                        <h4 class="info-text"> How much your Property is Beautiful ? </h4>
+                                        <h4 class="info-text"></h4>
                                             <form action="" class=" form-inline">
                                                 <div class="col-md-12">
                                                     <div class="col-md-4">
-                                                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="도서관명을 입력하세요">
-                                                            <option>New york, CA</option>
-                                                            <option>Paris</option>
-                                                            <option>Casablanca</option>
-                                                            <option>Tokyo</option>
-                                                            <option>Marraekch</option>
-                                                            <option>kyoto , shibua</option>
-                                                        </select>
+                                                    도서관명:<input type="text" name="library">
                                                     </div>
                                                 </div>
                                             </form>
+
+                                    제목:<input type="text" name="title">
+
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
-                                                        <label>Property Description :</label>
-                                                        <textarea rows="10" name="discrition" class="form-control" ></textarea>
+                                                        <label>내용</label>
+                                                        <textarea rows="10" name="content" class="form-control" ></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 padding-top-15">
                                                 <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label for="property-geo">Min bed :</label>
-                                                        <input type="text" class="span2" value="" data-slider-min="0"
-                                                               data-slider-max="600" data-slider-step="5"
-                                                               data-slider-value="[250,450]" id="min-bed" ><br />
-                                                        <b class="pull-left color">1</b>
-                                                        <b class="pull-right color">120</b>
-                                                    </div>
+                                                별점:<input type="text" name="starpoint">
                                                 </div>
                                                 <div class="tab-pane" id="step3">
                                                     <div class="row">
@@ -165,7 +152,7 @@
 
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-finish btn-primary ' name='finish' value='Finish' />
+                                        <input type='submit' class='btn btn-finish btn-primary ' name='finish' value='submit' />
                                     </div>
                                 </div>
                             </form>

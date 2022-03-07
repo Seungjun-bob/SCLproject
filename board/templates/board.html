@@ -217,12 +217,8 @@
 
                     <div class="col-md-12 clear">
                 <table class="table">
-
-
                     <thead>
-
                     <tr>
-
                         <th scope="col">#</th>
                         <th scope="col">도서관명</th>
                         <th scope="col">평점</th>
@@ -238,7 +234,7 @@
                       <th scope="row">{{ dlist.id }}</th>
                       <td>{{ dlist.library.lbrry_name }}</td>
                       <td>{{ dlist.starpoint }}</td>
-                        <td>{{ dlist.title }}</td>
+                        <td><a href='board/result/{{ review.id }}'>{{ dlist.title }}</a></td>
                         <td>{{ dlist.author }}</td>
                         <td>{{ dlist.like }}</td>
                         <td>{{ dlist.view_cnt }}</td>
@@ -248,23 +244,14 @@
 
                 </table>
                     </div>
+                    <button onclick="location.href='{% url 'board:submit' %}'">작성하기</button>
            <div class="col-md-12">
-
            </div>
                     </div>
-
-
-
-
                 </div>
             </div>
 
-
-
-
-
-
-
+            {{ data }}
 
           <!-- Footer area-->
         <div class="footer-area">
@@ -310,5 +297,6 @@
         <script src="{% static 'assets/js/icheck.min.js' %}"></script>
         <script src="{% static 'assets/js/price-range.js' %}"></script>
         <script src="{% static 'assets/js/main.js' %}"></script>
+
     </body>
 </html>

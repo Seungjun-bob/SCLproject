@@ -9,6 +9,10 @@ class Review(models.Model):
     view_cnt = models.PositiveIntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
-    like = models.PositiveIntegerField(default=0)
-    starpoint = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-    comments = models.TextField()
+    like = models.PositiveIntegerField(default=0, null=True)
+    starpoint = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
+
+class Comment(models.Model):
+    comment = models.TextField()
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+    board = models.ForeignKey(Review, on_delete=models.CASCADE)
