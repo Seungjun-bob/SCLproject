@@ -6,6 +6,7 @@ application = get_wsgi_application()
 import requests
 import xmltodict
 import json
+import re
 from recommend.models import Recommend
 # from bs4 import BeautifulSoup
 
@@ -27,8 +28,19 @@ result = requests.get(url)
 recomxpar = xmltodict.parse(result.text)
 recomload = json.loads(json.dumps(recomxpar))
 data = recomload['channel']['list']
+
+
 for i in data:
     data = i.get('item')
+    # re.sub('패턴', '바꿀문자열', '문자열', 바꿀횟수)
+    recomcontens = re.sub('(<([^>]+)>)|&middot;', '', data['recomcontens'])
+    recomcontens = re.sub('&nbsp;|&lt;|&gt;|&hellip;|&amp;', ' ', recomcontens)
+    recomcontens = re.sub('&quot;|&ldquo;|&rdquo;', '"', recomcontens)
+    recomcontens = re.sub('&#039|&lsquo;|&rsquo;|&laquo;|&raquo;', "'", recomcontens)
+    recommokcha = re.sub('(<([^>]+)>)|&middot;', '', data['recommokcha'])
+    recommokcha = re.sub('&nbsp;|&lt;|&gt;|&hellip;|&amp;', ' ', recommokcha)
+    recommokcha = re.sub('&quot;|&ldquo;|&rdquo;', '"', recommokcha)
+    recommokcha = re.sub('&#039|&lsquo;|&rsquo;|&laquo;|&raquo;', "'", recommokcha)
     try:
         Recommend(recomNo=data['recomNo'],
                   drCode=data['drCode'],
@@ -37,8 +49,8 @@ for i in data:
                   recomauthor=data['recomauthor'],
                   recompublisher=data['recompublisher'],
                   recomfilepath=data['recomfilepath'],
-                  recommokcha=data['recommokcha.string'],
-                  recomcontens=data['recomcontens.string'],
+                  recommokcha=recommokcha,
+                  recomcontens=recomcontens,
                   publishYear=data['publishYear'],
                   recomYear=data['recomYear'],
                   recomMonth=data['recomMonth'],
