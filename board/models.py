@@ -12,3 +12,8 @@ class Review(models.Model):
     like = models.PositiveIntegerField(default=0)
     starpoint = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comments = models.TextField()
+
+class Comment(models.Model):
+    comment = models.TextField()
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+    review = models.ForeignKey("Review", on_delete=models.CASCADE)

@@ -25,7 +25,7 @@ def register(request):
                             last_name = usernickname,
                             password = password)
             auth.login(request, user)
-            return redirect("index")
+            return render(request, 'index.html')
     return render(request, 'register.html', res_data)
 
 
