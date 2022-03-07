@@ -1800,15 +1800,21 @@ proerty-th-list
     padding-right: 15px;
 }
 
-
 .proerty-th-list .col-md-3 .item-entry{
     width:75%;
     float: left;
     padding-right: 0px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
+
+.proerty-th-list .col-md-3 .item-entry p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  height: 80px;
+}
+
 .proerty-th-list .col-md-3{
     width: 100%;
     padding: 15px 10px;
