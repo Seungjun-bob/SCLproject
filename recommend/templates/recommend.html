@@ -121,7 +121,7 @@
                                         <input type="text" class="form-control" placeholder="도서명" name="search">
                                     </div>
                                     <div class="col-md-3">
-                                        <select id="lunchBegins" class="selectpicker" title="연도" name="lbrry_se_name">
+                                        <select id="lunchBegins" class="selectpicker" title="추천 연도" name="recomYear">
                                             <option>전체</option>
                                             <option>2022</option>
                                             <option>2021</option>
@@ -138,7 +138,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <select id="basic" class="selectpicker show-tick form-control" title="월" style="overflow: scroll;" name="code_value">
+                                        <select id="basic" class="selectpicker show-tick form-control" title="추천 월" style="overflow: scroll;" name="recomMonth">
                                             <option>전체</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -155,7 +155,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <select class="selectpicker show-tick form-control" title="분류" style="overflow: scroll;" name="code_value">
+                                        <select class="selectpicker show-tick form-control" title="분류" style="overflow: scroll;" name="drCodeName">
                                             <option>전체</option>
                                             <option>문학예술</option>
                                             <option>인문학</option>
@@ -176,53 +176,49 @@
                             </form>
                         </div>
                     </div>
-                    <div class="blog-lst col-md-12 pl0">
-                        <section class="post">
+                    <s class="post">
 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p class="author-category">
-                                        추천 도서 1
-                                    </p>
-                                </div>
-                    <section class="post">
                         <div class="row">
-                            <div class="col-sm-6 right" >
-                                <p class="date-comments">
-                                    <i class="fa fa-calendar-o"></i> June 20, 2013&nbsp
-                                    <i class="fa fa-comment-o"></i>Comments
+                            <div class="col-sm-6">
+                                <p class="author-category">
+                                    추천 도서 1
                                 </p>
                             </div>
-                        </div>
-
-                    <div class="col-md-12 clear ">
-                        <div id="list-type" class="proerty-th-list">
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="{% static 'assets/img/demo/property-3.jpg' %}"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <a href="detail" class="btn btn-default btn-border" style="float : right;">읽기</a>
-<!--                                        <p class="read-more">-->
-<!--                                            -->
-<!--                                        </p>-->
+                            <section class="post">
+                                <div class="row">
+                                    <div class="col-sm-6 right" >
+                                        <p class="date-comments">
+                                            <i class="fa fa-calendar-o"></i> June 20, 2013&nbsp
+                                            <i class="fa fa-comment-o"></i>Comments
+                                        </p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                        </section>
-                    </div>
-                </div>
-                    <!--        페이징작업            -->
+                                {% for list in total %}
+                                <div class="col-md-12 clear ">
+                                    <div id="list-type" class="proerty-th-list">
+                                        <div class="col-sm-6 col-md-3 p0">
+                                            <div class="box-two proerty-item">
+                                                <div class="item-thumb">
+                                                    <a href="detail.html" ><img src="{{ list.recomfilepath | default_if_none:'' }}"></a>
+                                                </div>
+                                                <div class="item-entry overflow">
+                                                    <h5><a href="detail.html"> {{ list.recomtitle | default_if_none:'' }} </a></h5>
+                                                    <div class="dot-hr"></div>
+                                                    <span class="pull-left"><b> 저/역자 :</b> {{ list.recomauthor | default_if_none:'' }} </span>
+                                                    <p style="display: none;">{{ list.recomcontens | default_if_none:'' }}</p>
+                                                    <a href="detail" class="btn btn-default btn-border" style="float : right;">읽기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </section>
+                        </div>
+                        <!--        페이징작업            -->
                     <div class="col-md-12 clear">
                         <div class="pull-right">
                             <div class="pagination">
@@ -265,7 +261,6 @@
                         </div>
                     </div>
                     <!-- 페이징처리 끝 -->
-
             </div>
         </div>
 

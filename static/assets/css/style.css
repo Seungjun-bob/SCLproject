@@ -1802,16 +1802,19 @@ proerty-th-list
 
 
 .proerty-th-list .col-md-3 .item-entry{
-    width:60%;
+    width:79%;
     float: left;
-    padding-right: 15px;
+    padding-right: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .proerty-th-list .col-md-3{
     width: 100%;
     padding: 15px 10px;
 }
 .proerty-th-list .col-md-3 .item-thumb{
-    width:40%;
+    width:230px;
     float: left;
 } 
 .proerty-th-list .col-md-3 .item-thumb img {

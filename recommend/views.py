@@ -1,35 +1,75 @@
 from django.shortcuts import render
-from libsearch.models import Library
+from recommend.models import Recommend
 from django.core.paginator import Paginator
 
 def recommend(request):
     search = request.GET.get('search', "")
-    library_div = request.GET.get("lbrry_se_name", "")
-    library_gu = request.GET.get("code_value", "")
-    library_info = Library.objects.all()
+    recomYear = request.GET.get("recomYear", "")
+    recomMonth = request.GET.get("recomMonth", "")
+    drCodeName = request.GET.get("drCodeName", "")
+    recom_info = Recommend.objects.all()
 
-    if library_div == "" and library_gu == "" and search == "":
+    if search == "" and recomYear == "" and recomMonth == "" and drCodeName == "":
         total = []
-    elif library_div=='전체' and library_gu=='전체':
-        library_div = ""
-        library_gu = ""
-        total = library_info.filter(lbrry_se_name__icontains=library_div,
-                                    code_value__icontains=library_gu,
-                                    lbrry_name__icontains=search)
-    elif library_div=='전체':
-        library_div = ""
-        total = library_info.filter(lbrry_se_name__icontains=library_div,
-                                    code_value__icontains=library_gu,
-                                    lbrry_name__icontains=search)
-    elif library_gu=='전체':
-        library_gu = ""
-        total = library_info.filter(lbrry_se_name__icontains=library_div,
-                                    code_value__icontains=library_gu,
-                                    lbrry_name__icontains=search)
+    elif recomYear=='전체' and recomMonth=='전체' and drCodeName=='전체':
+        recomYear = ""
+        recomMonth = ""
+        drCodeName = ""
+        total = recom_info.filter(recomYear__icontains=recomYear,
+                                  recomMonth__icontains=recomMonth,
+                                  drCodeName__icontains=drCodeName,
+                                  recomtitle__icontains=search)
+
+    elif recomYear=='전체' and recomMonth=='전체':
+        recomYear = ""
+        recomMonth = ""
+        total = recom_info.filter(recomYear__icontains=recomYear,
+                                  recomMonth__icontains=recomMonth,
+                                  drCodeName__icontains=drCodeName,
+                                  recomtitle__icontains=search)
+
+    elif recomYear=='전체' and drCodeName=='전체':
+        recomYear = ""
+        drCodeName = ""
+        total = recom_info.filter(recomYear__icontains=recomYear,
+                                  recomMonth__icontains=recomMonth,
+                                  drCodeName__icontains=drCodeName,
+                                  recomtitle__icontains=search)
+
+    elif recomMonth=='전체' and drCodeName=='전체':
+        recomMonth = ""
+        drCodeName = ""
+        total = recom_info.filter(recomYear__icontains=recomYear,
+                                  recomMonth__icontains=recomMonth,
+                                  drCodeName__icontains=drCodeName,
+                                  recomtitle__icontains=search)
+
+    elif recomMonth=='전체':
+        recomMonth = ""
+        total = recom_info.filter(recomYear__icontains=recomYear,
+                                  recomMonth__icontains=recomMonth,
+                                  drCodeName__icontains=drCodeName,
+                                  recomtitle__icontains=search)
+
+    elif recomYear=='전체':
+        recomYear = ""
+        total = recom_info.filter(recomYear__icontains=recomYear,
+                                  recomMonth__icontains=recomMonth,
+                                  drCodeName__icontains=drCodeName,
+                                  recomtitle__icontains=search)
+
+    elif drCodeName=='전체':
+        drCodeName = ""
+        total = recom_info.filter(recomYear__icontains=recomYear,
+                                  recomMonth__icontains=recomMonth,
+                                  drCodeName__icontains=drCodeName,
+                                  recomtitle__icontains=search)
+
     else:
-        total = library_info.filter(lbrry_se_name__icontains=library_div,
-                                    code_value__icontains=library_gu,
-                                    lbrry_name__icontains=search)
+        total = recom_info.filter(recomYear__icontains=recomYear,
+                                  recomMonth__icontains=recomMonth,
+                                  drCodeName__icontains=drCodeName,
+                                  recomtitle__icontains=search)
 
     # paging
     # num = total.count()
