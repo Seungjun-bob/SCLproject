@@ -65,7 +65,17 @@ def libsearch(request):
         'adres' : adres,
         'hmpg_url' : hmpg_url,
     }
-
     return render(request, 'libsearch.html', context)
 
-
+def detail_library(request, pk):
+    detail_library = Library.objects.get(lbrry_seq_no=pk)
+    # gmap
+    ydnts = detail_library.ydnts; xcnts = detail_library.xcnts;
+    print(ydnts); print(xcnts);
+    # 결과 출력
+    context = {
+        'detail_library' : detail_library,
+        'xcnts' : xcnts,
+        'ydnts' : ydnts,
+    }
+    return render(request, 'detail_l.html', context)

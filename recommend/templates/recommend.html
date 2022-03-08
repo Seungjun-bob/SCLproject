@@ -164,30 +164,34 @@
                                         <div class="row">
                                             <div class="col-md-12 left" style="">
                                                 <p class="date-comments">
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총 <i class="fa fa-comment-o">{{ num }}</i>건
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총 <i class="fa fa-comment-o">{{ num }}</i>건
                                                 </p>
                                             </div>
                                         </div>
-                                        {% for list in total %}
-                                        <div id="list-type" class="proerty-th-list">
-                                            <div class="col-sm-6 col-md-3 p0">
-                                                <div class="box-two proerty-item">
-                                                    <div class="item-thumb">
-                                                        <a href="detail/{{ list.recomNo }}" ><img src="{{ list.recomfilepath | default_if_none:'' }}"></a>
-                                                    </div>
-                                                    <div class="item-entry overflow">
-                                                        <h5><a href="detail/{{ list.recomNo }}"> {{ list.recomtitle | default_if_none:'' }} </a></h5>
-                                                        <div class="dot-hr"></div>
-                                                        <span class="pull-left"><b> 저자 :</b> {{ list.recomauthor | default_if_none:'' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                                        <span class="pull-left"><b> 출판사 :</b> {{list.recompublisher | default_if_none:''}}</span>
-                                                        <p style="display: none;">{{ list.recomcontens | default_if_none:'' }}</p>
-                                                        <a href="detail/{{ list.recomNo }}" class="btn btn-default btn-border" style="float : right;">상세</a>
+                                        {% if total %}
+                                            {% for list in total %}
+                                            <div id="list-type" class="proerty-th-list">
+                                                <div class="col-sm-6 col-md-3 p0">
+                                                    <div class="box-two proerty-item">
+                                                        <div class="item-thumb">
+                                                            <a href="detail_r/{{ list.recomNo }}" ><img src="{{ list.recomfilepath | default_if_none:'' }}"></a>
+                                                        </div>
+                                                        <div class="item-entry overflow">
+                                                            <h5><a href="detail_r/{{ list.recomNo }}"> {{ list.recomtitle | default_if_none:'' }} </a></h5>
+                                                            <div class="dot-hr"></div>
+                                                            <span class="pull-left"><b> 저자 :</b> {{ list.recomauthor | default_if_none:'' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                            <span class="pull-left"><b> 출판사 :</b> {{list.recompublisher | default_if_none:''}}</span>
+                                                            <p style="display: none;">{{ list.recomcontens | default_if_none:'' }}</p>
+                                                            <a href="detail_r/{{ list.recomNo }}" class="btn btn-default btn-border" style="float : right;">상세</a>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <hr>
                                             </div>
-                                            <hr>
-                                        </div>
-                                        {% endfor %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <div style="height:300px;"></div>
+                                        {% endif %}
                                     </div>
                                 </section>
                             </s>
