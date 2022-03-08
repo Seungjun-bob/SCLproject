@@ -7,13 +7,16 @@ class Review(models.Model):
     library = models.ForeignKey(Library, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     view_cnt = models.PositiveIntegerField(default=0)
-    date = models.DateTimeField(auto_now_add=True)
+    Cdate = models.DateTimeField(auto_now_add=True)
+    Udate = models.DateTimeField(auto_now=True)
     content = models.TextField()
     like = models.PositiveIntegerField(default=0)
     starpoint = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comments = models.TextField()
 
 class Comment(models.Model):
-    comment = models.TextField()
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     review = models.ForeignKey("Review", on_delete=models.CASCADE)
+    comment = models.TextField()
+    Cdate = models.DateTimeField(auto_now_add=True)
+    Udate = models.DateTimeField(auto_now=True)
