@@ -96,4 +96,4 @@ def detail(request, pk):
     context = {
         'detail': detail,
     }
-    return render(request, 'detail.html', context)
+    return render(request, 'result.html', context)
