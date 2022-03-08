@@ -107,7 +107,7 @@
                                 <div class="row wow fadeInRight animated">
                                     <div class="col-sm-6">
                                         <p class="author-category">
-                                            By <a href="#">{{ user_name }}</a>
+                                            By <a>{{ user_name }}</a>
                                         </p>
                                     </div>
                                     <div class="col-sm-6 right" >
@@ -119,12 +119,29 @@
                                 </div>
                             </div>
 
-                            <div id="post-content" class="post-body single wow fadeInLeft animated">
-                                <p>{{ result.content }}</p>
+                            <div id="post-content" class="post-body single wow fadeInLeft animated" style="height:200px; background-color:#fff">
+                                <div style="padding:15px 15px;">
+                                    <p>{{ result.content }}</p>
+                                </div>
                             </div>
                             <div class="post-footer single wow fadeInBottum animated">
+                                <div class="left_area">
+                                    <button type="submit" class="btn">글쓰기</button>
+                                    {{ result.id }}
+
+                                    <!---- 삭제 버튼 ---->
+                                    <form action="{% url 'board:delete' result.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                    </form>
+                                    <button type="submit" class="btn">수정</button>
+                                    <button class="btn btn-light"><a href="{% url 'board:board' %}">목록</a></button>
+                                </div>
+
                                 <ul class="pager">
-                                    <li class="next disabled"><a href="{% url 'board:board' %}">목록<i class=""></i> </a></li>
+
+                                    <li class="next disabled"></li>
+
                                 </ul>
                             </div>
 
@@ -224,6 +241,15 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
+    <script>
+        function ConfirmDelete(){
+            var x = confirm("정말 삭제 하시겠습니까?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+    </script>
        
     </body>
 </html>

@@ -1,25 +1,28 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Review, Library, Comment
+from django.views.decorators.http import require_http_methods, require_GET
 from django.core.paginator import Paginator
+from .models import Review, Library, Comment
 from django.contrib.auth.models import User
 
 def board(request) :
+    # 데이터를 최신순으로 정렬
+    Reivews = Review.objects.all().order_by('-id')
 
+    # 유저 정보
+    users = User.objects.all()
+
+    # 페이징 처리리
     page = request.GET.get('page', 1)
-    vlist = Review.objects.all()
-    paginator = Paginator(vlist, 10)
-    #print(paginator)
+    paginator = Paginator(Reivews, 15)
     vlistpage = paginator.get_page(page)
-    #print(type(vlistpage))
-    #for d in vlistpage :
-    #    print(type(d), d)
+
     context = {
         "vlist": vlistpage,
+        "users": users,
     }
     return render(request, 'board.html', context)
 
 def submit(request):
-    print(request.user)
     if not request.user.is_authenticated:
         return redirect('/index/login/')
     else:
@@ -29,6 +32,8 @@ def submit(request):
             content = request.POST['content']
             author = request.user.id
             lbrry_name = request.POST['lbrry_name']
+
+            # 도서관 id 값을 가져오는 코드
             lib = Library.objects.get(lbrry_name=lbrry_name)
 
             data = Review(starpoint=starpoint,
@@ -37,12 +42,12 @@ def submit(request):
                           library_id=lib.lbrry_seq_no,
                           content=content,)
             data.save()
-            return render(request, 'board.html')
+            return redirect('board:result', data.id)
         else:
             return render(request, 'submit.html')
 
 def result(request, pk):
-    # result = Review.objects.get(pk=pk)
+    # Review 클래스에서 id 값에 맞는 데이터 가져옴
     result = get_object_or_404(Review, id=pk)
 
     # 유저 정보 가져오기
@@ -57,6 +62,8 @@ def result(request, pk):
         'comments': comments
     }
     return render(request, 'result.html', context)
+
+# @require_http_methods(['POST'])
 
 def comment(request, pk):
     content = request.POST['content']
@@ -75,6 +82,13 @@ def comment(request, pk):
 
     return redirect('board:result', pk)
 
+def delete(request, pk):
+    review = Review.objects.get(id=pk)
+    review.delete()
+    return redirect('/board/')
+
+def update():
+    return
 
 def my_review(request):
     return render(request, 'my_review.html')
