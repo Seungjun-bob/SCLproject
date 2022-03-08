@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load libsearch_extras %}
 {% load static %}
 <html class="no-js">
     <head>
@@ -96,198 +95,176 @@
         </div>
         <!-- End page header -->
 
-        <!-- property area -->
-        <div class="properties-area recent-property" style="background-color: #FFF;">
+        <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row  pr0 padding-top-40 properties-page">
-                    <div class="col-md-12 padding-bottom-40 large-search">
-                        <div class="search-form wow pulse">
-                            <form action="" class=" form-inline">
-                                <div class="col-md-12">
-                                    <div class="col-md-4">
-                                        <input type="text" class="form-control" placeholder="도서관명" name="search">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select id="lunchBegins" class="selectpicker" title="도서관 구분" name="lbrry_se_name">
-                                            <option>전체</option>
-                                            <option>공공도서관</option>
-                                            <option>국립도서관</option>
-                                            <option>대표도서관</option>
-                                            <option>작은도서관</option>
-                                            <option>장애인도서관</option>
-                                            <option>전문도서관</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select id="basic" class="selectpicker show-tick form-control" title="자치구" style="overflow: scroll;" name="code_value">
-                                            <option>전체</option>
-                                            <option>강남구</option>
-                                            <option>강동구</option>
-                                            <option>강북구</option>
-                                            <option>강서구</option>
-                                            <option>관악구</option>
-                                            <option>광진구</option>
-                                            <option>구로구</option>
-                                            <option>금천구</option>
-                                            <option>노원구</option>
-                                            <option>도봉구</option>
-                                            <option>동대문구</option>
-                                            <option>동작구</option>
-                                            <option>마포구</option>
-                                            <option>서대문구</option>
-                                            <option>서초구</option>
-                                            <option>성동구</option>
-                                            <option>성북구</option>
-                                            <option>송파구</option>
-                                            <option>양천구</option>
-                                            <option>영등포구</option>
-                                            <option>용산구</option>
-                                            <option>은평구</option>
-                                            <option>종로구</option>
-                                            <option>중구</option>
-                                            <option>중랑구</option>
-
-                                        </select>
-                                    </div>
-                                        <div class="row">
-                                            <div id=search_button class="col-xs-12">
-                                                <input class="button btn largesearch-btn" value="검 색" type="submit">
-                                            </div>
-                                        </div>
+                <div class="row">
+                    <section id="id-100" class="post single">
+                        <div class="post-header single">
+                            <div class="">
+                                <h2 class="wow fadeInLeft animated">1234859</h2>
+                                <div class="title-line wow fadeInRight animated"></div>
+                            </div>
+                            <div class="row wow fadeInRight animated">
+                                <div class="col-sm-6">
+                                    <p class="author-category">
+                                        By <span style="color:#AC7D0C;font-weight:bold;">123456789</span>
+                                    </p>
                                 </div>
-                            </form>
+                            </div>
+                            <div>
+                                <div class="image wow fadeInRight animated" id="detail_image">
+                                    <div id="libmap" class="libmap_detail"></div>
+                                    <div class="board_detail book">
+                                        <p>&nbsp;999999999999999</p>
+                                        <dl>
+                                            <dt>저자</dt>
+                                            <dd>123456</dd>
+                                            <dt>출판사</dt>
+                                            <dd>12348596</dd>
+                                            <dt>출판일</dt>
+                                            <dd>123456789</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                                <hr>
+                        <h3 style="padding: 10px 0px 0px 0px;">책 소개</h3>
+                            <div id="post-content" class="post-body single wow fadeInLeft animated">
+                                <p style="white-space: pre-line;">11111</p>
+                            </div>
+                        <hr>
+                        <h3 style="padding: 10px 0px 0px 0px;">목 차</h3>
+                            <p style="white-space: pre-line;">545648548</p>
 
-        <!-- 검색 영역 -->
-        <div class="col-md-12">
-            <p class="col-md-12">
-                검색수: {{ num }}<br>
-                필터: {{ request.GET.code_value }} {{ request.GET.lbrry_se_name }}
-            </p>
-        </div>
 
-    <div class="=col-md-12">
-        <div class="col-md-4" style="overflow-y:scroll; height:700px;">
-            {% for list in total %}
-                <div class="col-md-12">
-                    <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
-                    오픈시간 : {{ list.op_time | default_if_none:''}} <br>
-                    휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
-                    전화번호 : {{ list.tel_no | default_if_none:''}} <br>
-                    홈페이지 : <a href="{{ list.hmpg_url }}" target="_blank">
-                                {{ list.hmpg_url | default_if_none:''}}
-                            </a><br>
-                    주소 : {{ list.adres | default_if_none:''}} <br>
-                    <div>
-                        <a href="detail_l/{{ list.lbrry_seq_no }}" class="btn btn-default btn-border" style="padding: 7px 15px;">리뷰</a>
-                    </div>
-                    <hr>
-                </div>
-            {% endfor %}
-            </div>
-        <div class="col-md-8">
-            <div id="libmap"></div>
-        </div>
-    </div>
-                    <!--        페이징작업            -->
-                    <div class="col-md-12 clear">
-                        <div class="pull-right">
-                            <div class="pagination">
-                                <ul>
-                                    {% if total.has_previous %}
-                                    <li>
-                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
-                                    </li>
-                                    {% else %}
-                                    <li>
-                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-                                    </li>
-                                    {% endif %}
-                                    <!-- 페이지 번호 -->
-                                    {% for page_number in total.paginator.page_range %}
-                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
-                                        {% if page_number == total.number %}
-                                        <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                                        </li>
-                                        {% else %}
-                                        <li>
-                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                                        </li>
-                                        {% endif %}
-                                    {% endif %}
-                                    {% endfor %}
-                                    <!-- 다음 페이지 -->
-                                    {% if total.has_next %}
-                                        <li>
-                                            <a class="page-link" href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
-                                        </li>
-                                    {% else %}
-                                        <li>
-                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-                                        </li>
-                                    {% endif %}
-                                <!-- 페이징처리 끝 -->
+
+                        <div class="post-footer single wow fadeInBottum animated">
+                                <ul class="pager">
+                                    <li class="next disabled"><a href="{% url 'recommend:recommend' %}">목록<i class=""></i> </a></li>
                                 </ul>
                             </div>
-                        </div>
+                    </section>
+                        <section id="comments" class="comments wow fadeInRight animated">
+                            <h4 class="text-uppercase wow fadeInLeft animated">3 comments</h4>
+
+
+                            <div class="row comment">
+                                <div class="col-sm-3 col-md-2 text-center-xs">
+                                    <p>
+                                        <img src="{% static 'assets/img/client-face1.png' %}" class="img-responsive img-circle" alt="">
+                                    </p>
+                                </div>
+                                <div class="col-sm-9 col-md-10">
+                                    <h5 class="text-uppercase">Julie Alma</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
+                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- /.comment -->
+
+
+                            <div class="row comment last">
+
+                                <div class="col-sm-3 col-md-2 text-center-xs">
+                                    <p>
+                                        <img src="{% static 'assets/img/client-face2.png' %}" class="img-responsive img-circle" alt="">
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-9 col-md-10">
+                                    <h5 class="text-uppercase">Louise Armero</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
+                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <!-- /.comment -->
+                        </section>
+
+                        <section id="comment-form" class="add-comments">
+                            <h4 class="text-uppercase wow fadeInLeft animated">Leave comment</h4>
+                            <form>
+                                <div class="row wow fadeInLeft animated">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="comment">Comment <span class="required">*</span>
+                                            </label>
+                                            <textarea class="form-control" id="comment" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row wow fadeInLeft animated">
+                                    <div class="col-sm-12 text-right">
+                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
                     </div>
                 </div>
+
             </div>
         </div>
 
-
-
-
           <!-- Footer area-->
-        <div class="footer-area">
+            <div class="footer-area">
 
-            <div class=" footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
-                            <div class="single-footer">
-                                <h4 style="text-align: center">About us </h4>
-                                <div class="footer-title-line"></div>
-                                <span style="margin: 20px">권진우</span>
-                                <span style="margin: 20px">강승준</span>
-                                <span style="margin: 20px">성민아</span>
-                                <span style="margin: 20px">조민석</span>
+                <div class=" footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
+                                <div class="single-footer">
+                                    <h4 style="text-align: center">About us </h4>
+                                    <div class="footer-title-line"></div>
+                                    <span style="margin: 20px">권진우</span>
+                                    <span style="margin: 20px">강승준</span>
+                                    <span style="margin: 20px">성민아</span>
+                                    <span style="margin: 20px">조민석</span>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-copy text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="pull-left">
+                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="footer-copy text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="pull-left">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
+
         <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
         <script src="{% static 'assets/js/bootstrap-hover-dropdown.js' %}"></script>
+
         <script src="{% static 'assets/js/easypiechart.min.js' %}"></script>
         <script src="{% static 'assets/js/jquery.easypiechart.min.js' %}"></script>
+
         <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
         <script src="{% static 'assets/js/wow.js' %}"></script>
+
         <script src="{% static 'assets/js/icheck.min.js' %}"></script>
         <script src="{% static 'assets/js/price-range.js' %}"></script>
+
         <script src="{% static 'assets/js/main.js' %}"></script>
 
-            <!--        gmaps        -->
+         <!--        gmaps        -->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U&callback=initialize"></script>
 <!--        <script src="{% static 'assets/js/gmaps-lib.js' %}"></script>-->
         <script>
@@ -392,6 +369,5 @@
 
 
         </script>
-        <script src="{% static 'assets/js/main.js' %}"></script>
     </body>
 </html>

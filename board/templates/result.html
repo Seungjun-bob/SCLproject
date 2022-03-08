@@ -93,23 +93,21 @@
             </div>
         </div>
         <!-- End page header -->
-
-        <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
+        <div class=" content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row">
-                    <div class="blog-lst col-md-12 pl0">
+                <div class="row rounded col-md-12" style="width:700px;">
+                    <div class="blog-lst col-md-12">
                         <section id="id-100" class="post single">
 
                             <div class="post-header single">
                                 <div class="">
-                                    <h2 class="wow fadeInLeft animated">FASHIN NOW 2016</h2>
+                                    <h2 class="wow fadeInLeft animated">{{ result.title }}</h2>
                                     <div class="title-line wow fadeInRight animated"></div>
                                 </div>
                                 <div class="row wow fadeInRight animated">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p class="author-category">
-                                            By <a href="#">John Snow</a>
-                                            in <a href="blog.html">Webdesign</a>
+                                            By <a>{{ user_name }}</a>
                                         </p>
                                     </div>
                                     <div class="col-sm-6 right" >
@@ -119,75 +117,67 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="image wow fadeInRight animated"> 
-                                    <img src="{% static 'assets/img/blog2.jpg' %}" class="img-responsive" alt="Example blog post alt">
+                            </div>
+
+                            <div id="post-content" class="post-body single wow fadeInLeft animated" style="height:200px; background-color:#fff">
+                                <div style="padding:15px 15px;">
+                                    <p>{{ result.content }}</p>
                                 </div>
-                            </div> 
-
-                            <div id="post-content" class="post-body single wow fadeInLeft animated">
-                                <p>
-                                    <strong>Pellentesque habitant morbi tristique</strong> 
-                                    senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-                                    semper. <em>Aenean ultricies mi vitae est.</em> 
-                                    Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean
-                                    fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-
                             </div>
-                            <div class="post-footer single wow fadeInBottum animated">
-                                <ul class="pager">
-                                    <li class="next disabled"><a href="{% url 'board:board' %}">목록<i class=""></i> </a></li>
-                                </ul>
-                            </div>
-
-                        </section> 
-
-                        <section class="about-autor">
-
                         </section>
+                        <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
+                        <hr>
+                        {% for comment in comments %}
 
-                        <section id="comments" class="comments wow fadeInRight animated"> 
-                            <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
-
-
+                        <section id="comments" class="comments wow fadeInRight animated">
                             <div class="row comment">
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="{% static 'assets/img/client-face1.png' %}" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Julie Alma</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                <div class="col-sm-9 col-md-8">
+                                    <h5 class="text-uppercase">작성자: {{ user_name }}</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> {{ comment.comment }}</p>
                                     <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
                                     </p>
                                 </div>
                             </div>
+                            <hr>
+                            {% endfor %}
                             <!-- /.comment -->
-
                         </section>
-
                         <section id="comment-form" class="add-comments">
-                            <h4 class="text-uppercase wow fadeInLeft animated">댓글 쓰기</h4>
-                            <form>
-                                <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label for="comment">Comment <span class="required">*</span>
-                                            </label>
-                                            <textarea class="form-control" id="comment" rows="4"></textarea>
+
+                            {% if user.is_authenticated %}
+
+                            <form method="POST" action="{% url 'board:comments' result.id %}">
+                                {% csrf_token %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea class="form-control" style="border:none" id="comment" rows="1" name="content" placeholder="댓글을 남겨보세요"></textarea>
+                                            </div>
+                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                         </div>
+                                </div>
+                                {% endif %}
+                                <div class="post-footer single wow fadeInBottum animated">
+                                    <div class="left_area">
+                                        <button type="submit" class="btn">글쓰기</button>
+
+                                        <!---- 삭제 버튼 ---->
+                                        <form action="{% url 'board:delete' result.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                        </form>
+                                        <button type="submit" class="btn">수정</button>
+                                        <button class="btn btn-light"><a href="{% url 'board:board' %}">목록</a></button>
                                     </div>
                                 </div>
-
                                 <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12 text-right">
-                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i>등록</button>
-                                    </div>
+
                                 </div>
                             </form>
                         </section>
+
                     </div>                                 
                 </div>
 
@@ -242,6 +232,15 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
+    <script>
+        function ConfirmDelete(){
+            var x = confirm("정말 삭제 하시겠습니까?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+    </script>
        
     </body>
 </html>
