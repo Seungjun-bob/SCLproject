@@ -72,7 +72,7 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                            <a class="active" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a href="{% url 'board:board' %}">게시판</a>
@@ -130,7 +130,7 @@
                                 <hr>
                         <h3 style="padding: 10px 0px 0px 0px;">책 소개</h3>
                             <div id="post-content" class="post-body single wow fadeInLeft animated">
-                                <p>{{ detail.recomcontens | default_if_none:'' }}</p>
+                                <p style="white-space: pre-line;">{{ detail.recomcontens | default_if_none:'' }}</p>
                             </div>
                         <hr>
                         <h3 style="padding: 10px 0px 0px 0px;">목 차</h3>
