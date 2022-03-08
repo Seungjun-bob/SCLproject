@@ -53,6 +53,7 @@ def only_member(request) :
         context = {'logineduser': request.user.last_name+request.user.first_name}
     return render(request, 'member.html', context)
 
+
 def about(request):
     return render(request, 'about.html')
 

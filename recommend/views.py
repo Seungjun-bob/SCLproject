@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from recommend.models import Recommend
+from django.shortcuts import render, redirect, get_object_or_404
+from recommend.models import Recommend, RecommendComment
 from django.core.paginator import Paginator
 
 def recommend(request):
@@ -91,9 +91,29 @@ def recommend(request):
 
     #
 
-def detail_recom(request, pk):
-    detail_recom = Recommend.objects.get(recomNo=pk)
+def detail_recom(request, recommend_id):
+    recommend_detail = get_object_or_404(RecommendComment, id=recommend_id)
+
+    comments = recommend_detail.comment_set.order_by('-id').all()
+
     context = {
-        'detail_recom': detail_recom,
+        'recommend_detail': recommend_detail,
     }
     return render(request, 'detail_r.html', context)
+
+
+def comment_create(request, recommend_id):
+    content = request.POST['content']
+    author = request.user.id
+    RecommendComment(comment=content,
+                     user_id=author,
+                     recommend_id=recommend_id).save()
+
+    return redirect('recommend:detail_r', recommend_id)
+
+def comment_delete(request, board_id, comment_id):
+    # print(board_id, comment_id)
+    # comment = Comment.objects.get(id=comment_id)
+    # comment.delete()
+    return
+        # redirect('board:result', board_id)

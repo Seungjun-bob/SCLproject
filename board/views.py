@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 def board(request) :
     # 데이터를 최신순으로 정렬
     boards = Board.objects.all().order_by('-id')
+    comment = Comment.objects.all()
 
     # 유저 정보
     users = User.objects.all()
@@ -18,6 +19,7 @@ def board(request) :
 
     context = {
         "vlist": vlistpage,
+        "comment": comment,
         "users": users,
     }
     return render(request, 'board.html', context)
@@ -49,7 +51,7 @@ def result(request, board_id):
     user_name = User.objects.get(pk=user_pk).last_name
 
     comments = board.comment_set.order_by('-id').all()
-
+    print(comments)
     context = {
         'board': board,
         'user_name': user_name,
@@ -62,7 +64,7 @@ def result(request, board_id):
 def comment_create(request, board_id):
     content = request.POST['content']
     author = request.user.id
-    print(board_id)
+
     Comment(comment=content,
             user_id=author,
             board_id=board_id,

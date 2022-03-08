@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{{ board.view_counter }}
 <html class="no-js">
     <head>
         <meta charset="utf-8">
@@ -162,7 +163,7 @@
                                         <div class="col-sm-12">
                                             <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
-                                                <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" ></textarea>
+                                                <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
 <!--                                                <textarea class="form-control" style="border:none; overflow:visible; white-space: pre-line;" name="content" placeholder="댓글을 남겨보세요"></textarea>-->
                                             </div>
                                             <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
@@ -172,7 +173,7 @@
                                     <div class="row comment-rounded wow fadeInLeft animated">
 
                                         <div class="col-sm-12">
-                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
                                                 <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                             </div>
@@ -181,7 +182,7 @@
                                 {% endif %}
                                 <div class="post-footer single wow fadeInBottum animated">
                                     <div class="left_area">
-                                        <button style="float:left;" type="submit" class="btn">글쓰기</button>
+                                        <button onclick="location.href={% url 'board:submit' %}'" style="float:left;" type="button" class="btn">글쓰기</button>
                                         <button style="float:left;" type="submit" class="btn">수정</button>
 
                                         <!---- 삭제 버튼 ---->
@@ -190,12 +191,11 @@
                                             {% csrf_token %}
                                             <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                         </form>
-
-                                        <button style="float:right;" class="btn btn-light"><a href="{% url 'board:board' %}">목록</a></button>
                                     </div>
                                 </div>
                             </form>
-                        </section>
+                        <button onclick="location.href='{% url 'board:board' %}'" style="float:right;" class="btn btn-light">목록</button>
+                    </section>
 
                     </div>                                 
                 </div>
