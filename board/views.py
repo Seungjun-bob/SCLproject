@@ -56,8 +56,6 @@ def result(request, pk):
     }
     return render(request, 'result.html', context)
 
-# @require_http_methods(['POST'])
-
 def comment(request, pk):
     content = request.POST['content']
     author = request.user.id
@@ -72,7 +70,6 @@ def comment(request, pk):
         'content': content,
         'author': author
     }
-
     return redirect('board:result', pk)
 
 def delete(request, pk):
@@ -98,6 +95,7 @@ def update(request, pk):
               Udate=date,
               id=id).save()
         return redirect('board:result', pk)
+
 
 def my_review(request):
     return render(request, 'my_review.html')
