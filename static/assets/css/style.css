@@ -137,7 +137,7 @@ button::-moz-focus-inner,
 input::-moz-focus-inner {
     border: 0;
     padding: 0;
-}
+}*/
 input {
     line-height: normal;
 }
@@ -1800,18 +1800,27 @@ proerty-th-list
     padding-right: 15px;
 }
 
-
 .proerty-th-list .col-md-3 .item-entry{
-    width:60%;
+    width:75%;
     float: left;
-    padding-right: 15px;
+    padding-right: 0px;
+    overflow: hidden;
 }
+
+.proerty-th-list .col-md-3 .item-entry p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  height: 80px;
+}
+
 .proerty-th-list .col-md-3{
     width: 100%;
     padding: 15px 10px;
 }
 .proerty-th-list .col-md-3 .item-thumb{
-    width:40%;
+    width:230px;
     float: left;
 } 
 .proerty-th-list .col-md-3 .item-thumb img {
