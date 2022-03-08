@@ -93,10 +93,10 @@
             </div>
         </div>
         <!-- End page header -->
-        <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
+        <div class=" content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row">
-                    <div class="blog-lst col-md-8" style="margin:0 200px;">
+                <div class="row rounded col-md-12" style="width:700px;">
+                    <div class="blog-lst col-md-12">
                         <section id="id-100" class="post single">
 
                             <div class="post-header single">
@@ -105,7 +105,7 @@
                                     <div class="title-line wow fadeInRight animated"></div>
                                 </div>
                                 <div class="row wow fadeInRight animated">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p class="author-category">
                                             By <a>{{ user_name }}</a>
                                         </p>
@@ -124,39 +124,14 @@
                                     <p>{{ result.content }}</p>
                                 </div>
                             </div>
-                            <div class="post-footer single wow fadeInBottum animated">
-                                <div class="left_area">
-                                    <button type="submit" class="btn">글쓰기</button>
-                                    {{ result.id }}
-
-                                    <!---- 삭제 버튼 ---->
-                                    <form action="{% url 'board:delete' result.id %}" method="post">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
-                                    </form>
-                                    <button type="submit" class="btn">수정</button>
-                                    <button class="btn btn-light"><a href="{% url 'board:board' %}">목록</a></button>
-                                </div>
-
-                                <ul class="pager">
-
-                                    <li class="next disabled"></li>
-
-                                </ul>
-                            </div>
-
                         </section>
                         <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
                         <hr>
                         {% for comment in comments %}
 
-                        <section id="comments" class="comments wow fadeInRight animated"> 
-
-
-
+                        <section id="comments" class="comments wow fadeInRight animated">
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
-
                                     <h5 class="text-uppercase">작성자: {{ user_name }}</h5>
                                     <p class="posted"><i class="fa fa-clock-o"></i> {{ comment.comment }}</p>
                                     <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
@@ -168,21 +143,37 @@
                             <!-- /.comment -->
                         </section>
                         <section id="comment-form" class="add-comments">
-                            <h4 class="text-uppercase wow fadeInLeft animated">댓글 쓰기*</h4>
+
+                            {% if user.is_authenticated %}
+
                             <form method="POST" action="{% url 'board:comments' result.id %}">
                                 {% csrf_token %}
-                                <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control" id="comment" rows="4" name="content"></textarea>
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea class="form-control" style="border:none" id="comment" rows="1" name="content" placeholder="댓글을 남겨보세요"></textarea>
+                                            </div>
+                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                         </div>
+                                </div>
+                                {% endif %}
+                                <div class="post-footer single wow fadeInBottum animated">
+                                    <div class="left_area">
+                                        <button type="submit" class="btn">글쓰기</button>
+
+                                        <!---- 삭제 버튼 ---->
+                                        <form action="{% url 'board:delete' result.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                        </form>
+                                        <button type="submit" class="btn">수정</button>
+                                        <button class="btn btn-light"><a href="{% url 'board:board' %}">목록</a></button>
                                     </div>
                                 </div>
-
                                 <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12 text-right">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-comment-o"></i>등록</button>
-                                    </div>
+
                                 </div>
                             </form>
                         </section>
