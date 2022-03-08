@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>SCL | Recommend</title>
+        <meta name="description" content="Seoul city library">
+        <meta name="author" content="TeamSCL">
+        <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'assets/css/Gothicfont.css' %}">
+        <!-- font end -->
+
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+        <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}">
+        <link href="{% static 'assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/fonts/icon-7-stroke/css/helper.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/icheck.min_all.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/price-range.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/owl.theme.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/owl.transitions.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    </head>
+    <body>
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- Body content -->
+
+        <nav class="navbar navbar-default ">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse yamm" id="navigation">
+                    <div class="button navbar-right">
+                         {% if user.is_authenticated %}
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
+                        {% else %}
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
+                        {% endif %}
+                    </div>
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a href="{% url 'index:about' %}" class="">About</a>
+                        </li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a class="" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a class="active" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                        </li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a href="{% url 'board:board' %}">게시판</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <!-- End of nav bar -->
+
+        <div class="page-head">
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">도서 추천</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
+            <div class="container">
+                <div class="row">
+                    <section id="id-100" class="post single">
+                        <div class="post-header single">
+                            <div class="">
+                                <h2 class="wow fadeInLeft animated">{{ detail_recom.recomtitle | default_if_none:'' }}</h2>
+                                <div class="title-line wow fadeInRight animated"></div>
+                            </div>
+                            <div class="row wow fadeInRight animated">
+                                <div class="col-sm-6">
+                                    <p class="author-category">
+                                        By <span style="color:#AC7D0C;font-weight:bold;">{{ detail_recom.recomauthor | default_if_none:'' }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="image wow fadeInRight animated" id="detail_image">
+                                    <img src="{{ detail_recom.recomfilepath | default_if_none:'' }}" class="img-responsive" alt="Example blog post alt" >
+                                    <div class="board_detail book">
+                                        <p>&nbsp;{{ detail_recom.recomtitle | default_if_none:'' }}</p>
+                                        <dl>
+                                            <dt>저자</dt>
+                                            <dd>{{ detail_recom.recomauthor | default_if_none:'' }}</dd>
+                                            <dt>출판사</dt>
+                                            <dd>{{ detail_recom.recompublisher | default_if_none:'' }}</dd>
+                                            <dt>출판일</dt>
+                                            <dd>{{ detail_recom.recomYear | default_if_none:'' }}.{{ detail_recom.recomMonth | default_if_none:'' }}</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                <hr>
+                        <h3 style="padding: 10px 0px 0px 0px;">책 소개</h3>
+                            <div id="post-content" class="post-body single wow fadeInLeft animated">
+                                <p style="white-space: pre-line;">{{ detail_recom.recomcontens | default_if_none:'' }}</p>
+                            </div>
+                        <hr>
+                        <h3 style="padding: 10px 0px 0px 0px;">목 차</h3>
+                            <p style="white-space: pre-line;">{{ detail_recom.recommokcha | default_if_none:'' }}</p>
+
+
+
+                        <div class="post-footer single wow fadeInBottum animated">
+                                <ul class="pager">
+                                    <li class="next disabled"><a href="{% url 'recommend:recommend' %}">목록<i class=""></i> </a></li>
+                                </ul>
+                            </div>
+                    </section>
+                        <section id="comments" class="comments wow fadeInRight animated">
+                            <h4 class="text-uppercase wow fadeInLeft animated">3 comments</h4>
+
+
+                            <div class="row comment">
+                                <div class="col-sm-3 col-md-2 text-center-xs">
+                                    <p>
+                                        <img src="{% static 'assets/img/client-face1.png' %}" class="img-responsive img-circle" alt="">
+                                    </p>
+                                </div>
+                                <div class="col-sm-9 col-md-10">
+                                    <h5 class="text-uppercase">Julie Alma</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
+                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- /.comment -->
+
+
+                            <div class="row comment last">
+
+                                <div class="col-sm-3 col-md-2 text-center-xs">
+                                    <p>
+                                        <img src="{% static 'assets/img/client-face2.png' %}" class="img-responsive img-circle" alt="">
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-9 col-md-10">
+                                    <h5 class="text-uppercase">Louise Armero</h5>
+                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
+                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
+                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <!-- /.comment -->
+                        </section>
+
+                        <section id="comment-form" class="add-comments">
+                            <h4 class="text-uppercase wow fadeInLeft animated">Leave comment</h4>
+                            <form>
+                                <div class="row wow fadeInLeft animated">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="comment">Comment <span class="required">*</span>
+                                            </label>
+                                            <textarea class="form-control" id="comment" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row wow fadeInLeft animated">
+                                    <div class="col-sm-12 text-right">
+                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+          <!-- Footer area-->
+            <div class="footer-area">
+
+                <div class=" footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
+                                <div class="single-footer">
+                                    <h4 style="text-align: center">About us </h4>
+                                    <div class="footer-title-line"></div>
+                                    <span style="margin: 20px">권진우</span>
+                                    <span style="margin: 20px">강승준</span>
+                                    <span style="margin: 20px">성민아</span>
+                                    <span style="margin: 20px">조민석</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-copy text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="pull-left">
+                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
+
+        <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap-hover-dropdown.js' %}"></script>
+
+        <script src="{% static 'assets/js/easypiechart.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.easypiechart.min.js' %}"></script>
+
+        <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'assets/js/wow.js' %}"></script>
+
+        <script src="{% static 'assets/js/icheck.min.js' %}"></script>
+        <script src="{% static 'assets/js/price-range.js' %}"></script>
+
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+    </body>
+</html>
