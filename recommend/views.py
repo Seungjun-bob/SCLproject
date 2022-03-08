@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from recommend.models import Recommend
+from django.shortcuts import render, redirect
+from recommend.models import Recommend, Comment_re
 from django.core.paginator import Paginator
 
 def recommend(request):
@@ -97,3 +97,17 @@ def detail_recom(request, pk):
         'detail_recom': detail_recom,
     }
     return render(request, 'detail_r.html', context)
+
+def detail_comment(request, pk):
+    content = request.POST['content']
+    author = request.user.id
+    Comment_re(comment=content,
+            user_id=author,
+            id=id
+            ).save()
+    context = {
+        'content': content,
+        'author': author
+    }
+
+    return redirect('recommend:comments_r', pk)
