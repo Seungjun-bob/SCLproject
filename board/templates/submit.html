@@ -95,190 +95,151 @@
         </div>
         <!-- End page header -->
 
-        <div class="col-md-4">
-            <br>
-        <br>
-            <form method="POST" action="{% url 'board:submit' %}">
-                {% csrf_token %}
-                내용:
-                <input type="text" name="content">
-                별점:
-                <input type="text" name="starpoint">
-                제목:
-                <input type="text" name="title">
-                도서관명:
-                <input type="text" name="lbrry_name">
-
-                <button type="submit" value="글쓰기">글쓰기</button>
-            </form>
-        </div>
-
-
-
-        <div class="content-area submit-property" style="background-color: #FCFCFC;">&nbsp;
-            <div class="container">
-                <div class="clearfix" >
-                    <div class="wizard-container">
-
-                        <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                            <div class="wizard-header">
-                                    <h3>
-                                        <b>리뷰를 작성하세요</b> <br>
-                                        <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
-                                    </h3>
-                                </div>
-                            <form method="POST" action="{% url 'board:submit' %}">
-
-                                <div class="tab-content">
-                                    <!--  End step 1 -->
-
-                                    <div>
-                                        <h4 class="info-text"> How much your Property is Beautiful ? </h4>
-                                            <form action="" class=" form-inline">
-                                                {% csrf_token %}
-                                                <div class="properties-area recent-property" style="background-color: #FFF;">
-                            <div class="container">
-                                <div class="row  pr0 padding-top-40 properties-page">
-                                    <div class="col-md-12 padding-bottom-40 large-search">
-                                        <div class="search-form wow pulse">
-                                            <form action="" class=" form-inline">
-                                                <div class="col-md-12">
-                                                    <div class="col-md-4">
-                                                        <input type="text" class="form-control" placeholder="도서관명" name="search">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <select id="lunchBegins" class="selectpicker" title="도서관 구분" name="lbrry_se_name">
-                                                            <option>전체</option>
-                                                            <option>공공도서관</option>
-                                                            <option>국립도서관</option>
-                                                            <option>대표도서관</option>
-                                                            <option>작은도서관</option>
-                                                            <option>장애인도서관</option>
-                                                            <option>전문도서관</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <select id="basic" class="selectpicker show-tick form-control" title="자치구" style="overflow: scroll;" name="code_value">
-                                                            <option>전체</option>
-                                                            <option>강남구</option>
-                                                            <option>강동구</option>
-                                                            <option>강북구</option>
-                                                            <option>강서구</option>
-                                                            <option>관악구</option>
-                                                            <option>광진구</option>
-                                                            <option>구로구</option>
-                                                            <option>금천구</option>
-                                                            <option>노원구</option>
-                                                            <option>도봉구</option>
-                                                            <option>동대문구</option>
-                                                            <option>동작구</option>
-                                                            <option>마포구</option>
-                                                            <option>서대문구</option>
-                                                            <option>서초구</option>
-                                                            <option>성동구</option>
-                                                            <option>성북구</option>
-                                                            <option>송파구</option>
-                                                            <option>양천구</option>
-                                                            <option>영등포구</option>
-                                                            <option>용산구</option>
-                                                            <option>은평구</option>
-                                                            <option>종로구</option>
-                                                            <option>중구</option>
-                                                            <option>중랑구</option>
-
-                                                        </select>
-                                                    </div>
-                                                        <div class="row">
-                                                            <div id=search_button class="col-xs-12">
-                                                                <input class="button btn largesearch-btn" value="검 색" type="submit">
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                            </form>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>Property Description :</label>
-                                                        <textarea rows="10" name="content" class="form-control" ></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 padding-top-15">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label for="property-geo">Min bed :</label>
-                                                        <input type="text" class="span2" value="" data-slider-min="0"
-                                                               data-slider-max="600" data-slider-step="5"
-                                                               data-slider-value="[250,450]" id="min-bed" ><br />
-                                                        <b class="pull-left color">1</b>
-                                                        <b class="pull-right color">120</b>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane" id="step3">
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                             <div class="form-group">
-                                                             <label for="property-images">Chose Images :</label>
-                                                            <input class="form-control" type="file" id="property-images">
-                                                            <p class="help-block">Select multipel images for your property .</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                <div class="wizard-footer">
-                                    <div class="pull-right">
-                                        <button type='submit' class='btn btn-finish btn-primary ' name='finish' value='Finish' >완료</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <!-- End submit form -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-           <!-- Footer area-->
-        <div class="footer-area">
-
-            <div class=" footer">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
-                            <div class="single-footer">
-                                <h4 style="text-align: center">About us </h4>
-                                <div class="footer-title-line"></div>
-                                <span style="margin: 20px">권진우</span>
-                                <span style="margin: 20px">강승준</span>
-                                <span style="margin: 20px">성민아</span>
-                                <span style="margin: 20px">조민석</span>
+                    <div>
+                            <h3>
+                                <b>리뷰를 작성하세요</b> <br>
+                                <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
+                            </h3>
+                            <h4 class="info-text"> How much your Property is Beautiful ? </h4>
+                    </div>
 
+
+                    <div class="container">
+                        <div class="row  pr0 padding-top-40 properties-page">
+                            <div class="col-md-12 padding-bottom-40 large-search">
+                                <div class="search-form wow pulse">
+                                    <form action="" class=" form-inline">
+                                        {% csrf_token %}
+                                        <div class="col-md-12">
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" placeholder="도서관명" name="search">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select id="lunchBegins" class="selectpicker" title="도서관 구분" name="lbrry_se_name">
+                                                    <option>전체</option>
+                                                    <option>공공도서관</option>
+                                                    <option>국립도서관</option>
+                                                    <option>대표도서관</option>
+                                                    <option>작은도서관</option>
+                                                    <option>장애인도서관</option>
+                                                    <option>전문도서관</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select id="basic" class="selectpicker show-tick form-control" title="자치구" style="overflow: scroll;" name="code_value">
+                                                    <option>전체</option>
+                                                    <option>강남구</option>
+                                                    <option>강동구</option>
+                                                    <option>강북구</option>
+                                                    <option>강서구</option>
+                                                    <option>관악구</option>
+                                                    <option>광진구</option>
+                                                    <option>구로구</option>
+                                                    <option>금천구</option>
+                                                    <option>노원구</option>
+                                                    <option>도봉구</option>
+                                                    <option>동대문구</option>
+                                                    <option>동작구</option>
+                                                    <option>마포구</option>
+                                                    <option>서대문구</option>
+                                                    <option>서초구</option>
+                                                    <option>성동구</option>
+                                                    <option>성북구</option>
+                                                    <option>송파구</option>
+                                                    <option>양천구</option>
+                                                    <option>영등포구</option>
+                                                    <option>용산구</option>
+                                                    <option>은평구</option>
+                                                    <option>종로구</option>
+                                                    <option>중구</option>
+                                                    <option>중랑구</option>
+
+                                                </select>
+                                            </div>
+                                                <div class="row">
+                                                    <div id=search_button class="col-xs-12">
+                                                        <input class="button btn largesearch-btn" value="검 색" type="submit">
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                        <div class="row">
+                            <form action="{% url 'board:submit' %}" method="post">
+                                {% csrf_token %}
+                                    <div class="col-md-12">
+                                        <div class="col-sm-10">
+                                            <h3>제목</h3>
+                                            <input type="text" class="form-control" name="title" required>
+                                        </div>
+                                        <div class="col-xs-2" style="margin-top:63px;">
+                                            <div class="form-group">
+                                                <select class="selectpicker show-tick form-control" title="평점" name="starpoint" required>
+                                                    <option>1</option>점
+                                                    <option>2</option>점
+                                                    <option>3</option>점
+                                                    <option>4</option>점
+                                                    <option>5</option>점
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
 
-            <div class="footer-copy text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="pull-left">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h5>작성내용</h5>
+                                            <textarea rows="10" name="content" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 padding-top-15">
+                                    <button type="submit" value="글쓰기">글쓰기</button>
+                                </div>
+                            </form>
                         </div>
+                </div>
+                <!-- End submit form -->
+
+
+
+
+    <!-- Footer area-->
+    <div class="footer-area">
+
+    <div class=" footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
+                    <div class="single-footer">
+                        <h4 style="text-align: center">About us </h4>
+                        <div class="footer-title-line"></div>
+                        <span style="margin: 20px">권진우</span>
+                        <span style="margin: 20px">강승준</span>
+                        <span style="margin: 20px">성민아</span>
+                        <span style="margin: 20px">조민석</span>
+
                     </div>
                 </div>
             </div>
-
         </div>
+    </div>
+
+    <div class="footer-copy text-center">
+        <div class="container">
+            <div class="row">
+                <div class="pull-left">
+                    <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <!--        <script src="{% static 'assets/js/vendor/modernizr-2.6.2.min.js' %}"></script>-->
         <script src="{% static 'assets/js//jquery-1.10.2.min.js' %}"></script>
