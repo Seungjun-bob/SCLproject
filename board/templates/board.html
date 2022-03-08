@@ -93,10 +93,13 @@
         <!-- End page header -->
 
         <!-- property area -->
+
+
         <div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container">
                 <div class="row">
 
+                <!----------- 검색 ------------->
                 <div class="col-md-3 p0 padding-top-40">
                     <div class="blog-asside-right pr0">
                         <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
@@ -160,9 +163,6 @@
                                             </div>
                                         </div>
                                     </fieldset>
-
-
-
                                     <fieldset >
                                         <div class="row">
                                             <div class="col-xs-12">
@@ -173,90 +173,108 @@
                                 </form>
                             </div>
                         </div>
-
-                        <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-
-
-                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-9  pr0 padding-top-40 properties-page">
-                    <div class="col-md-12 clear">
-                        <div class="col-xs-10 page-subheader sorting pl0">
-                            <ul class="sort-by-list">
-                                <li class="active">
-                                    <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
-                                        날짜 정렬 <i class="fa fa-sort-amount-asc"></i>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
+                    <div class="col-md-9  pr0 padding-top-40 properties-page">
+                        <div class="col-md-12 clear">
+                            <div class="col-xs-10 page-subheader sorting pl0">
+                                <ul class="sort-by-list">
+                                    <li class="active">
+                                        <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
+                                            날짜 정렬 <i class="fa fa-sort-amount-asc"></i>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
                                         추천 수 정렬 <i class="fa fa-sort-numeric-desc"></i>
-                                    </a>
-                                </li>
-                            </ul><!--/ .sort-by-list-->
+                                        </a>
+                                    </li>
+                                </ul><!--/ .sort-by-list-->
+                        </div>
+                            <button onclick="location.href='{% url 'board:submit' %}'">작성하기</button>
+                    </div>
 
-                            <div class="items-per-page">
-                                <label for="items_per_page"><b>페이지당 검색 수:</b></label>
-                                <div class="sel">
-                                    <select id="items_per_page" name="per_page">
-                                        <option value="3">3</option>
-                                        <option value="6">6</option>
-                                        <option value="9">9</option>
-                                        <option selected="selected" value="12">12</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                        <option value="60">60</option>
-                                    </select>
-                                </div><!--/ .sel-->
-                            </div><!--/ .items-per-page-->
+
+                <!-------------- Board ---------------->
+
+                    <div class="col-md-12 clear" style="height:500px">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">도서관명</th>
+                                    <th scope="col">평점</th>
+                                    <th scope="col">제목</th>
+                                    <th scope="col">작성자</th>
+                                    <th scope="col">좋아요</th>
+                                    <th scope="col">조회수</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for dlist in vlist %}
+                            <tr>
+                                <th scope="row" widht="3%">{{ dlist.id }}</th>
+                                    <td width="15%">{{ dlist.library.lbrry_name }}</td>
+                                    <td width="10%">{{ dlist.starpoint }}</td>
+                                    <td width="50%"><a href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
+                                    <td width="7%">{{ dlist.author.last_name }}</td>
+                                    <td width="7%">{{ dlist.like }}</td>
+                                    <td width="7%">{{ dlist.view_cnt }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--        페이징작업            -->
+                    <div class="col-md-12 clear">
+                        <div class="pull-right">
+                            <div class="pagination">
+                                <ul>
+                                    {% if vlist.has_previous %}
+                                    <li>
+                                        <a class="page-link" href="?page={{ vlist.previous_page_number }}">이전</a>
+                                    </li>
+                                    {% else %}
+                                    <li>
+                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                                    </li>
+                                    {% endif %}
+                                    <!-- 페이지 번호 -->
+                                    {% for page_number in vlist.paginator.page_range %}
+                                    {% if page_number >= vlist.number|add:-3 and page_number <= vlist.number|add:3 %}
+                                        {% if page_number == vlist.number %}
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                        </li>
+                                        {% else %}
+                                        <li>
+                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                        </li>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    <!-- 다음 페이지 -->
+                                    {% if vlist.has_next %}
+                                        <li>
+                                            <a class="page-link" href="?page={{ vlist.next_page_number }}">다음</a>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                                        </li>
+                                    {% endif %}
+                                <!-- 페이징처리 끝 -->
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-md-12 clear">
-                        <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
-                    </div>
-           <div class="col-md-12">
-
-           </div>
-                    </div>
-
-
-
 
                 </div>
             </div>
-
+        </div>
+    </div>
 
 
 
@@ -266,7 +284,6 @@
 
           <!-- Footer area-->
         <div class="footer-area">
-
             <div class=" footer">
                 <div class="container">
                     <div class="row">
@@ -278,12 +295,12 @@
                                 <span style="margin: 20px">강승준</span>
                                 <span style="margin: 20px">성민아</span>
                                 <span style="margin: 20px">조민석</span>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
             <div class="footer-copy text-center">
                 <div class="container">
@@ -294,9 +311,10 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-      <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
+
+
+        <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
         <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
