@@ -63,8 +63,6 @@ def result(request, pk):
     }
     return render(request, 'result.html', context)
 
-# @require_http_methods(['POST'])
-
 def comment(request, pk):
     content = request.POST['content']
     author = request.user.id
@@ -79,7 +77,6 @@ def comment(request, pk):
         'content': content,
         'author': author
     }
-
     return redirect('board:result', pk)
 
 def delete(request, pk):
@@ -87,8 +84,27 @@ def delete(request, pk):
     review.delete()
     return redirect('/board/')
 
-def update():
-    return
+def update(request, pk):
+        update = get_object_or_404(Review, id=pk)
+        if request.method == 'GET':
+            context = {'update': update}
+            return render(request, 'update.html', context)
+        else:
+            id = update.id
+            update.title = request.POST['title1']
+            update.content = request.POST['content1']
+            starpoint = 1
+            author_id = 1
+            library_id = 1
+            date = "2022-02-02 22:22"
+            Review(title=update.title,
+                   content=update.content,
+                   starpoint=starpoint,
+                   author_id=author_id,
+                   library_id=library_id,
+                   date = date,
+                   id=id).save()
+            return redirect('board:result', pk)
 
 def my_review(request):
     return render(request, 'my_review.html')
