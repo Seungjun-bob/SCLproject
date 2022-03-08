@@ -176,7 +176,7 @@
                     </div>
                 </div>
 
-                    <div class="col-md-9  pr0 padding-top-40 properties-page">
+                    <div class="col-md-9  pr0 padding-top-40 properties-page" style="height:700px;">
                         <div class="col-md-12 clear">
                             <div class="col-xs-10 page-subheader sorting pl0">
                                 <ul class="sort-by-list">
@@ -198,15 +198,16 @@
 
                 <!-------------- Board ---------------->
 
-                    <div class="col-md-12 clear" style="height:500px">
-                        <table class="table">
+                    <div class="col-md-12 clear">
+                        <table class="table" style="width:800px;">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">제목</th>
                                     <th scope="col">작성자</th>
-                                    <th scope="col">좋아요</th>
+                                    <th scope="col">작성일</th>
                                     <th scope="col">조회수</th>
+                                    <th scope="col">좋아요</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -214,10 +215,11 @@
                             {% for dlist in vlist %}
                             <tr>
                                 <th scope="row" width="5%">{{ dlist.id }}</th>
-                                    <td width="65%"><a href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
-                                    <td width="10%">{{ dlist.author.last_name }}</td>
-                                    <td width="10%">{{ dlist.like }}</td>
-                                    <td width="10%">{{ dlist.view_cnt }}</td>
+                                    <td style="table-layout:fixed;" width="55%"><a href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
+                                    <td style="table-layout:fixed;" width="10%">{{ dlist.author.last_name }}</td>
+                                    <td style="table-layout:fixed;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
+                                    <td style="table-layout:fixed;" width="7%">{{ dlist.view_cnt }}</td>
+                                    <td style="table-layout:fixed;" width="7%">{{ dlist.like }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
