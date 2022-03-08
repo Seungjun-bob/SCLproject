@@ -192,14 +192,15 @@
                                     </li>
                                 </ul><!--/ .sort-by-list-->
                         </div>
-                            <button onclick="location.href='{% url 'board:submit' %}'">작성하기</button>
+                            <button class="btn btn-primary" onclick="location.href='{% url 'board:submit' %}'" style="padding:5px 15px; float:right;">작성하기</button>
+
                     </div>
 
 
                 <!-------------- Board ---------------->
 
                     <div class="col-md-12 clear">
-                        <table class="table" style="width:800px;">
+                        <table class="table" style="width:850px;">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -215,11 +216,12 @@
                             {% for dlist in vlist %}
                             <tr>
                                 <th scope="row" width="5%">{{ dlist.id }}</th>
-                                    <td style="table-layout:fixed;" width="55%"><a href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
-                                    <td style="table-layout:fixed;" width="10%">{{ dlist.author.last_name }}</td>
-                                    <td style="table-layout:fixed;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
-                                    <td style="table-layout:fixed;" width="7%">{{ dlist.view_cnt }}</td>
-                                    <td style="table-layout:fixed;" width="7%">{{ dlist.like }}</td>
+                                    <td style="table-layout:fixed; width="55%">
+                                        <a style="color:black; font-weight:normal;" href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
+                                    <td style="table-layout:fixed; text-align:center;" width="10%">{{ dlist.author.last_name }}</td>
+                                    <td style="table-layout:fixed; text-align:center;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
+                                    <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.view_cnt }}</td>
+                                    <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.like }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>

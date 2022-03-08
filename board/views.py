@@ -6,14 +6,14 @@ from django.contrib.auth.models import User
 
 def board(request) :
     # 데이터를 최신순으로 정렬
-    Reivews = Board.objects.all().order_by('-id')
+    boards = Board.objects.all().order_by('-id')
 
     # 유저 정보
     users = User.objects.all()
 
     # 페이징 처리리
     page = request.GET.get('page', 1)
-    paginator = Paginator(Reivews, 15)
+    paginator = Paginator(boards, 15)
     vlistpage = paginator.get_page(page)
 
     context = {
@@ -24,7 +24,8 @@ def board(request) :
 
 def submit(request):
     if not request.user.is_authenticated:
-        return redirect('/index/login/')
+
+        return redirect('index:login')
     else:
         if request.method == "POST":
             title = request.POST['title']
@@ -32,8 +33,8 @@ def submit(request):
             author = request.user.id
 
             data = Board(title=title,
-                          author_id=author,
-                          content=content,)
+                         author_id=author,
+                         content=content,)
             data.save()
             return redirect('board:result', data.id)
         else:
@@ -66,10 +67,7 @@ def comment_create(request, board_id):
             user_id=author,
             board_id=board_id,
             ).save()
-    context = {
-        'content': content,
-        'author': author,
-    }
+
 
     return redirect('board:result', board_id)
 
