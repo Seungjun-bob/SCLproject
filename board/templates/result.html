@@ -95,33 +95,38 @@
         <!-- End page header -->
         <div class=" content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row rounded col-md-12" style="width:700px;">
+                <div class="row rounded col-md-12" style="width:850px; margin-left: 150px;">
                     <div class="blog-lst col-md-12" >
                         <section id="id-100" class="post single">
 
                             <div class="post-header single">
                                 <div class="">
-                                    <h2 class="wow fadeInLeft animated">{{ result.title }}</h2>
+                                    <h2 class="wow fadeInLeft animated">{{ board.title }}</h2>
                                     <div class="title-line wow fadeInRight animated"></div>
                                 </div>
                                 <div class="row wow fadeInRight animated">
                                     <div class="col-sm-8">
-                                        <p class="author-category">
-                                            By <a>{{ user_name }}</a>
-                                        </p>
+
+                                            <p class="author-category">
+                                                By <a>{{ user_name }}</a>
+                                            </p>
+
                                     </div>
-                                    <div class="col-sm-6 right" >
-                                        <p class="date-comments">
-                                            <a href="single.html"><i class="fa fa-calendar-o"></i> June 20, 2013</a>
-                                            <a href="single.html"><i class="fa fa-comment-o"></i> 8 Comments</a>
-                                        </p>
+
+                                    <div class="col-sm-4 right" >
+
+                                            <p style="float:right;" class="date-comments">
+                                                <a href="single.html"><i class="fa fa-calendar-o">ccc</i> </a>
+                                                <a href="single.html"><i class="fa fa-comment-o"></i>Comments</a>
+                                            </p>
+
                                     </div>
                                 </div>
                             </div>
 
                             <div id="post-content" class="post-body single wow fadeInLeft animated" style="height:200px; background-color:#fff">
                                 <div style="padding:15px 15px;">
-                                    <p>{{ result.content }}</p>
+                                    <p>{{ board.content }}</p>
                                 </div>
                             </div>
                         </section>
@@ -133,8 +138,8 @@
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
                                     <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> {{ comment.comment }}</p>
-                                    <form action="{% url 'board:delete' result.id %}" method="post">
+                                    <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
+                                    <form action="{% url 'board:comment_delete' board.id comment.id %}" method="post">
                                         {% csrf_token %}
                                         <span>{{ comment.Cdate }}&nbsp&nbsp</span>
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
@@ -150,14 +155,15 @@
 
                             {% if user.is_authenticated %}
 
-                            <form method="POST" action="{% url 'board:comments' result.id %}">
+                            <form method="POST" action="{% url 'board:comment_create' board.id %}">
                                 {% csrf_token %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
 
                                         <div class="col-sm-12">
                                             <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
-                                                <textarea class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="댓글을 남겨보세요"></textarea>
+                                                <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" ></textarea>
+<!--                                                <textarea class="form-control" style="border:none; overflow:visible; white-space: pre-line;" name="content" placeholder="댓글을 남겨보세요"></textarea>-->
                                             </div>
                                             <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                         </div>
@@ -180,7 +186,7 @@
 
                                         <!---- 삭제 버튼 ---->
 
-                                        <form style="float:left;" action="{% url 'board:delete' result.id %}" method="post">
+                                        <form style="float:left;" action="{% url 'board:delete' board.id %}" method="post">
                                             {% csrf_token %}
                                             <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                         </form>
@@ -253,6 +259,14 @@
             else
                 return false;
         }
+    </script>
+    <script type="text/javascript">
+        $('document').ready(function() {
+            $('textarea').keyup(function(e) {
+                $(this).css('height', 'auto');
+                $(this).height(this.scrollHeight);
+            });
+        });
     </script>
        
     </body>

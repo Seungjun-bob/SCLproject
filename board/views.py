@@ -39,18 +39,18 @@ def submit(request):
         else:
             return render(request, 'submit.html')
 
-def result(request, pk):
+def result(request, board_id):
     # Board 클래스에서 id 값에 맞는 데이터 가져옴
-    result = get_object_or_404(Board, id=pk)
+    board = get_object_or_404(Board, id=board_id)
 
     # 유저 정보 가져오기
-    user_pk = result.author_id
+    user_pk = board.author_id
     user_name = User.objects.get(pk=user_pk).last_name
 
-    comments = result.comment_set.order_by('-id').all()
+    comments = board.comment_set.order_by('-id').all()
 
     context = {
-        'result': result,
+        'board': board,
         'user_name': user_name,
         'comments': comments
     }
@@ -58,39 +58,37 @@ def result(request, pk):
 
 # @require_http_methods(['POST'])
 
-def comment(request, pk):
+def comment_create(request, board_id):
     content = request.POST['content']
     author = request.user.id
-    comment = Comment()
-    Comment.Board_id = pk
-    print(Comment.Board_id)
+    print(board_id)
     Comment(comment=content,
             user_id=author,
-            board_id=pk,
+            board_id=board_id,
             ).save()
     context = {
         'content': content,
         'author': author,
-        'board_id': pk,
     }
 
-    return redirect('board:result', pk)
+    return redirect('board:result', board_id)
 
 
-def delete(request, pk):
-    board = Board.objects.get(id=pk)
+def delete(request, board_id):
+    board = Board.objects.get(id=board_id)
     board.delete()
     return redirect('/board/')
 
 
-def comment_delete(request, pk):
-    comment = Comment.objects.get(id=pk)
+def comment_delete(request, board_id, comment_id):
+    print(board_id, comment_id)
+    comment = Comment.objects.get(id=comment_id)
     comment.delete()
-    return redirect('/board/', pk)
+    return redirect('board:result', board_id)
 
 
-def update(request, pk):
-    update = get_object_or_404(Board, id=pk)
+def update(request, board_id):
+    update = get_object_or_404(Board, id=board_id)
     if request.method == 'GET':
         context = {'update': update}
         return render(request, 'update.html', context)
@@ -105,7 +103,7 @@ def update(request, pk):
               author_id=author_id,
               Udate=date,
               id=id).save()
-        return redirect('board:result', pk)
+        return redirect('board:result', board_id)
 
 def my_review(request):
     return render(request, 'my_review.html')

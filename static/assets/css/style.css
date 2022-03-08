@@ -1,5 +1,16 @@
-.rounded #cmd_write {
-    padding: 0 30% 0;
+.comment_inbox_text {
+    display: block;
+    width: 100%;
+    min-height: 17px;
+    max-height: 500px;
+    padding-right: 1px;
+    border: 0;
+    -webkit-appearance:none;
+    resize: none;
+    box-sizing: border-box;
+    outline: 0;
+    font-size: 13px;
+    line-height: 20px;
 }
 
 #search_button {
@@ -2632,6 +2643,12 @@ padding-bottom: 15px;
     font-weight: 300;
     letter-spacing: 0.08em;
 }
+..blog-page .post .author-category p {
+    padding: 0px 0px 0px 0px;
+}
+
+
+
 .blog-page  .post .author-category a, #blog-homepage .post .author-category a {
     font-weight: 500;
 }
