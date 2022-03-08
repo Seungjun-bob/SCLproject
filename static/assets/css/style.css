@@ -70,6 +70,14 @@
     text-align: left;
 }
 
+.board_detail ul li{
+    padding: 12px; 12px;
+    font-size: 15px;
+    margin: 0;
+    border-top: 1px solid #e5e5e5;
+    text-align: left;
+}
+
 html, body {
     width: 100%;
     overflow-x: hidden;
