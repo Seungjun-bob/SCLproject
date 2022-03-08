@@ -179,6 +179,9 @@
                                 {{ list.hmpg_url | default_if_none:''}}
                             </a><br>
                     주소 : {{ list.adres | default_if_none:''}} <br>
+                    <div>
+                        <a href="detail_l/{{ list.lbrry_seq_no }}" class="btn btn-default btn-border" style="padding: 7px 15px;">리뷰</a>
+                    </div>
                     <hr>
                 </div>
             {% endfor %}

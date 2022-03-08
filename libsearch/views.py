@@ -69,3 +69,29 @@ def libsearch(request):
     return render(request, 'libsearch.html', context)
 
 
+
+def detail_library(request, pk):
+    detail_library = Library.objects.get(lbrry_seq_no=pk)
+    # gmap
+    ydnts = [];
+    xcnts = [];
+    hname = [];
+    adres = [];
+    hmpg_url = [];
+
+    for i in hmpg_url:
+        if i == None:
+            print(i)
+
+    # 결과 출력
+    context = {
+        'detail_library': detail_library,
+        'xcnts': xcnts,
+        'ydnts': ydnts,
+        'hname': hname,
+        'adres': adres,
+        'hmpg_url': hmpg_url,
+    }
+    return render(request, 'detail_l.html', context)
+
+

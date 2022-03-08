@@ -91,9 +91,9 @@ def recommend(request):
 
     #
 
-def detail(request, pk):
-    detail = Recommend.objects.get(recomNo=pk)
+def detail_recom(request, pk):
+    detail_recom = Recommend.objects.get(recomNo=pk)
     context = {
-        'detail': detail,
+        'detail_recom': detail_recom,
     }
-    return render(request, 'detail.html', context)
+    return render(request, 'detail_r.html', context)

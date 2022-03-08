@@ -169,7 +169,7 @@
                                             {% csrf_token %}
                                             <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                         </form>
-                                        <button type="submit" class="btn">수정</button>
+                                        <button type="submit" class="btn"><a href='/board/{{ result.id }}/update' >수정하기</a></button>
                                         <button class="btn btn-light"><a href="{% url 'board:board' %}">목록</a></button>
                                     </div>
                                 </div>

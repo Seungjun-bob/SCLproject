@@ -92,6 +92,7 @@ def update(request, pk):
         Board(title=update.title,
               content=update.content,
               author_id=author_id,
+              Cdate=date,
               Udate=date,
               id=id).save()
         return redirect('board:result', pk)

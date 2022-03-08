@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SCL | Recommend</title>
+        <title>SCL | Library Search</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     </head>
     <body>
+
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
@@ -56,7 +57,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                         {% if user.is_authenticated %}
+                        {% if user.is_authenticated %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
                         {% else %}
@@ -68,11 +69,11 @@
                             <a href="{% url 'index:about' %}" class="">About</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
+                            <a class="active" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="active" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a href="{% url 'board:board' %}">게시판</a>
@@ -87,7 +88,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">도서 추천</h1>
+                        <h1 class="page-title">도서관 검색</h1>
                     </div>
                 </div>
             </div>
@@ -100,28 +101,28 @@
                     <section id="id-100" class="post single">
                         <div class="post-header single">
                             <div class="">
-                                <h2 class="wow fadeInLeft animated">{{ detail.recomtitle | default_if_none:'' }}</h2>
+                                <h2 class="wow fadeInLeft animated">1234859</h2>
                                 <div class="title-line wow fadeInRight animated"></div>
                             </div>
                             <div class="row wow fadeInRight animated">
                                 <div class="col-sm-6">
                                     <p class="author-category">
-                                        By <span style="color:#AC7D0C;font-weight:bold;">{{ detail.recomauthor | default_if_none:'' }}</span>
+                                        By <span style="color:#AC7D0C;font-weight:bold;">123456789</span>
                                     </p>
                                 </div>
                             </div>
                             <div>
                                 <div class="image wow fadeInRight animated" id="detail_image">
-                                    <img src="{{ detail.recomfilepath | default_if_none:'' }}" class="img-responsive" alt="Example blog post alt" >
+                                    <div id="libmap" class="libmap_detail"></div>
                                     <div class="board_detail book">
-                                        <p>&nbsp;{{ detail.recomtitle | default_if_none:'' }}</p>
+                                        <p>&nbsp;999999999999999</p>
                                         <dl>
                                             <dt>저자</dt>
-                                            <dd>{{ detail.recomauthor | default_if_none:'' }}</dd>
+                                            <dd>123456</dd>
                                             <dt>출판사</dt>
-                                            <dd>{{ detail.recompublisher | default_if_none:'' }}</dd>
+                                            <dd>12348596</dd>
                                             <dt>출판일</dt>
-                                            <dd>{{ detail.recomYear | default_if_none:'' }}.{{ detail.recomMonth | default_if_none:'' }}</dd>
+                                            <dd>123456789</dd>
                                         </dl>
                                     </div>
                                 </div>
@@ -130,11 +131,11 @@
                                 <hr>
                         <h3 style="padding: 10px 0px 0px 0px;">책 소개</h3>
                             <div id="post-content" class="post-body single wow fadeInLeft animated">
-                                <p style="white-space: pre-line;">{{ detail.recomcontens | default_if_none:'' }}</p>
+                                <p style="white-space: pre-line;">11111</p>
                             </div>
                         <hr>
                         <h3 style="padding: 10px 0px 0px 0px;">목 차</h3>
-                            <p style="white-space: pre-line;">{{ detail.recommokcha | default_if_none:'' }}</p>
+                            <p style="white-space: pre-line;">545648548</p>
 
 
 
@@ -263,5 +264,110 @@
 
         <script src="{% static 'assets/js/main.js' %}"></script>
 
+         <!--        gmaps        -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U&callback=initialize"></script>
+<!--        <script src="{% static 'assets/js/gmaps-lib.js' %}"></script>-->
+        <script>
+            var map;
+            var xcntss = {{ xcnts }};
+            var ydntss = {{ ydnts }};
+            {% autoescape off %}
+            var hname = {{ hname }};
+            var adres = {{ adres }};
+            {% endautoescape %}
+
+            function average(array) {
+                var sum = 0.0;
+                      for (var i = 0; i < array.length; i++)
+                        sum += array[i];
+                      return sum / array.length;
+                    }
+
+            var avgxc = average(xcntss);
+            var avgyd = average(ydntss);
+            var old;
+            if(isNaN(avgxc)) {
+                avgxc = 37.501256
+                avgyd = 127.039581
+            }
+
+
+            function initialize() {
+                var location = { lat: avgxc, lng: avgyd };
+                var lennum = hname.length;
+
+                map = new google.maps.Map(
+                document.getElementById('libmap'), {
+                  zoom: 13,
+                  center: { lat: avgxc, lag: avgyd}
+                });
+
+                if(lennum<=5){
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 16,
+                      center: location
+                    });
+                }
+                else if(lennum<=15){
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 13,
+                      center: location
+                    });
+                }
+                else if(lennum<=100){
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 13,
+                      center: location
+                    });
+                }
+                else if(100<lennum){
+                    map = new google.maps.Map(
+                    document.getElementById('libmap'), {
+                      zoom: 11,
+                      center: location
+                    });
+                }
+
+
+                var marker = new Array(lennum);
+                var infowindow = new Array(lennum);
+                for(i=0; i<lennum; i++) {
+                    var location = {lat: xcntss[i], lng: ydntss[i]}
+                    var contentString = "<h4 style='color:#AC7D0C; font-weight:bold;'>" + hname[i] + "</h4>" +
+                                        "<hr style='margin:0 0 5px 0;'>" +
+                                        "<p style='padding:0 0 0 0; font-weight:bold;'>" + "주소" + "</p>" +
+                                        "<p style='padding:0 0 0 0;'>" + adres[i] + "</p>"
+                    var myinfowindow = new google.maps.InfoWindow({
+			            content: contentString
+			        });
+
+                    var marker = new google.maps.Marker({
+                                            position: location,
+                                            map: map,
+                                            infowindow: myinfowindow
+                    });
+                    marker.addListener('click', function() {      // 클릭 이벤트 발생 시 지도와 마커 출력
+                       if(old)
+                       old.close();
+                       this.infowindow.open(map, this);
+                       map.setCenter(this.getPosition());
+                       map.setZoom(15);
+                       old = this.infowindow;
+                    });
+                };
+            };
+            function mypanTo(x, y) {
+                var latLng = new google.maps.LatLng(x, y);
+                map.panTo(latLng);
+
+                return false;
+
+            }
+
+
+        </script>
     </body>
 </html>
