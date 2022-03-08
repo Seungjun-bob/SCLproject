@@ -73,7 +73,7 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                            <a class="active" href="{% url 'recommend:recommend' %}" >도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a href="{% url 'board:board' %}">게시판</a>
@@ -142,13 +142,10 @@
                                         <div class="col-md-3">
                                             <select class="selectpicker show-tick form-control" title="분류" style="overflow: scroll;" name="drCodeName">
                                                 <option>전체</option>
-                                                <option>문학예술</option>
-                                                <option>인문학</option>
+                                                <option>어문학</option>
+                                                <option>인문과학</option>
                                                 <option>사회과학</option>
                                                 <option>자연과학</option>
-                                                <option>실용일반</option>
-                                                <option>유아아동</option>
-                                                <option>청소년</option>
                                             </select>
                                         </div>
                                             <div class="row">
@@ -176,15 +173,15 @@
                                             <div class="col-sm-6 col-md-3 p0">
                                                 <div class="box-two proerty-item">
                                                     <div class="item-thumb">
-                                                        <a href="detail" ><img src="{{ list.recomfilepath | default_if_none:'' }}"></a>
+                                                        <a href="detail/{{ list.recomNo }}" ><img src="{{ list.recomfilepath | default_if_none:'' }}"></a>
                                                     </div>
                                                     <div class="item-entry overflow">
-                                                        <h5><a href="detail"> {{ list.recomtitle | default_if_none:'' }} </a></h5>
+                                                        <h5><a href="detail/{{ list.recomNo }}"> {{ list.recomtitle | default_if_none:'' }} </a></h5>
                                                         <div class="dot-hr"></div>
                                                         <span class="pull-left"><b> 저자 :</b> {{ list.recomauthor | default_if_none:'' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                         <span class="pull-left"><b> 출판사 :</b> {{list.recompublisher | default_if_none:''}}</span>
                                                         <p style="display: none;">{{ list.recomcontens | default_if_none:'' }}</p>
-                                                        <a href="detail" class="btn btn-default btn-border" style="float : right;">상세</a>
+                                                        <a href="detail/{{ list.recomNo }}" class="btn btn-default btn-border" style="float : right;">상세</a>
                                                     </div>
                                                 </div>
                                             </div>

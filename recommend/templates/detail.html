@@ -72,7 +72,7 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                            <a class="active" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a href="{% url 'board:board' %}">게시판</a>
@@ -98,36 +98,49 @@
             <div class="container">
                 <div class="row">
                     <section id="id-100" class="post single">
-
                         <div class="post-header single">
-                                <div class="">
-                                    <h2 class="wow fadeInLeft animated">{{ list.recomtitle | default_if_none:'' }}</h2>
-                                    <div class="title-line wow fadeInRight animated"></div>
-                                </div>
-                                <div class="row wow fadeInRight animated">
-                                    <div class="col-sm-6">
-                                        <p class="author-category">
-                                            By <a href="#">{{ list.recomauthor | default_if_none:'' }}</a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="image wow fadeInRight animated">
-                                    <img src="{{ list.recomfilepath | default_if_none:'' }}" class="img-responsive" alt="Example blog post alt">
+                            <div class="">
+                                <h2 class="wow fadeInLeft animated">{{ detail.recomtitle | default_if_none:'' }}</h2>
+                                <div class="title-line wow fadeInRight animated"></div>
+                            </div>
+                            <div class="row wow fadeInRight animated">
+                                <div class="col-sm-6">
+                                    <p class="author-category">
+                                        By <span style="color:#AC7D0C;font-weight:bold;">{{ detail.recomauthor | default_if_none:'' }}</span>
+                                    </p>
                                 </div>
                             </div>
-
+                            <div>
+                                <div class="image wow fadeInRight animated" id="detail_image">
+                                    <img src="{{ detail.recomfilepath | default_if_none:'' }}" class="img-responsive" alt="Example blog post alt" >
+                                    <div class="board_detail book">
+                                        <p>&nbsp;{{ detail.recomtitle | default_if_none:'' }}</p>
+                                        <dl>
+                                            <dt>저자</dt>
+                                            <dd>{{ detail.recomauthor | default_if_none:'' }}</dd>
+                                            <dt>출판사</dt>
+                                            <dd>{{ detail.recompublisher | default_if_none:'' }}</dd>
+                                            <dt>출판일</dt>
+                                            <dd>{{ detail.recomYear | default_if_none:'' }}.{{ detail.recomMonth | default_if_none:'' }}</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                <hr>
+                        <h3 style="padding: 10px 0px 0px 0px;">책 소개</h3>
                             <div id="post-content" class="post-body single wow fadeInLeft animated">
-                                <p>{{ list.recomcontens | default_if_none:'' }}</p>
-
-                        <h3>목 차</h3>
-
-                                <p></p>
+                                <p style="white-space: pre-line;">{{ detail.recomcontens | default_if_none:'' }}</p>
+                            </div>
+                        <hr>
+                        <h3 style="padding: 10px 0px 0px 0px;">목 차</h3>
+                            <p style="white-space: pre-line;">{{ detail.recommokcha | default_if_none:'' }}</p>
 
 
 
                         <div class="post-footer single wow fadeInBottum animated">
                                 <ul class="pager">
-                                    <li class="next disabled"><a href="#">목록<i class=""></i> </a></li>
+                                    <li class="next disabled"><a href="{% url 'recommend:recommend' %}">목록<i class=""></i> </a></li>
                                 </ul>
                             </div>
                     </section>
