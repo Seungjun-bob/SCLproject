@@ -62,23 +62,31 @@ def comment(request, pk):
     content = request.POST['content']
     author = request.user.id
     comment = Comment()
-    comment.Board_id = pk
-    print(author)
+    Comment.Board_id = pk
+    print(Comment.Board_id)
     Comment(comment=content,
             user_id=author,
-            board_id=pk
+            board_id=pk,
             ).save()
     context = {
         'content': content,
-        'author': author
+        'author': author,
+        'board_id': pk,
     }
 
     return redirect('board:result', pk)
+
 
 def delete(request, pk):
     board = Board.objects.get(id=pk)
     board.delete()
     return redirect('/board/')
+
+
+def comment_delete(request, pk):
+    comment = Comment.objects.get(id=pk)
+    comment.delete()
+    return redirect('/board/', pk)
 
 
 def update(request, pk):

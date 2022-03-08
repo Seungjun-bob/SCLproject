@@ -203,8 +203,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">도서관명</th>
-                                    <th scope="col">평점</th>
                                     <th scope="col">제목</th>
                                     <th scope="col">작성자</th>
                                     <th scope="col">좋아요</th>
@@ -215,13 +213,11 @@
 
                             {% for dlist in vlist %}
                             <tr>
-                                <th scope="row" widht="3%">{{ dlist.id }}</th>
-                                    <td width="15%">{{ dlist.library.lbrry_name }}</td>
-                                    <td width="10%">{{ dlist.starpoint }}</td>
-                                    <td width="50%"><a href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
-                                    <td width="7%">{{ dlist.author.last_name }}</td>
-                                    <td width="7%">{{ dlist.like }}</td>
-                                    <td width="7%">{{ dlist.view_cnt }}</td>
+                                <th scope="row" width="5%">{{ dlist.id }}</th>
+                                    <td width="65%"><a href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
+                                    <td width="10%">{{ dlist.author.last_name }}</td>
+                                    <td width="10%">{{ dlist.like }}</td>
+                                    <td width="10%">{{ dlist.view_cnt }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
