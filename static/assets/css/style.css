@@ -1,6 +1,10 @@
+.rounded #cmd_write {
+    padding: 0 30% 0;
+}
+
 #search_button {
-text-align : center;
-padding : 20px 10px 0px 10px;
+    text-align : center;
+    padding : 20px 10px 0px 10px;
 }
 
 .rounded {
