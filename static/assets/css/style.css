@@ -2309,7 +2309,7 @@ single property page
     margin: 4px;
 }
 .register-area{
-    padding: 100px;
+    padding: 5% 10%;
 }
 
 /*=====================================
@@ -2554,7 +2554,7 @@ count-area
     transition: all 0.2s ease 0s;
     box-shadow: none;
     background-color: #FFF;
-    margin: 0px 200px 0px 200px;
+    margin: 0px 20% 0px 20%;
 }
 .more-entry a{
     color: #000;
