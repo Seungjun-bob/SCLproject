@@ -5,13 +5,14 @@ class Board(models.Model):
     author = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     content = models.TextField()
+
     view_cnt = models.PositiveIntegerField(default=0)
     Cdate = models.DateTimeField(auto_now_add=True)
     Udate = models.DateTimeField(auto_now=True)
     like = models.PositiveIntegerField(default=0)
     comments = models.TextField()
 
-class Comment(models.Model):
+    class Comment(models.Model):
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     review = models.ForeignKey("Board", on_delete=models.CASCADE)
     comment = models.TextField()
