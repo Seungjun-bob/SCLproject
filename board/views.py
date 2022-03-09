@@ -3,6 +3,7 @@ from django.views.decorators.http import require_http_methods, require_GET
 from django.core.paginator import Paginator
 from .models import Board, Comment
 from django.contrib.auth.models import User
+import time
 
 def board(request) :
     # 데이터를 최신순으로 정렬
@@ -59,9 +60,11 @@ def result(request, board_id):
     }
     return render(request, 'result.html', context)
 
+
 # @require_http_methods(['POST'])
 
 def comment_create(request, board_id):
+
     content = request.POST['content']
     author = request.user.id
 
@@ -69,7 +72,6 @@ def comment_create(request, board_id):
             user_id=author,
             board_id=board_id,
             ).save()
-
 
     return redirect('board:result', board_id)
 
@@ -97,13 +99,15 @@ def update(request, board_id):
         update.title = request.POST['title1']
         update.content = request.POST['content1']
         author_id = 1
-        date = "2022-02-02 22:22"
+        date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
         Board(title=update.title,
               content=update.content,
               author_id=author_id,
+              Cdate=date,
               Udate=date,
               id=id).save()
         return redirect('board:result', board_id)
+
 
 def my_review(request):
     return render(request, 'my_review.html')
