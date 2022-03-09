@@ -76,6 +76,7 @@ def detail_library(request, pk):
     adres = [];
     hmpg_url = [];
 
+
     for i in hmpg_url:
         if i == None:
             print(i)
