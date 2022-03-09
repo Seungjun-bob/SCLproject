@@ -7,9 +7,7 @@ class Board(models.Model):
     content = models.TextField()
     view_cnt = models.PositiveIntegerField(default=0)
     Cdate = models.DateTimeField(auto_now_add=True)
-    Udate = models.DateTimeField(auto_now=True)
     like = models.PositiveIntegerField(default=0)
-    comments = models.TextField()
 
     @property
     def view_counter(self):

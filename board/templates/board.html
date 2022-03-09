@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-
+{% load board_extras %}
 <html class="no-js">
     <head>
         <meta charset="utf-8">
@@ -155,21 +155,21 @@
                         <table class="table" style="width:850px;">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">제목</th>
-                                    <th scope="col">작성자</th>
-                                    <th scope="col">작성일</th>
-                                    <th scope="col">조회수</th>
-                                    <th scope="col">좋아요</th>
+                                    <th scope="col" style="text-align:center;">#</th>
+                                    <th scope="col" style="text-align:center;">제목</th>
+                                    <th scope="col" style="text-align:center;">작성자</th>
+                                    <th scope="col" style="text-align:center;">작성일</th>
+                                    <th scope="col" style="text-align:center;">조회수</th>
+                                    <th scope="col" style="text-align:center;">좋아요</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                            {% for dlist in vlist %}
+                            {% for dlist in total %}
                             <tr>
                                 <th scope="row" width="5%">{{ dlist.id }}</th>
-                                    <td style="table-layout:fixed; width="55%">
-                                        <a style="color:black; font-weight:normal;" href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
+                                    <td style="table-layout:fixed; width:55%">
+                                        <a style="color:black; font-weight:normal;" href='/board/{{ dlist.id }}'>{{ dlist.title }} [{{ dlist.comment_set.count }}]</a></td>
                                     <td style="table-layout:fixed; text-align:center;" width="10%">{{ dlist.author.last_name }}</td>
                                     <td style="table-layout:fixed; text-align:center;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
                                     <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.view_cnt }}</td>
@@ -184,9 +184,9 @@
                         <div class="pull-right">
                             <div class="pagination">
                                 <ul>
-                                    {% if vlist.has_previous %}
+                                    {% if total.has_previous %}
                                     <li>
-                                        <a class="page-link" href="?page={{ vlist.previous_page_number }}">이전</a>
+                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
                                     </li>
                                     {% else %}
                                     <li>
@@ -194,23 +194,23 @@
                                     </li>
                                     {% endif %}
                                     <!-- 페이지 번호 -->
-                                    {% for page_number in vlist.paginator.page_range %}
-                                    {% if page_number >= vlist.number|add:-3 and page_number <= vlist.number|add:3 %}
-                                        {% if page_number == vlist.number %}
+                                    {% for page_number in total.paginator.page_range %}
+                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
+                                        {% if page_number == total.number %}
                                         <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
                                         {% else %}
                                         <li>
-                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
                                         {% endif %}
                                     {% endif %}
                                     {% endfor %}
                                     <!-- 다음 페이지 -->
-                                    {% if vlist.has_next %}
+                                    {% if total.has_next %}
                                         <li>
-                                            <a class="page-link" href="?page={{ vlist.next_page_number }}">다음</a>
+                                            <a class="page-link"href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
                                         </li>
                                     {% else %}
                                         <li>
