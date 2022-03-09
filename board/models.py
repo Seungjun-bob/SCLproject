@@ -14,7 +14,7 @@ class Board(models.Model):
 
     class Comment(models.Model):
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-    review = models.ForeignKey("Board", on_delete=models.CASCADE)
+    board = models.ForeignKey("Board", on_delete=models.CASCADE)
     comment = models.TextField()
     Cdate = models.DateTimeField(auto_now_add=True)
     Udate = models.DateTimeField(auto_now=True)

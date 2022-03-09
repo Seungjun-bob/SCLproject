@@ -154,7 +154,7 @@
                                         <div class="col-sm-12">
                                             <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
-                                                <textarea class="form-control" style="border:none" id="comment" rows="1" name="content" placeholder="댓글을 남겨보세요"></textarea>
+                                                <textarea class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="댓글을 남겨보세요"></textarea>
                                             </div>
                                             <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                         </div>
@@ -163,7 +163,6 @@
                                 <div class="post-footer single wow fadeInBottum animated">
                                     <div class="left_area">
                                         <button type="submit" class="btn">글쓰기</button>
-
                                         <!---- 삭제 버튼 ---->
                                         <form action="{% url 'board:delete' result.id %}" method="post">
                                             {% csrf_token %}
@@ -174,14 +173,11 @@
                                     </div>
                                 </div>
                                 <div class="row wow fadeInLeft animated">
-
                                 </div>
                             </form>
                         </section>
-
-                    </div>                                 
+                    </div>
                 </div>
-
             </div>
         </div>
 
