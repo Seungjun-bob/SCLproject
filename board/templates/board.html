@@ -112,7 +112,7 @@
                                     <fieldset>
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <input type="text" class="form-control" placeholder="도서관명">
+                                                <input type="text" class="form-control" placeholder="도서관명" name="search">
                                             </div>
                                         </div>
                                     </fieldset>
@@ -120,46 +120,11 @@
                                     <fieldset>
                                         <div class="row">
                                             <div class="col-xs-6">
-
-                                                <select id="lunchBegins" class="selectpicker" title="도서관 분류">
+                                                <h3 class="panel-title">검색분류</h3>
+                                                <select id="lunchBegins" class="selectpicker" title="분류" name="type">
                                                     <option>전체</option>
-                                                    <option>New york, CA</option>
-                                                    <option>Paris</option>
-                                                    <option>Casablanca</option>
-                                                    <option>Tokyo</option>
-                                                    <option>Marraekch</option>
-                                                    <option>kyoto , shibua</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-xs-6">
-
-                                                <select id="basic" class="selectpicker show-tick form-control" title="자치구">
-                                                    <option>전체</option>
-                                                    <option>강남구</option>
-                                                    <option>강동구</option>
-                                                    <option>강북구</option>
-                                                    <option>강서구</option>
-                                                    <option>관악구</option>
-                                                    <option>광진구</option>
-                                                    <option>구로구</option>
-                                                    <option>금천구</option>
-                                                    <option>노원구</option>
-                                                    <option>도봉구</option>
-                                                    <option>동대문구</option>
-                                                    <option>동작구</option>
-                                                    <option>마포구</option>
-                                                    <option>서대문구</option>
-                                                    <option>서초구</option>
-                                                    <option>성동구</option>
-                                                    <option>성북구</option>
-                                                    <option>송파구</option>
-                                                    <option>양천구</option>
-                                                    <option>영등포구</option>
-                                                    <option>용산구</option>
-                                                    <option>은평구</option>
-                                                    <option>종로구</option>
-                                                    <option>중구</option>
-                                                    <option>중랑구</option>
+                                                    <option>제목</option>
+                                                    <option>내용</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -179,23 +144,9 @@
 
                     <div class="col-md-9  pr0 padding-top-40 properties-page" style="height:800px;">
                         <div class="col-md-12 clear">
-                            <div class="col-xs-10 page-subheader sorting pl0">
-                                <ul class="sort-by-list">
-                                    <li class="active">
-                                        <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
-                                            날짜 정렬 <i class="fa fa-sort-amount-asc"></i>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
-                                        추천 수 정렬 <i class="fa fa-sort-numeric-desc"></i>
-                                        </a>
-                                    </li>
-                                </ul><!--/ .sort-by-list-->
-                        </div>
                             <button class="btn btn-primary" onclick="location.href='{% url 'board:submit' %}'" style="padding:5px 15px; float:right;">작성하기</button>
 
-                    </div>
+                        </div>
 
 
                 <!-------------- Board ---------------->
@@ -271,18 +222,9 @@
                             </div>
                         </div>
                         <!-- 페이징처리 끝 -->
-
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
 
           <!-- Footer area-->

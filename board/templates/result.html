@@ -184,7 +184,8 @@
                              <div class="post-footer single wow fadeInBottum animated">
                                 <div class="left_area">
                                     <button onclick="location.href='{% url 'board:submit' %}'" style="float:left;" type="button" class="btn">글쓰기</button>
-                                    <button onclick="location.href='{% url 'board:update' board.id %}'" style="float:left;" type="submit" class="btn">수정</button>
+                                    {% if request.user.id == board.author_id %}
+                                        <button onclick="location.href='{% url 'board:edit' board.id %}'" style="float:left;" type="submit" class="btn">수정</button>
 
                                     <!---- 삭제 버튼 ---->
 
@@ -192,6 +193,7 @@
                                         {% csrf_token %}
                                         <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                     </form>
+                                    {% endif %}
                                 </div>
                             </div>
                             <button onclick="location.href='{% url 'board:board' %}'" style="float:right;" class="btn btn-light">목록</button>
