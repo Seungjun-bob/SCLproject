@@ -1,6 +1,21 @@
+.comment_inbox_text {
+    display: block;
+    width: 100%;
+    min-height: 17px;
+    max-height: 500px;
+    padding-right: 1px;
+    border: 0;
+    -webkit-appearance:none;
+    resize: none;
+    box-sizing: border-box;
+    outline: 0;
+    font-size: 13px;
+    line-height: 20px;
+}
+
 #search_button {
-text-align : center;
-padding : 20px 10px 0px 10px;
+    text-align : center;
+    padding : 20px 10px 0px 10px;
 }
 
 .rounded {
@@ -50,6 +65,14 @@ padding : 20px 10px 0px 10px;
 .board_detail dl dt, .board_detail dl dd {
     padding: 15px; 15px;
     font-size: 17px;
+    margin: 0;
+    border-top: 1px solid #e5e5e5;
+    text-align: left;
+}
+
+.board_detail ul li{
+    padding: 12px; 12px;
+    font-size: 15px;
     margin: 0;
     border-top: 1px solid #e5e5e5;
     text-align: left;
@@ -2286,7 +2309,7 @@ single property page
     margin: 4px;
 }
 .register-area{
-    padding: 100px;
+    padding: 5% 10%;
 }
 
 /*=====================================
@@ -2531,7 +2554,7 @@ count-area
     transition: all 0.2s ease 0s;
     box-shadow: none;
     background-color: #FFF;
-    margin: 0px 200px 0px 200px;
+    margin: 0px 20% 0px 20%;
 }
 .more-entry a{
     color: #000;
@@ -2628,6 +2651,12 @@ padding-bottom: 15px;
     font-weight: 300;
     letter-spacing: 0.08em;
 }
+..blog-page .post .author-category p {
+    padding: 0px 0px 0px 0px;
+}
+
+
+
 .blog-page  .post .author-category a, #blog-homepage .post .author-category a {
     font-weight: 500;
 }

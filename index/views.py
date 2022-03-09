@@ -6,7 +6,6 @@ def index(request):
     return render(request, 'index.html')
 
 def register(request):
-  
     res_data = None
     if request.method =='POST':
         useremail = request.POST.get('useremail')
@@ -34,14 +33,13 @@ def login(request):
         useremail = request.POST.get('useremail', None)
         password = request.POST.get('password', None)
         user = auth.authenticate(username=useremail, password=password)
-        #print("***", user.date_joined)
-        print(useremail, password)
-        if user is not None :
+
+        if user is not None:
             auth.login(request, user)
-            return render(request, 'index.html')
-        else :
+            return redirect('index:index')
+        else:
             return render(request, 'login.html', {'error': '사용자 아이디 또는 패스워드가 틀립니다.'})
-    else :
+    else:
         return render(request, 'login.html')
 
 def logout(request):
@@ -54,6 +52,7 @@ def only_member(request) :
     if request.user.is_authenticated:
         context = {'logineduser': request.user.last_name+request.user.first_name}
     return render(request, 'member.html', context)
+
 
 def about(request):
     return render(request, 'about.html')

@@ -76,7 +76,7 @@
                             <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board:board' %}">게시판</a>
+                            <a class="active" href="{% url 'board:board' %}">게시판</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -88,7 +88,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">리뷰 작성 페이지</h1>
+                        <h1 class="page-title">자유게시판</h1>
                     </div>
                 </div>
             </div>
@@ -97,19 +97,12 @@
 
 
                 <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-sm-12">
-                                    <h3>
-                                        <b>게시글을 작성하세요</b> <br>
-                                        <small>상세글</small>
 
-                                    </h3>
-                                </div>
-                            </div>
+                        <div class="row" style="margin: 0 0 0 100px;">
+
                             <form action="{% url 'board:submit' %}" method="post">
                                 {% csrf_token %}
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="margin-top: 30px;">
                                         <div class="col-sm-12">
                                             <h4><b>제목</b></h4>
                                             <input type="text" class="form-control" name="title" required>
@@ -120,12 +113,12 @@
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <h5>작성내용</h5>
-                                            <textarea rows="10" name="content" class="form-control" required></textarea>
+                                            <textarea rows="15" name="content" class="form-control" required></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="float:right; padding:0 10px; 10px; 0;">
-                                    <div class="col-sm-12" style="float:right">
+                                    <div class="col-sm-12" style="float:right; padding-bottom:15px;">
                                         <button class="btn btn-default btn-border" type="submit" value="글쓰기" >글쓰기</button>
 
                                     </div>
