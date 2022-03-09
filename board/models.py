@@ -12,9 +12,15 @@ class Board(models.Model):
     like = models.PositiveIntegerField(default=0)
     comments = models.TextField()
 
-    class Comment(models.Model):
+
+    @property
+    def view_counter(self):
+        self.view_cnt = self.view_cnt + 1
+        self.save()
+
+class Comment(models.Model):
+
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     board = models.ForeignKey("Board", on_delete=models.CASCADE)
     comment = models.TextField()
     Cdate = models.DateTimeField(auto_now_add=True)
-    Udate = models.DateTimeField(auto_now=True)

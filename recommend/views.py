@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect
-from recommend.models import Recommend, Comment_re
+
+from django.shortcuts import render, redirect, get_object_or_404
+from recommend.models import Recommend, RecommendComment
+
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 
 def recommend(request):
     search = request.GET.get('search', "")
@@ -91,11 +94,47 @@ def recommend(request):
 
     #
 
-def detail_recom(request, pk):
-    detail_recom = Recommend.objects.get(recomNo=pk)
+def detail_recom(request, recommend_id):
+    recommend_detail = get_object_or_404(Recommend, id=recommend_id)
+    comments = recommend_detail.recommendcomment_set.order_by('-id').all()
+
+    # 댓글 작성자 구현
+    all_user = User.objects.all()
+    for comment in comments:
+        user_info = all_user.filter(id=comment.user_id)
+        for user in user_info:
+            user_name = user.last_name
+
     context = {
-        'detail_recom': detail_recom,
+
     }
+    if comments:
+        context = {
+            'user_name': user_name,
+            'recommend_detail': recommend_detail,
+            'comments': comments,
+        }
+    else:
+        context = {
+            'recommend_detail': recommend_detail,
+            'comments': comments,
+        }
     return render(request, 'detail_r.html', context)
 
 
+
+def comment_create(request, recommend_id):
+    content = request.POST['content']
+    author = request.user.id
+    RecommendComment(comment=content,
+                     user_id=author,
+                     recommend_id=recommend_id).save()
+
+    return redirect('recommend:detail_r', recommend_id)
+
+
+def comment_delete(request, recommend_id, comment_id):
+    print(recommend_id, comment_id)
+    comment = RecommendComment.objects.get(id=comment_id)
+    comment.delete()
+    return redirect('recommend:detail_r', recommend_id)

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{{ board.view_counter }}
 <html class="no-js">
     <head>
         <meta charset="utf-8">
@@ -76,7 +77,7 @@
                             <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board:board' %}">게시판</a>
+                            <a class="active" href="{% url 'board:board' %}">게시판</a>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -95,33 +96,38 @@
         <!-- End page header -->
         <div class=" content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row rounded col-md-12" style="width:700px;">
-                    <div class="blog-lst col-md-12">
+                <div class="row rounded col-md-12" style="width:850px; margin-left: 150px;">
+                    <div class="blog-lst col-md-12" >
                         <section id="id-100" class="post single">
 
                             <div class="post-header single">
                                 <div class="">
-                                    <h2 class="wow fadeInLeft animated">{{ result.title }}</h2>
+                                    <h2 class="wow fadeInLeft animated">{{ board.title }}</h2>
                                     <div class="title-line wow fadeInRight animated"></div>
                                 </div>
                                 <div class="row wow fadeInRight animated">
                                     <div class="col-sm-8">
-                                        <p class="author-category">
-                                            By <a>{{ user_name }}</a>
-                                        </p>
+
+                                            <p class="author-category">
+                                                By <a>{{ user_name }}</a>
+                                            </p>
+
                                     </div>
-                                    <div class="col-sm-6 right" >
-                                        <p class="date-comments">
-                                            <a href="single.html"><i class="fa fa-calendar-o"></i> June 20, 2013</a>
-                                            <a href="single.html"><i class="fa fa-comment-o"></i> 8 Comments</a>
-                                        </p>
+
+                                    <div class="col-sm-4 right" >
+
+                                            <p style="float:right;" class="date-comments">
+                                                <a href="single.html"><i class="fa fa-calendar-o">ccc</i> </a>
+                                                <a href="single.html"><i class="fa fa-comment-o"></i>Comments</a>
+                                            </p>
+
                                     </div>
                                 </div>
                             </div>
 
                             <div id="post-content" class="post-body single wow fadeInLeft animated" style="height:200px; background-color:#fff">
                                 <div style="padding:15px 15px;">
-                                    <p>{{ result.content }}</p>
+                                    <p>{{ board.content }}</p>
                                 </div>
                             </div>
 
@@ -133,9 +139,13 @@
                         <section id="comments" class="comments wow fadeInRight animated">
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
-                                    <h5 class="text-uppercase">작성자: {{ user_name }}</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> {{ comment.comment }}</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
+                                    <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
+                                    <form action="{% url 'board:comment_delete' board.id comment.id %}" method="post">
+                                        {% csrf_token %}
+                                        <span>{{ comment.Cdate }}&nbsp&nbsp</span>
+                                        <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                    </form>
                                     </p>
                                 </div>
                             </div>
@@ -147,36 +157,52 @@
 
                             {% if user.is_authenticated %}
 
-                            <form method="POST" action="{% url 'board:comments' result.id %}">
+                            <form method="POST" action="{% url 'board:comment_create' board.id %}">
                                 {% csrf_token %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
 
                                         <div class="col-sm-12">
                                             <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
-                                                <textarea class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="댓글을 남겨보세요"></textarea>
+                                                <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
+<!--                                                <textarea class="form-control" style="border:none; overflow:visible; white-space: pre-line;" name="content" placeholder="댓글을 남겨보세요"></textarea>-->
                                             </div>
                                             <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                         </div>
                                 </div>
+
+                                {% else %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                            </div>
+                                        </div>
+
+                                </div>
                                 {% endif %}
-                                <div class="post-footer single wow fadeInBottum animated">
-                                    <div class="left_area">
-                                        <button type="submit" class="btn">글쓰기</button>
-                                        <!---- 삭제 버튼 ---->
-                                        <form action="{% url 'board:delete' result.id %}" method="post">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
-                                        </form>
-                                        <button type="submit" class="btn"><a href='/board/{{ result.id }}/update' >수정하기</a></button>
-                                        <button class="btn btn-light"><a href="{% url 'board:board' %}">목록</a></button>
-                                    </div>
-                                </div>
-                                <div class="row wow fadeInLeft animated">
-                                </div>
                             </form>
-                        </section>
-                    </div>
+
+                             <div class="post-footer single wow fadeInBottum animated">
+                                <div class="left_area">
+                                    <button onclick="location.href='{% url 'board:submit' %}'" style="float:left;" type="button" class="btn">글쓰기</button>
+                                    <button onclick="location.href='{% url 'board:update' board.id %}'" style="float:left;" type="submit" class="btn">수정</button>
+
+                                    <!---- 삭제 버튼 ---->
+
+                                    <form style="float:left;" action="{% url 'board:delete' board.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <button onclick="location.href='{% url 'board:board' %}'" style="float:right;" class="btn btn-light">목록</button>
+                    </section>
+
+                    </div>                                 
+
                 </div>
             </div>
         </div>
@@ -240,6 +266,14 @@
             else
                 return false;
         }
+    </script>
+    <script type="text/javascript">
+        $('document').ready(function() {
+            $('textarea').keyup(function(e) {
+                $(this).css('height', 'auto');
+                $(this).height(this.scrollHeight);
+            });
+        });
     </script>
        
     </body>

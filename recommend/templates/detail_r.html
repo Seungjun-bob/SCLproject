@@ -100,28 +100,28 @@
                     <section id="id-100" class="post single">
                         <div class="post-header single">
                             <div class="">
-                                <h2 class="wow fadeInLeft animated">{{ detail_recom.recomtitle | default_if_none:'' }}</h2>
+                                <h2 class="wow fadeInLeft animated">{{ recommend_detail.recomtitle | default_if_none:'' }}</h2>
                                 <div class="title-line wow fadeInRight animated"></div>
                             </div>
                             <div class="row wow fadeInRight animated">
                                 <div class="col-sm-6">
                                     <p class="author-category">
-                                        By <span style="color:#AC7D0C;font-weight:bold;">{{ detail_recom.recomauthor | default_if_none:'' }}</span>
+                                        By <span style="color:#AC7D0C;font-weight:bold;">{{ recommend_detail.recomauthor | default_if_none:'' }}</span>
                                     </p>
                                 </div>
                             </div>
                             <div>
                                 <div class="image wow fadeInRight animated" id="detail_image">
-                                    <img src="{{ detail_recom.recomfilepath | default_if_none:'' }}" class="img-responsive" alt="Example blog post alt" >
+                                    <img src="{{ recommend_detail.recomfilepath | default_if_none:'' }}" class="img-responsive" alt="Example blog post alt" >
                                     <div class="board_detail book">
-                                        <p>&nbsp;{{ detail_recom.recomtitle | default_if_none:'' }}</p>
+                                        <p>&nbsp;{{ recommend_detail.recomtitle | default_if_none:'' }}</p>
                                         <dl>
                                             <dt>저자</dt>
-                                            <dd>{{ detail_recom.recomauthor | default_if_none:'' }}</dd>
+                                            <dd>{{ recommend_detail.recomauthor | default_if_none:'' }}</dd>
                                             <dt>출판사</dt>
-                                            <dd>{{ detail_recom.recompublisher | default_if_none:'' }}</dd>
+                                            <dd>{{ recommend_detail.recompublisher | default_if_none:'' }}</dd>
                                             <dt>출판일</dt>
-                                            <dd>{{ detail_recom.recomYear | default_if_none:'' }}.{{ detail_recom.recomMonth | default_if_none:'' }}</dd>
+                                            <dd>{{ recommend_detail.recomYear | default_if_none:'' }}.{{ recommend_detail.recomMonth | default_if_none:'' }}</dd>
                                         </dl>
                                     </div>
                                 </div>
@@ -130,11 +130,11 @@
                                 <hr>
                         <h3 style="padding: 10px 0px 0px 0px;">책 소개</h3>
                             <div id="post-content" class="post-body single wow fadeInLeft animated">
-                                <p style="white-space: pre-line;">{{ detail_recom.recomcontens | default_if_none:'' }}</p>
+                                <p style="white-space: pre-line;">{{ recommend_detail.recomcontens | default_if_none:'' }}</p>
                             </div>
                         <hr>
                         <h3 style="padding: 10px 0px 0px 0px;">목 차</h3>
-                            <p style="white-space: pre-line;">{{ detail_recom.recommokcha | default_if_none:'' }}</p>
+                            <p style="white-space: pre-line;">{{ recommend_detail.recommokcha | default_if_none:'' }}</p>
 
 
 
@@ -144,72 +144,67 @@
                                 </ul>
                             </div>
                     </section>
+
+                        <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
+                        <hr>
+                        {% if comments %}
+                        {% for comment in comments %}
+
                         <section id="comments" class="comments wow fadeInRight animated">
-                            <h4 class="text-uppercase wow fadeInLeft animated">3 comments</h4>
 
                             <div class="row comment">
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="{% static 'assets/img/client-face1.png' %}" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Julie Alma</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
+                                <div class="col-sm-9 col-md-8">
+                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
+                                    <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
+                                    <form action="{% url 'recommend:comment_delete' recommend_detail.id comment.id %}" method="post">
+                                        {% csrf_token %}
+                                        <span>{{ comment.date }}&nbsp&nbsp</span>
+                                        <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                    </form>
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- /.comment -->
+                            <hr>
+                            {% endfor %}
+                            {% endif %}
 
-
-                            <div class="row comment last">
-
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="{% static 'assets/img/client-face2.png' %}" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
-
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Louise Armero</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                    </p>
-                                </div>
-
-                            </div>
                             <!-- /.comment -->
                         </section>
-
                         <section id="comment-form" class="add-comments">
-                            <h4 class="text-uppercase wow fadeInLeft animated">Leave comment</h4>
-                            <form>
 
-                                <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label for="comment">Comment <span class="required">*</span>
-                                            </label>
+                            {% if user.is_authenticated %}
 
-                                            <textarea class="form-control" id="comment" rows="4"></textarea>
+                            <form method="POST" action="{% url 'recommend:comment_create' recommend_detail.id %}">
+                                {% csrf_token %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
+                                            </div>
+                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                         </div>
-                                    </div>
                                 </div>
+                                {% else %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
 
 
-                                <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12 text-right">
-                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
-                                    </div>
+                                        <div class="col-sm-12">
+                                            <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                            </div>
+
+                                        </div>
                                 </div>
+                                {% endif %}
+
+
                             </form>
-                        </section>
+                    </section>
+
                     </div>
                 </div>
 
@@ -265,6 +260,23 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
+        <script>
+        function ConfirmDelete(){
+            var x = confirm("정말 삭제 하시겠습니까?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+        </script>
+        <script type="text/javascript">
+        $('document').ready(function() {
+            $('textarea').keyup(function(e) {
+                $(this).css('height', 'auto');
+                $(this).height(this.scrollHeight);
+            });
+        });
+    </script>
 
     </body>
 </html>

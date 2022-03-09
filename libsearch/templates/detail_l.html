@@ -33,6 +33,16 @@
         <link rel="stylesheet" href="{% static 'assets/css/owl.transitions.css' %}">
         <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+        <!--        gmaps        -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U"></script>
+
+        <style>
+            h2 {font-size:15px}
+            .star-rating {width:304px;}
+            .star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(/static/assets/img/star.png)no-repeat;}
+            .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;}
+        </style>
+
     </head>
     <body>
 
@@ -101,113 +111,153 @@
                     <section id="id-100" class="post single">
                         <div class="post-header single">
                             <div class="">
-                                <h2 class="wow fadeInLeft animated">1234859</h2>
+                                <h2 class="wow fadeInLeft animated">{{ detail_library.lbrry_name }}</h2>
                                 <div class="title-line wow fadeInRight animated"></div>
                             </div>
                             <div class="row wow fadeInRight animated">
                                 <div class="col-sm-6">
-                                    <p class="author-category">
-                                        By <span style="color:#AC7D0C;font-weight:bold;">123456789</span>
+                                    <p class="author-category" style="margin-left:10px;">
+                                        도서관 구분 : <span style="color:#AC7D0C;font-weight:bold;">{{ detail_library.lbrry_se_name }}</span>&nbsp;&nbsp;&nbsp;&nbsp;자치구 :<span style="color:#AC7D0C;font-weight:bold;">{{ detail_library.code_value }}</span>
                                     </p>
                                 </div>
                             </div>
                             <div>
-                                <div class="image wow fadeInRight animated" id="detail_image">
-                                    <div id="libmap" class="libmap_detail"></div>
-                                    <div class="board_detail book">
-                                        <p>&nbsp;999999999999999</p>
-                                        <dl>
-                                            <dt>저자</dt>
-                                            <dd>123456</dd>
-                                            <dt>출판사</dt>
-                                            <dd>12348596</dd>
-                                            <dt>출판일</dt>
-                                            <dd>123456789</dd>
-                                        </dl>
+                                <div class="image wow fadeInRight animated">
+                                    <div id="map" style="width:43%; height:500px; float:left; margin-left:30px;"></div>
+                                    <script>
+                                        var dom = document.getElementById("map");
+                                        		if(dom) {
+			                                        var latlng = { lat: {{ detail_library.xcnts }}, lng: {{ detail_library.ydnts }}}
+			                                        var map = new google.maps.Map(dom, {
+            	                                    center: latlng,
+            	                                    zoom: 16
+          	                                        });
+			                                        var marker = new google.maps.Marker({position: latlng, map: map});
+
+			                                        var contentString = "<h5 style='color:#AC7D0C;font-weight:bold;'>{{ detail_library.lbrry_name }}</h5>"
+			                                                            + "<hr style='margin:0 0 5px 0;'><p style='padding:0 0 0 0; font-weight:bold;'>주소</p>"
+			                                                            + "{{ detail_library.adres | default_if_none:''}}"
+
+			                                        var infowindow = new google.maps.InfoWindow({
+			                                        content: contentString
+			                                        });
+
+			                                        marker.addListener('click', function() {
+			                                        infowindow.open(map, marker);
+			                                        });
+                                                }
+                                    </script>
+                                    <div class="board_detail book" style="float:right; margin-top:50px;">
+                                        <p>{{ detail_library.lbrry_name }}</p>
+                                        <ul>
+                                            <li><span style="font-weight:bold">오픈시간 :&nbsp;</span>{{ detail_library.op_time | default_if_none:''}}</li>
+                                            <li><span style="font-weight:bold">휴관일 :&nbsp;</span>{{ detail_library.fdrm_close_date | default_if_none:''}}</li>
+                                            <li><span style="font-weight:bold">전화번호 :&nbsp;</span>{{ detail_library.tel_no | default_if_none:''}}</li>
+                                            <li><span style="font-weight:bold">홈페이지 :&nbsp;</span><a href="{{ detail_library.hmpg_url }}" target="_blank">{{ detail_library.hmpg_url | default_if_none:''}}</a></li>
+                                            <li><span style="font-weight:bold">주소 :&nbsp;</span>{{ detail_library.adres | default_if_none:''}}</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                                 <hr>
-                        <h3 style="padding: 10px 0px 0px 0px;">책 소개</h3>
-                            <div id="post-content" class="post-body single wow fadeInLeft animated">
-                                <p style="white-space: pre-line;">11111</p>
-                            </div>
+
+<h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
                         <hr>
-                        <h3 style="padding: 10px 0px 0px 0px;">목 차</h3>
-                            <p style="white-space: pre-line;">545648548</p>
+                        {% if comments %}
+                        {% for comment in comments %}
 
-
-
+                        <section id="comments" class="comments wow fadeInRight animated">
+                            <div class="row comment">
+                                <div class="col-sm-9 col-md-8">
+                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
+                                    <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
+                                    {% if comment.score == 0 %}
+                                    <span class="star-rating">
+                                    <span style="width:0%"></span>
+                                    </span>
+                                    {% elif comment.score == 1 %}
+                                    <span class="star-rating">
+                                    <span style="width:20%"></span>
+                                    </span>
+                                    {% elif comment.score == 2 %}
+                                    <span class="star-rating">
+                                    <span style="width:40%"></span>
+                                    </span>
+                                    {% elif comment.score == 3 %}
+                                    <span class="star-rating">
+                                    <span style="width:60%"></span>
+                                    </span>
+                                    {% elif comment.score == 4 %}
+                                    <span class="star-rating">
+                                    <span style="width:80%"></span>
+                                    </span>
+                                    {% elif comment.score == 5 %}
+                                    <span class="star-rating">
+                                    <span style="width:100%"></span>
+                                    </span>
+                                    {% endif %}
+                                    <form action="{% url 'libsearch:comment_delete' library_detail.lbrry_seq_no comment.id %}" method="post">
+                                        {% csrf_token %}
+                                        <span>{{ comment.date }}&nbsp&nbsp</span>
+                                        <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                    </form>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                            {% endfor %}
+                            {% endif %}
+                            <!-- /.comment -->
+                        </section>
                         <div class="post-footer single wow fadeInBottum animated">
                                 <ul class="pager">
-                                    <li class="next disabled"><a href="{% url 'recommend:recommend' %}">목록<i class=""></i> </a></li>
+                                    <li class="next disabled"><a href="{% url 'libsearch:libsearch' %}">목록<i class=""></i> </a></li>
                                 </ul>
                             </div>
                     </section>
-                        <section id="comments" class="comments wow fadeInRight animated">
-                            <h4 class="text-uppercase wow fadeInLeft animated">3 comments</h4>
-
-
-                            <div class="row comment">
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="{% static 'assets/img/client-face1.png' %}" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Julie Alma</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- /.comment -->
-
-
-                            <div class="row comment last">
-
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="{% static 'assets/img/client-face2.png' %}" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
-
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Louise Armero</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                    </p>
-                                </div>
-
-                            </div>
-                            <!-- /.comment -->
-                        </section>
-
                         <section id="comment-form" class="add-comments">
-                            <h4 class="text-uppercase wow fadeInLeft animated">Leave comment</h4>
-                            <form>
-                                <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label for="comment">Comment <span class="required">*</span>
-                                            </label>
-                                            <textarea class="form-control" id="comment" rows="4"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12 text-right">
-                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
-                                    </div>
+                            {% if user.is_authenticated %}
+
+                            <form method="POST" action="{% url 'libsearch:comment_create' library_detail.lbrry_seq_no %}">
+                                {% csrf_token %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
+                                            </div>
+                                            <div class="col-xs-2" style="margin-top:63px;">
+                                            <div class="form-group">
+                                                <select class="selectpicker show-tick form-control" title="평점" name="score" required>
+                                                    <option>1</option>점
+                                                    <option>2</option>점
+                                                    <option>3</option>점
+                                                    <option>4</option>점
+                                                    <option>5</option>점
+                                                </select>
+                                            </div>
+                                        </div>
+                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
+                                        </div>
                                 </div>
+                                {% else %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                            </div>
+                                        </div>
+                                </div>
+                                {% endif %}
+
                             </form>
-                        </section>
+                    </section>
+
                     </div>
                 </div>
 
@@ -264,110 +314,9 @@
 
         <script src="{% static 'assets/js/main.js' %}"></script>
 
-         <!--        gmaps        -->
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U&callback=initialize"></script>
-<!--        <script src="{% static 'assets/js/gmaps-lib.js' %}"></script>-->
         <script>
-            var map;
-            var xcntss = {{ xcnts }};
-            var ydntss = {{ ydnts }};
-            {% autoescape off %}
-            var hname = {{ hname }};
-            var adres = {{ adres }};
-            {% endautoescape %}
-
-            function average(array) {
-                var sum = 0.0;
-                      for (var i = 0; i < array.length; i++)
-                        sum += array[i];
-                      return sum / array.length;
-                    }
-
-            var avgxc = average(xcntss);
-            var avgyd = average(ydntss);
-            var old;
-            if(isNaN(avgxc)) {
-                avgxc = 37.501256
-                avgyd = 127.039581
-            }
-
-
-            function initialize() {
-                var location = { lat: avgxc, lng: avgyd };
-                var lennum = hname.length;
-
-                map = new google.maps.Map(
-                document.getElementById('libmap'), {
-                  zoom: 13,
-                  center: { lat: avgxc, lag: avgyd}
-                });
-
-                if(lennum<=5){
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 16,
-                      center: location
-                    });
-                }
-                else if(lennum<=15){
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 13,
-                      center: location
-                    });
-                }
-                else if(lennum<=100){
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 13,
-                      center: location
-                    });
-                }
-                else if(100<lennum){
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 11,
-                      center: location
-                    });
-                }
-
-
-                var marker = new Array(lennum);
-                var infowindow = new Array(lennum);
-                for(i=0; i<lennum; i++) {
-                    var location = {lat: xcntss[i], lng: ydntss[i]}
-                    var contentString = "<h4 style='color:#AC7D0C; font-weight:bold;'>" + hname[i] + "</h4>" +
-                                        "<hr style='margin:0 0 5px 0;'>" +
-                                        "<p style='padding:0 0 0 0; font-weight:bold;'>" + "주소" + "</p>" +
-                                        "<p style='padding:0 0 0 0;'>" + adres[i] + "</p>"
-                    var myinfowindow = new google.maps.InfoWindow({
-			            content: contentString
-			        });
-
-                    var marker = new google.maps.Marker({
-                                            position: location,
-                                            map: map,
-                                            infowindow: myinfowindow
-                    });
-                    marker.addListener('click', function() {      // 클릭 이벤트 발생 시 지도와 마커 출력
-                       if(old)
-                       old.close();
-                       this.infowindow.open(map, this);
-                       map.setCenter(this.getPosition());
-                       map.setZoom(15);
-                       old = this.infowindow;
-                    });
-                };
-            };
-            function mypanTo(x, y) {
-                var latLng = new google.maps.LatLng(x, y);
-                map.panTo(latLng);
-
-                return false;
-
-            }
-
 
         </script>
+
     </body>
 </html>
