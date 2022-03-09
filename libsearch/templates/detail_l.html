@@ -35,6 +35,14 @@
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
         <!--        gmaps        -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U"></script>
+
+        <style>
+            h2 {font-size:15px}
+            .star-rating {width:304px;}
+            .star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(/static/assets/img/star.png)no-repeat;}
+            .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;}
+        </style>
+
     </head>
     <body>
 
@@ -154,76 +162,102 @@
                         </div>
                                 <hr>
 
+<h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
+                        <hr>
+                        {% if comments %}
+                        {% for comment in comments %}
 
+                        <section id="comments" class="comments wow fadeInRight animated">
+                            <div class="row comment">
+                                <div class="col-sm-9 col-md-8">
+                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
+                                    <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
+                                    {% if comment.score == 0 %}
+                                    <span class="star-rating">
+                                    <span style="width:0%"></span>
+                                    </span>
+                                    {% elif comment.score == 1 %}
+                                    <span class="star-rating">
+                                    <span style="width:20%"></span>
+                                    </span>
+                                    {% elif comment.score == 2 %}
+                                    <span class="star-rating">
+                                    <span style="width:40%"></span>
+                                    </span>
+                                    {% elif comment.score == 3 %}
+                                    <span class="star-rating">
+                                    <span style="width:60%"></span>
+                                    </span>
+                                    {% elif comment.score == 4 %}
+                                    <span class="star-rating">
+                                    <span style="width:80%"></span>
+                                    </span>
+                                    {% elif comment.score == 5 %}
+                                    <span class="star-rating">
+                                    <span style="width:100%"></span>
+                                    </span>
+                                    {% endif %}
+                                    <form action="{% url 'libsearch:comment_delete' library_detail.lbrry_seq_no comment.id %}" method="post">
+                                        {% csrf_token %}
+                                        <span>{{ comment.date }}&nbsp&nbsp</span>
+                                        <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                    </form>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                            {% endfor %}
+                            {% endif %}
+                            <!-- /.comment -->
+                        </section>
                         <div class="post-footer single wow fadeInBottum animated">
                                 <ul class="pager">
                                     <li class="next disabled"><a href="{% url 'libsearch:libsearch' %}">목록<i class=""></i> </a></li>
                                 </ul>
                             </div>
                     </section>
-                        <section id="comments" class="comments wow fadeInRight animated">
-                            <h4 class="text-uppercase wow fadeInLeft animated">3 comments</h4>
-
-
-                            <div class="row comment">
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="{% static 'assets/img/client-face1.png' %}" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Julie Alma</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- /.comment -->
-
-
-                            <div class="row comment last">
-
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="{% static 'assets/img/client-face2.png' %}" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
-
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Louise Armero</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                    </p>
-                                </div>
-
-                            </div>
-                            <!-- /.comment -->
-                        </section>
-
                         <section id="comment-form" class="add-comments">
-                            <h4 class="text-uppercase wow fadeInLeft animated">Leave comment</h4>
-                            <form>
-                                <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label for="comment">Comment <span class="required">*</span>
-                                            </label>
-                                            <textarea class="form-control" id="comment" rows="4"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row wow fadeInLeft animated">
-                                    <div class="col-sm-12 text-right">
-                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
-                                    </div>
+                            {% if user.is_authenticated %}
+
+                            <form method="POST" action="{% url 'libsearch:comment_create' library_detail.lbrry_seq_no %}">
+                                {% csrf_token %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
+                                            </div>
+                                            <div class="col-xs-2" style="margin-top:63px;">
+                                            <div class="form-group">
+                                                <select class="selectpicker show-tick form-control" title="평점" name="score" required>
+                                                    <option>1</option>점
+                                                    <option>2</option>점
+                                                    <option>3</option>점
+                                                    <option>4</option>점
+                                                    <option>5</option>점
+                                                </select>
+                                            </div>
+                                        </div>
+                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
+                                        </div>
                                 </div>
+                                {% else %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                            </div>
+                                        </div>
+                                </div>
+                                {% endif %}
+
                             </form>
-                        </section>
+                    </section>
+
                     </div>
                 </div>
 
@@ -280,6 +314,9 @@
 
         <script src="{% static 'assets/js/main.js' %}"></script>
 
+        <script>
+
+        </script>
 
     </body>
 </html>
