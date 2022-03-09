@@ -8,9 +8,7 @@ class Board(models.Model):
 
     view_cnt = models.PositiveIntegerField(default=0)
     Cdate = models.DateTimeField(auto_now_add=True)
-    Udate = models.DateTimeField(auto_now=True)
     like = models.PositiveIntegerField(default=0)
-    comments = models.TextField()
 
 
     @property
