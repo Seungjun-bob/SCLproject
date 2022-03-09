@@ -60,9 +60,11 @@ def result(request, board_id):
     }
     return render(request, 'result.html', context)
 
+
 # @require_http_methods(['POST'])
 
 def comment_create(request, board_id):
+
     content = request.POST['content']
     author = request.user.id
 
@@ -70,7 +72,6 @@ def comment_create(request, board_id):
             user_id=author,
             board_id=board_id,
             ).save()
-
 
     return redirect('board:result', board_id)
 
@@ -106,6 +107,7 @@ def update(request, board_id):
               Udate=date,
               id=id).save()
         return redirect('board:result', board_id)
+
 
 def my_review(request):
     return render(request, 'my_review.html')

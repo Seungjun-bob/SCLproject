@@ -15,8 +15,10 @@ class Recommend(models.Model):
     recomMonth = models.CharField(max_length=45, null=True)
     recomisbn = models.CharField(max_length=45, null=True)
 
+
 class RecommendComment(models.Model):
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     recommend = models.ForeignKey("Recommend", on_delete=models.CASCADE)
     comment = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
+

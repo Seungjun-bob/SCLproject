@@ -67,9 +67,7 @@ def libsearch(request):
         'adres' : adres,
         'hmpg_url' : hmpg_url,
     }
-
     return render(request, 'libsearch.html', context)
-
 
 
 def detail_library(request, library_id):
@@ -78,12 +76,14 @@ def detail_library(request, library_id):
     comments = library_detail.librarycomment_set.order_by('-id').all()
 
 
+
     # gmap
     ydnts = [];
     xcnts = [];
     hname = [];
     adres = [];
     hmpg_url = [];
+
 
     for i in hmpg_url:
         if i == None:
@@ -124,6 +124,7 @@ def detail_library(request, library_id):
         }
 
     return render(request, 'detail_l.html', context)
+
 
 
 def comment_create(request, library_id):

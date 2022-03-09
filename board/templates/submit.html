@@ -95,8 +95,11 @@
         </div>
         <!-- End page header -->
 
+
                 <div class="container">
+
                         <div class="row" style="margin: 0 0 0 100px;">
+
                             <form action="{% url 'board:submit' %}" method="post">
                                 {% csrf_token %}
                                     <div class="col-md-12" style="margin-top: 30px;">
@@ -117,6 +120,7 @@
                                 <div class="col-md-12" style="float:right; padding:0 10px; 10px; 0;">
                                     <div class="col-sm-12" style="float:right; padding-bottom:15px;">
                                         <button class="btn btn-default btn-border" type="submit" value="글쓰기" >글쓰기</button>
+
                                     </div>
                                 </div>
                             </form>
@@ -160,7 +164,7 @@
 
 </div>
 
-<!--        <script src="{% static 'assets/js/vendor/modernizr-2.6.2.min.js' %}"></script>-->
+        <script src="{% static 'assets/js/vendor/modernizr-2.6.2.min.js' %}"></script>
         <script src="{% static 'assets/js//jquery-1.10.2.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
