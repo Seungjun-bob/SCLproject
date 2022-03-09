@@ -65,10 +65,7 @@ def libsearch(request):
         'adres' : adres,
         'hmpg_url' : hmpg_url,
     }
-
     return render(request, 'libsearch.html', context)
-
-
 
 def detail_library(request, pk):
     detail_library = Library.objects.get(lbrry_seq_no=pk)
@@ -78,6 +75,7 @@ def detail_library(request, pk):
     hname = [];
     adres = [];
     hmpg_url = [];
+
 
     for i in hmpg_url:
         if i == None:
@@ -93,5 +91,3 @@ def detail_library(request, pk):
         'hmpg_url': hmpg_url,
     }
     return render(request, 'detail_l.html', context)
-
-

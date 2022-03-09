@@ -98,16 +98,4 @@ def detail_recom(request, pk):
     }
     return render(request, 'detail_r.html', context)
 
-def detail_comment(request, pk):
-    content = request.POST['content']
-    author = request.user.id
-    Comment_re(comment=content,
-            user_id=author,
-            id=id
-            ).save()
-    context = {
-        'content': content,
-        'author': author
-    }
 
-    return redirect('recommend:comments_r', pk)
