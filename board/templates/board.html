@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+
 <html class="no-js">
     <head>
         <meta charset="utf-8">
@@ -74,7 +75,7 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board:board' %}">게시판</a></li>
+                            <a class="active" href="{% url 'board:board' %}">게시판</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -176,7 +177,7 @@
                     </div>
                 </div>
 
-                    <div class="col-md-9  pr0 padding-top-40 properties-page" style="height:700px;">
+                    <div class="col-md-9  pr0 padding-top-40 properties-page" style="height:800px;">
                         <div class="col-md-12 clear">
                             <div class="col-xs-10 page-subheader sorting pl0">
                                 <ul class="sort-by-list">
@@ -192,14 +193,15 @@
                                     </li>
                                 </ul><!--/ .sort-by-list-->
                         </div>
-                            <button onclick="location.href='{% url 'board:submit' %}'">작성하기</button>
+                            <button class="btn btn-primary" onclick="location.href='{% url 'board:submit' %}'" style="padding:5px 15px; float:right;">작성하기</button>
+
                     </div>
 
 
                 <!-------------- Board ---------------->
 
-                    <div class="col-md-12 clear">
-                        <table class="table" style="width:800px;">
+                    <div class="col-md-12 clear" style="height:600px;">
+                        <table class="table" style="width:850px;">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -215,18 +217,19 @@
                             {% for dlist in vlist %}
                             <tr>
                                 <th scope="row" width="5%">{{ dlist.id }}</th>
-                                    <td style="table-layout:fixed;" width="55%"><a href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
-                                    <td style="table-layout:fixed;" width="10%">{{ dlist.author.last_name }}</td>
-                                    <td style="table-layout:fixed;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
-                                    <td style="table-layout:fixed;" width="7%">{{ dlist.view_cnt }}</td>
-                                    <td style="table-layout:fixed;" width="7%">{{ dlist.like }}</td>
+                                    <td style="table-layout:fixed; width="55%">
+                                        <a style="color:black; font-weight:normal;" href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
+                                    <td style="table-layout:fixed; text-align:center;" width="10%">{{ dlist.author.last_name }}</td>
+                                    <td style="table-layout:fixed; text-align:center;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
+                                    <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.view_cnt }}</td>
+                                    <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.like }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
                         </table>
                     </div>
                     <!--        페이징작업            -->
-                    <div class="col-md-12 clear">
+
                         <div class="pull-right">
                             <div class="pagination">
                                 <ul>
@@ -263,16 +266,18 @@
                                             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
                                         </li>
                                     {% endif %}
-                                <!-- 페이징처리 끝 -->
+
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                        <!-- 페이징처리 끝 -->
 
-                </div>
             </div>
         </div>
     </div>
+
+
+
 
 
 
@@ -300,15 +305,15 @@
             </div>
         </div>
 
-            <div class="footer-copy text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="pull-left">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
-                        </div>
+        <div class="footer-copy text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="pull-left">
+                        <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                     </div>
                 </div>
             </div>
+        </div>
 
 
 
