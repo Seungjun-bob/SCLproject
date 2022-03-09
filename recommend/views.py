@@ -1,5 +1,7 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
 from recommend.models import Recommend, RecommendComment
+
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 
@@ -118,6 +120,7 @@ def detail_recom(request, recommend_id):
             'comments': comments,
         }
     return render(request, 'detail_r.html', context)
+
 
 
 def comment_create(request, recommend_id):

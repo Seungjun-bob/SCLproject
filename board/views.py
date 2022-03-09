@@ -39,7 +39,6 @@ def board(request) :
 
     return render(request, 'board.html', context)
 
-
 def submit(request):
     if not request.user.is_authenticated:
 
@@ -94,7 +93,9 @@ def update(request, board_id):
     board.save()
     return redirect('board:result', board_id)
 
+
 def comment_create(request, board_id):
+
     content = request.POST['content']
     author = request.user.id
 
@@ -109,6 +110,7 @@ def comment_delete(request, board_id, comment_id):
     comment = Comment.objects.get(id=comment_id)
     comment.delete()
     return redirect('board:result', board_id)
+
 
 def my_review(request):
     return render(request, 'my_review.html')

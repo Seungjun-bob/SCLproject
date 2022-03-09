@@ -128,6 +128,7 @@
                                     <p>{{ board.content }}</p>
                                 </div>
                             </div>
+
                         </section>
                         <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
                         <hr>
@@ -169,6 +170,7 @@
                                             <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                         </div>
                                 </div>
+
                                 {% else %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
 
@@ -178,9 +180,11 @@
                                                 <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                             </div>
                                         </div>
+
                                 </div>
                                 {% endif %}
                             </form>
+
                              <div class="post-footer single wow fadeInBottum animated">
                                 <div class="left_area">
                                     <button onclick="location.href='{% url 'board:submit' %}'" style="float:left;" type="button" class="btn">글쓰기</button>
@@ -200,8 +204,8 @@
                     </section>
 
                     </div>                                 
-                </div>
 
+                </div>
             </div>
         </div>
 
@@ -236,6 +240,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
         <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>

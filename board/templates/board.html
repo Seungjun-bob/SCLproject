@@ -167,6 +167,7 @@
 
                             {% for dlist in total %}
                             <tr>
+
                                 <th scope="row" width="5%">{{ dlist.id }}</th>
                                     <td style="table-layout:fixed; width:55%">
                                         <a style="color:black; font-weight:normal;" href='/board/{{ dlist.id }}'>{{ dlist.title }} [{{ dlist.comment_set.count }}]</a></td>
@@ -174,6 +175,7 @@
                                     <td style="table-layout:fixed; text-align:center;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
                                     <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.view_cnt }}</td>
                                     <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.like }}</td>
+
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -271,5 +273,6 @@
         <script src="{% static 'assets/js/icheck.min.js' %}"></script>
         <script src="{% static 'assets/js/price-range.js' %}"></script>
         <script src="{% static 'assets/js/main.js' %}"></script>
+
     </body>
 </html>
