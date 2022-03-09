@@ -104,10 +104,19 @@ def detail_recom(request, recommend_id):
             user_name = user.last_name
 
     context = {
-        'recommend_detail': recommend_detail,
-        'comments': comments,
-        'user_name': user_name
+
     }
+    if comments:
+        context = {
+            'user_name': user_name,
+            'recommend_detail': recommend_detail,
+            'comments': comments,
+        }
+    else:
+        context = {
+            'recommend_detail': recommend_detail,
+            'comments': comments,
+        }
     return render(request, 'detail_r.html', context)
 
 

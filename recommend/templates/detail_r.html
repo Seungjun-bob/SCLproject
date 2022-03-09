@@ -146,6 +146,7 @@
                     </section>
                         <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
                         <hr>
+                        {% if comments %}
                         {% for comment in comments %}
 
                         <section id="comments" class="comments wow fadeInRight animated">
@@ -163,6 +164,7 @@
                             </div>
                             <hr>
                             {% endfor %}
+                            {% endif %}
                             <!-- /.comment -->
                         </section>
                         <section id="comment-form" class="add-comments">
