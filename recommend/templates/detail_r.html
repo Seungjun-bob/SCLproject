@@ -146,7 +146,6 @@
                     </section>
                         <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
                         <hr>
-                        {{ recommend_detail.id}}
                         {% for comment in comments %}
 
                         <section id="comments" class="comments wow fadeInRight animated">
@@ -154,9 +153,9 @@
                                 <div class="col-sm-9 col-md-8">
                                     <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
                                     <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
-                                    <form action="" method="post">
+                                    <form action="{% url 'recommend:comment_delete' recommend_detail.id comment.id %}" method="post">
                                         {% csrf_token %}
-                                        <span>{{ comment.Cdate }}&nbsp&nbsp</span>
+                                        <span>{{ comment.date }}&nbsp&nbsp</span>
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                     </form>
                                     </p>
@@ -193,18 +192,8 @@
                                         </div>
                                 </div>
                                 {% endif %}
-                                <div class="post-footer single wow fadeInBottum animated">
-                                    <div class="left_area">
-                                        <!---- 삭제 버튼 ---->
 
-                                        <form style="float:left;" action="" method="post">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
-                                        </form>
-                                    </div>
-                                </div>
                             </form>
-                        <button onclick="location.href='{% url 'board:board' %}'" style="float:right;" class="btn btn-light">목록</button>
                     </section>
 
                     </div>
@@ -262,6 +251,23 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
+        <script>
+        function ConfirmDelete(){
+            var x = confirm("정말 삭제 하시겠습니까?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+        </script>
+        <script type="text/javascript">
+        $('document').ready(function() {
+            $('textarea').keyup(function(e) {
+                $(this).css('height', 'auto');
+                $(this).height(this.scrollHeight);
+            });
+        });
+    </script>
 
     </body>
 </html>

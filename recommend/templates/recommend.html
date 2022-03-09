@@ -170,6 +170,7 @@
                                         </div>
                                         {% if total %}
                                             {% for list in total %}
+                                            {{ list.id }}
                                             <div id="list-type" class="proerty-th-list">
                                                 <div class="col-sm-6 col-md-3 p0">
                                                     <div class="box-two proerty-item">
@@ -182,7 +183,7 @@
                                                             <span class="pull-left"><b> 저자 :</b> {{ list.recomauthor | default_if_none:'' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                             <span class="pull-left"><b> 출판사 :</b> {{list.recompublisher | default_if_none:''}}</span>
                                                             <p style="display: none;">{{ list.recomcontens | default_if_none:'' }}</p>
-                                                            <a href="{{ list.id }}/detail_r" class="btn btn-default btn-border" style="float : right;">상세</a>
+                                                            <a href="{% url 'recommend:detail_r' list.id %}" class="btn btn-default btn-border" style="float : right;">상세</a>
                                                         </div>
                                                     </div>
                                                 </div>
