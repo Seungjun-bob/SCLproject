@@ -179,7 +179,6 @@
         <div class="col-md-4" style="overflow-y:scroll; height:700px;">
             {% for list in total %}
                 <div class="col-md-12">
-                    {{ list.xcnts }}
                     <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
                             <span class="star-rating">
                             <span style="width:{{ list.avg }}%"></span>
@@ -398,9 +397,6 @@
                 return false;
 
             }
-
-
-
         </script>
     </body>
 </html>
