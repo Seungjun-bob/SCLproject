@@ -3038,14 +3038,18 @@ font-size: 13px;
     height: 0px;
 }
 ul.footer-blog li {
-    width: 100%;
+    width: 80px;
+    height: 60px;
     display: table;
-    margin-bottom: -20px;
+    margin-bottom: 5px;
+    float:left;
 }
 .footer-blog img {
-    width: 100%; 
-    height: 60px;
+    width: 40px;
+    height: 40px;
     margin-bottom: 0px;
+    max-width: none;
+    margin: 0px 12px 0px;
 }
 .footer-blog .blg-entry h6 a{   
     font-size: 13px;
