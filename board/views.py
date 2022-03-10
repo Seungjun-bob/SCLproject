@@ -62,10 +62,13 @@ def result(request, board_id):
     board = get_object_or_404(Board, id=board_id)
 
     # 유저 정보 가져오기
-    user_pk = board.author_id
-    user_name = User.objects.get(pk=user_pk).last_name
+    board_user = board.author_id
+    user_name = User.objects.get(pk=board_user).last_name
 
     comments = board.comment_set.order_by('-id').all()
+
+    for comment in comments:
+        print(comment.user.last_name)
 
     context = {
         'board': board,
