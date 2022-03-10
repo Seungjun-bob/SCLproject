@@ -40,7 +40,7 @@ def libsearch(request):
 
 
     # gmap
-    ydnts = []; xcnts = []; hname = []; adres = []; hmpg_url = [];
+    ydnts = []; xcnts = []; hname = []; adres = []; hmpg_url = []; lib_id = [];
 
     for data in total:
             xcnts.append(data.xcnts)
@@ -48,17 +48,19 @@ def libsearch(request):
             hname.append(data.lbrry_name)
             adres.append(data.adres)
             hmpg_url.append(data.hmpg_url)
+            lib_id.append(data.lbrry_seq_no)
     num = len(total)
 
     # 결과 출력
     context = {
-        'total': page_obj,
+        'total': total,
         'num': num, # 도서관 검색 출력 수
         'xcnts': xcnts,
         'ydnts': ydnts,
         'hname': hname,
         'adres': adres,
-        'hmpg_url': hmpg_url
+        'hmpg_url': hmpg_url,
+        'lib_id': lib_id
     }
     return render(request, 'libsearch.html', context)
 

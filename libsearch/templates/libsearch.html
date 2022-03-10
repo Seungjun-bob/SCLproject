@@ -109,7 +109,7 @@
         <!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container">
-                <div class="row  pr0 padding-top-40 properties-page">
+                <div class="row  pr0 padding-top-40 properties-page" style="padding-bottom:50px;">
                     <div class="col-md-12 padding-bottom-40 large-search">
                         <div class="search-form wow pulse">
                             <form action="" class="form-inline">
@@ -177,9 +177,9 @@
         </div>
 
     <div class="=col-md-12">
-        <div class="col-md-4" style="overflow-y:scroll; height:700px;">
+        <div class="col-md-4" style="overflow-y:scroll; height:700px;" id="element_within_div">
             {% for list in total %}
-                <div class="col-md-12">
+                <div class="col-md-12" id="{{ list.lbrry_seq_no }}">
                     <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
                             <span class="star-rating"><span style="width:{{ list.avg }}%"></span></span><span>[{{ list.librarycomment_set.count }}]</span><br>
                     오픈시간 : {{ list.op_time | default_if_none:''}} <br>
@@ -201,49 +201,6 @@
             <div id="map" style="width:100%; height:700px;"></div>
         </div>
     </div>
-                    <!--        페이징작업            -->
-                    <div class="col-md-12 clear">
-                        <div class="pull-right">
-                            <div class="pagination">
-                                <ul>
-                                    {% if total.has_previous %}
-                                    <li>
-                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
-                                    </li>
-                                    {% else %}
-                                    <li>
-                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-                                    </li>
-                                    {% endif %}
-                                    <!-- 페이지 번호 -->
-                                    {% for page_number in total.paginator.page_range %}
-                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
-                                        {% if page_number == total.number %}
-                                        <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                                        </li>
-                                        {% else %}
-                                        <li>
-                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                                        </li>
-                                        {% endif %}
-                                    {% endif %}
-                                    {% endfor %}
-                                    <!-- 다음 페이지 -->
-                                    {% if total.has_next %}
-                                        <li>
-                                            <a class="page-link" href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
-                                        </li>
-                                    {% else %}
-                                        <li>
-                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-                                        </li>
-                                    {% endif %}
-                                <!-- 페이징처리 끝 -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -345,6 +302,7 @@
         {% autoescape off %}
         var hname = {{ hname }};
         var adres = {{ adres }};
+        var lib_loc = {{ lib_id }};
         {% endautoescape %}
 
         function average(array) {
@@ -415,6 +373,8 @@
                                         map: map,
                                         infowindow: myinfowindow
                 });
+                let lib_location = document.getElementById(lib_loc[i]).offsetTop;
+
                 marker.addListener('click', function() {      // 클릭 이벤트 발생 시 지도와 마커 출력
                    if(old)
                    old.close();
@@ -422,13 +382,13 @@
                    map.setCenter(this.getPosition());
                    map.setZoom(15);
                    old = this.infowindow;
+                   $('div').animate({scrollTop : lib_location}, 400);
                 });
             };
             };
             function mypanTo(x, y) {
                 var latLng = new google.maps.LatLng(x, y);
                 map.panTo(latLng);
-                console.log(latLng)
                 return false;
 
             }
