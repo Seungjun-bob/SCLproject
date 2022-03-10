@@ -67,9 +67,6 @@ def result(request, board_id):
 
     comments = board.comment_set.order_by('-id').all()
 
-    for comment in comments:
-        print(comment.user.last_name)
-
     context = {
         'board': board,
         'user_name': user_name,
