@@ -40,7 +40,7 @@ def libsearch(request):
 
 
     # gmap
-    ydnts = []; xcnts = []; hname = []; adres = []; hmpg_url = [];
+    ydnts = []; xcnts = []; hname = []; adres = []; hmpg_url = []; lib_id = [];
 
     for data in total:
             xcnts.append(data.xcnts)
@@ -48,6 +48,7 @@ def libsearch(request):
             hname.append(data.lbrry_name)
             adres.append(data.adres)
             hmpg_url.append(data.hmpg_url)
+            lib_id.append(data.lbrry_seq_no)
     num = len(total)
 
     # 결과 출력
@@ -58,7 +59,8 @@ def libsearch(request):
         'ydnts': ydnts,
         'hname': hname,
         'adres': adres,
-        'hmpg_url': hmpg_url
+        'hmpg_url': hmpg_url,
+        'lib_id': lib_id
     }
     return render(request, 'libsearch.html', context)
 
