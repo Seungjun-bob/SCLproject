@@ -130,7 +130,7 @@
                     <div class="col-md-12;">
                         {% if total %}
                             {% for list in total %}
-                            <div class="col-md-12">
+                            <div class="col-md-6" style="height:270px;">
                                 <h4 style="color:#AC7D0C;font-weight:bold;">{{ list.title | default_if_none:''}}</h4>
                                     저자 : <strong>{{ list.author  | default_if_none:''}}</strong> <br>
                                     청구기호 : {{ list.callno  | default_if_none:''}} <br>
