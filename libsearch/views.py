@@ -182,7 +182,7 @@ def comment_delete(request, library_id, comment_id):
         if comments != 0:
             avg = (sum / len(comments)) * 20
         else:
-            pass
+            avg = 0
     Library(avg=avg,
             lbrry_name=library_detail.lbrry_name,
             gu_code=library_detail.gu_code,
