@@ -21,7 +21,7 @@ def booksearch(request):
     # num = total.count()
     page = request.GET.get('page', '1')
 
-    paginator = Paginator(total, 5)
+    paginator = Paginator(total, 10)
     page_obj = paginator.get_page(page)
 
 
