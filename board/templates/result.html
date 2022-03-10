@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load static %}
-{{ board.view_counter }}
 <html class="no-js">
     <head>
         <meta charset="utf-8">
@@ -137,12 +136,12 @@
                         <section id="comments" class="comments wow fadeInRight animated">
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
-                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
+                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
                                     <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
                                     <form action="{% url 'board:comment_delete' board.id comment.id %}" method="post">
                                         {% csrf_token %}
                                         <span>{{ comment.Cdate|date:"Y.m.d. H:i" }}&nbsp&nbsp</span>
-                                        {% if request.user.id == board.author_id %}
+                                        {% if request.user == comment.user %}
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                         {% endif %}
                                     </form>
@@ -188,7 +187,7 @@
                              <div class="post-footer single wow fadeInBottum animated">
                                 <div class="left_area">
                                     <button onclick="location.href='{% url 'board:submit' %}'" style="float:left;" type="button" class="btn">글쓰기</button>
-                                    {% if request.user.id == board.author_id %}
+                                    {% if request.user == board.author %}
                                         <button onclick="location.href='{% url 'board:edit' board.id %}'" style="float:left;" type="submit" class="btn">수정</button>
 
                                     <!---- 삭제 버튼 ---->
@@ -280,3 +279,4 @@
        
     </body>
 </html>
+{{ board.view_counter }}

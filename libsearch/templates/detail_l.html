@@ -38,8 +38,8 @@
 
         <style>
             h2 {font-size:15px}
-            .star-rating {width:304px;}
-            .star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(/static/assets/img/star.png)no-repeat;}
+            .star-rating {width:138px;}
+            .star-rating,.star-rating span {display:inline-block; height:25px; overflow:hidden; background:url(/static/assets/img/star_small.png)no-repeat;}
             .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;}
         </style>
 
@@ -170,7 +170,7 @@
                         <section id="comments" class="comments wow fadeInRight animated">
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
-                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
+                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
                                     <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
                                     {% if comment.score == 0 %}
                                     <span class="star-rating">
@@ -199,8 +199,10 @@
                                     {% endif %}
                                     <form action="{% url 'libsearch:comment_delete' library_detail.lbrry_seq_no comment.id %}" method="post">
                                         {% csrf_token %}
-                                        <span>{{ comment.date }}&nbsp&nbsp</span>
+                                        <span>{{ comment.date|date:"Y.m.d H:i" }}&nbsp&nbsp</span>
+                                        {% if request.user == comment.user %}
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                        {% endif %}
                                     </form>
                                     </p>
                                 </div>
@@ -229,9 +231,11 @@
                                             <div class="form-group">
                                                 <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
                                             </div>
-                                            <div class="col-xs-2" style="margin-top:63px;">
-                                            <div class="form-group">
-                                                <select class="selectpicker show-tick form-control" title="평점" name="score" required>
+                                            <div>
+                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 0 5px; height:40px;">등록</button>
+                                            </div>
+                                            <div class="form-group" style="float:right;">
+                                                <select class="selectpicker dropup show-tick form-control" data-dropup-auto="false" title="평점" name="score" required>
                                                     <option>1</option>점
                                                     <option>2</option>점
                                                     <option>3</option>점
@@ -239,9 +243,7 @@
                                                     <option>5</option>점
                                                 </select>
                                             </div>
-                                        </div>
-                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
-                                        </div>
+
                                 </div>
                                 {% else %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
@@ -249,7 +251,7 @@
                                         <div class="col-sm-12">
                                             <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
-                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="3" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                             </div>
                                         </div>
                                 </div>

@@ -154,12 +154,14 @@
 
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
-                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
+                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
                                     <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
                                     <form action="{% url 'recommend:comment_delete' recommend_detail.id comment.id %}" method="post">
                                         {% csrf_token %}
-                                        <span>{{ comment.date }}&nbsp&nbsp</span>
+                                        <span>{{ comment.date|date:"Y.m.d H:i" }}&nbsp&nbsp</span>
+                                        {% if request.user == comment.user %}
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                        {% endif %}
                                     </form>
                                     </p>
                                 </div>
