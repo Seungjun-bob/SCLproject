@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-
+{% load board_extras %}
 <html class="no-js">
     <head>
         <meta charset="utf-8">
@@ -112,7 +112,7 @@
                                     <fieldset>
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <input type="text" class="form-control" placeholder="도서관명">
+                                                <input type="text" class="form-control" placeholder="도서관명" name="search">
                                             </div>
                                         </div>
                                     </fieldset>
@@ -120,46 +120,11 @@
                                     <fieldset>
                                         <div class="row">
                                             <div class="col-xs-6">
-
-                                                <select id="lunchBegins" class="selectpicker" title="도서관 분류">
+                                                <h3 class="panel-title">검색분류</h3>
+                                                <select id="lunchBegins" class="selectpicker" title="분류" name="type">
                                                     <option>전체</option>
-                                                    <option>New york, CA</option>
-                                                    <option>Paris</option>
-                                                    <option>Casablanca</option>
-                                                    <option>Tokyo</option>
-                                                    <option>Marraekch</option>
-                                                    <option>kyoto , shibua</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-xs-6">
-
-                                                <select id="basic" class="selectpicker show-tick form-control" title="자치구">
-                                                    <option>전체</option>
-                                                    <option>강남구</option>
-                                                    <option>강동구</option>
-                                                    <option>강북구</option>
-                                                    <option>강서구</option>
-                                                    <option>관악구</option>
-                                                    <option>광진구</option>
-                                                    <option>구로구</option>
-                                                    <option>금천구</option>
-                                                    <option>노원구</option>
-                                                    <option>도봉구</option>
-                                                    <option>동대문구</option>
-                                                    <option>동작구</option>
-                                                    <option>마포구</option>
-                                                    <option>서대문구</option>
-                                                    <option>서초구</option>
-                                                    <option>성동구</option>
-                                                    <option>성북구</option>
-                                                    <option>송파구</option>
-                                                    <option>양천구</option>
-                                                    <option>영등포구</option>
-                                                    <option>용산구</option>
-                                                    <option>은평구</option>
-                                                    <option>종로구</option>
-                                                    <option>중구</option>
-                                                    <option>중랑구</option>
+                                                    <option>제목</option>
+                                                    <option>내용</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -179,23 +144,9 @@
 
                     <div class="col-md-9  pr0 padding-top-40 properties-page" style="height:800px;">
                         <div class="col-md-12 clear">
-                            <div class="col-xs-10 page-subheader sorting pl0">
-                                <ul class="sort-by-list">
-                                    <li class="active">
-                                        <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
-                                            날짜 정렬 <i class="fa fa-sort-amount-asc"></i>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
-                                        추천 수 정렬 <i class="fa fa-sort-numeric-desc"></i>
-                                        </a>
-                                    </li>
-                                </ul><!--/ .sort-by-list-->
-                        </div>
                             <button class="btn btn-primary" onclick="location.href='{% url 'board:submit' %}'" style="padding:5px 15px; float:right;">작성하기</button>
 
-                    </div>
+                        </div>
 
 
                 <!-------------- Board ---------------->
@@ -204,25 +155,27 @@
                         <table class="table" style="width:850px;">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">제목</th>
-                                    <th scope="col">작성자</th>
-                                    <th scope="col">작성일</th>
-                                    <th scope="col">조회수</th>
-                                    <th scope="col">좋아요</th>
+                                    <th scope="col" style="text-align:center;">#</th>
+                                    <th scope="col" style="text-align:center;">제목</th>
+                                    <th scope="col" style="text-align:center;">작성자</th>
+                                    <th scope="col" style="text-align:center;">작성일</th>
+                                    <th scope="col" style="text-align:center;">조회수</th>
+                                    <th scope="col" style="text-align:center;">좋아요</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                            {% for dlist in vlist %}
+                            {% for dlist in total %}
                             <tr>
+
                                 <th scope="row" width="5%">{{ dlist.id }}</th>
-                                    <td style="table-layout:fixed; width="55%">
-                                        <a style="color:black; font-weight:normal;" href='/board/{{ dlist.id }}'>{{ dlist.title }}</a></td>
+                                    <td style="table-layout:fixed; width:55%">
+                                        <a style="color:black; font-weight:normal;" href='/board/{{ dlist.id }}'>{{ dlist.title }} [{{ dlist.comment_set.count }}]</a></td>
                                     <td style="table-layout:fixed; text-align:center;" width="10%">{{ dlist.author.last_name }}</td>
                                     <td style="table-layout:fixed; text-align:center;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
                                     <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.view_cnt }}</td>
                                     <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.like }}</td>
+
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -233,9 +186,9 @@
                         <div class="pull-right">
                             <div class="pagination">
                                 <ul>
-                                    {% if vlist.has_previous %}
+                                    {% if total.has_previous %}
                                     <li>
-                                        <a class="page-link" href="?page={{ vlist.previous_page_number }}">이전</a>
+                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
                                     </li>
                                     {% else %}
                                     <li>
@@ -243,23 +196,23 @@
                                     </li>
                                     {% endif %}
                                     <!-- 페이지 번호 -->
-                                    {% for page_number in vlist.paginator.page_range %}
-                                    {% if page_number >= vlist.number|add:-3 and page_number <= vlist.number|add:3 %}
-                                        {% if page_number == vlist.number %}
+                                    {% for page_number in total.paginator.page_range %}
+                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
+                                        {% if page_number == total.number %}
                                         <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
                                         {% else %}
                                         <li>
-                                            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
                                         {% endif %}
                                     {% endif %}
                                     {% endfor %}
                                     <!-- 다음 페이지 -->
-                                    {% if vlist.has_next %}
+                                    {% if total.has_next %}
                                         <li>
-                                            <a class="page-link" href="?page={{ vlist.next_page_number }}">다음</a>
+                                            <a class="page-link"href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
                                         </li>
                                     {% else %}
                                         <li>
@@ -271,18 +224,9 @@
                             </div>
                         </div>
                         <!-- 페이징처리 끝 -->
-
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
 
           <!-- Footer area-->
@@ -329,5 +273,6 @@
         <script src="{% static 'assets/js/icheck.min.js' %}"></script>
         <script src="{% static 'assets/js/price-range.js' %}"></script>
         <script src="{% static 'assets/js/main.js' %}"></script>
+
     </body>
 </html>

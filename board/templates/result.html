@@ -96,8 +96,8 @@
         <!-- End page header -->
         <div class=" content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row rounded col-md-12" style="width:850px; margin-left: 150px;">
-                    <div class="blog-lst col-md-12" >
+                <div class="row rounded col-md-12" style="width:850px; margin-left: 150px; padding-bottom:30px;">
+                    <div class="blog-lst col-md-12">
                         <section id="id-100" class="post single">
 
                             <div class="post-header single">
@@ -116,10 +116,8 @@
 
                                     <div class="col-sm-4 right" >
 
-                                            <p style="float:right;" class="date-comments">
-                                                <a href="single.html"><i class="fa fa-calendar-o">ccc</i> </a>
-                                                <a href="single.html"><i class="fa fa-comment-o"></i>Comments</a>
-                                            </p>
+                                            <p style="float:right;" class="date-comments">{{ board.Cdate|date:"Y.m.d. H:i" }} <br> 댓글: {{ board.comment_set.count }}</p>
+
 
                                     </div>
                                 </div>
@@ -130,6 +128,7 @@
                                     <p>{{ board.content }}</p>
                                 </div>
                             </div>
+
                         </section>
                         <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
                         <hr>
@@ -142,8 +141,10 @@
                                     <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
                                     <form action="{% url 'board:comment_delete' board.id comment.id %}" method="post">
                                         {% csrf_token %}
-                                        <span>{{ comment.Cdate }}&nbsp&nbsp</span>
+                                        <span>{{ comment.Cdate|date:"Y.m.d. H:i" }}&nbsp&nbsp</span>
+                                        {% if request.user.id == board.author_id %}
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                        {% endif %}
                                     </form>
                                     </p>
                                 </div>
@@ -169,6 +170,7 @@
                                             <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                         </div>
                                 </div>
+
                                 {% else %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
 
@@ -178,13 +180,16 @@
                                                 <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                             </div>
                                         </div>
+
                                 </div>
                                 {% endif %}
                             </form>
+
                              <div class="post-footer single wow fadeInBottum animated">
                                 <div class="left_area">
                                     <button onclick="location.href='{% url 'board:submit' %}'" style="float:left;" type="button" class="btn">글쓰기</button>
-                                    <button onclick="location.href='{% url 'board:update' board.id %}'" style="float:left;" type="submit" class="btn">수정</button>
+                                    {% if request.user.id == board.author_id %}
+                                        <button onclick="location.href='{% url 'board:edit' board.id %}'" style="float:left;" type="submit" class="btn">수정</button>
 
                                     <!---- 삭제 버튼 ---->
 
@@ -192,14 +197,15 @@
                                         {% csrf_token %}
                                         <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                     </form>
+                                    {% endif %}
                                 </div>
                             </div>
                             <button onclick="location.href='{% url 'board:board' %}'" style="float:right;" class="btn btn-light">목록</button>
                     </section>
 
                     </div>                                 
-                </div>
 
+                </div>
             </div>
         </div>
 
@@ -234,6 +240,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
         <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>

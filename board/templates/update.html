@@ -76,76 +76,55 @@
                             <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
+
                             <a class="active" href="{% url 'board:board' %}">게시판</a>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
+
         <!-- End of nav bar -->
 
         <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">리뷰 게시판</h1>
+                        <h1 class="page-title">자유게시판</h1>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End page header -->
 
-            <form method="POST" action="{% url 'board:update' update.id  %}">
-                {% csrf_token %}
-                <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="blog-lst col-md-8" style="margin:0 200px;">
-                                <section id="id-100" class="post single">
-                                  <div class="post-header single">
-                                                <div class="">
-                                                    <input type="text" name="title1" value="{{ update.title }}">
-                                                    <div class="title-line wow fadeInRight animated"></div>
-                                                </div>
-                                                <div class="row wow fadeInRight animated">
-                                                    <div class="col-sm-6">
-                                                        <p class="author-category">
-                                                            By <a>{{ update.author_id }}</a>
-                                                        </p>
-                                                    </div>
-                                                <div class="col-sm-6 right" >
-                                                    <p class="date-comments">
-                                                        <a href="single.html"><i class="fa fa-calendar-o"></i> June 20, 2013</a>
-                                                        <a href="single.html"><i class="fa fa-comment-o"></i> 8 Comments</a>
-                                                    </p>
-                                                </div>
-                                                </div>
-                                              </div>
-                                                <div id="post-content" class="post-body single wow fadeInLeft animated" style="height:200px; background-color:#fff">
-                                                    <div style="padding:15px 15px;">
-                                                        <input type="text" name="content1" value="{{ update.content }}">
-                                                    </div>
-                                                </div>
-                                            <div class="post-footer single wow fadeInBottum animated">
-                                                <div class="left_area">
-                                                    <button type="submit" class="btn">글쓰기</button>
-                                                        {{ result.id }}
-                                                <!---- 삭제 버튼 ---->
-                                                    <button type="submit" class="btn">수정</button>
-                                                    <button class="btn btn-light"><a href="{% url 'board:board' %}">취소</a></button>
-                                                </div>
-                                                <ul class="pager">
-                                                    <li class="next disabled"></li>
-                                                </ul>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
+        <form method="POST" action="{% url 'board:update' board.id  %}">
+            {% csrf_token %}
+                <div class="container">
+                    <div class="row" >
+                        <div class="col-md-12" style="margin-top: 30px;">
+                            <div class="col-sm-12">
+                                <h4><b>제목</b></h4>
+                                <input type="hidden">
+                                <input type="text" name="title" class="form-control" value="{{ board.title }}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <h5>작성내용</h5>
+                                    <textarea rows="15" type="text" name="content" class="form-control">{{ board.content }}</textarea>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                        </section>
-
+                        <div class="col-md-12" style="float:right; padding:0 10px; 10px; 0;">
+                            <div class="col-sm-12" style="float:right; padding-bottom:15px;">
+                                <button style="float:right;" class="btn btn-default btn-border" type="submit" value="글쓰기" >글쓰기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
           <!-- Footer area-->
         <div class="footer-area">
             <div class=" footer">

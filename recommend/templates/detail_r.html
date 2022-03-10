@@ -144,12 +144,14 @@
                                 </ul>
                             </div>
                     </section>
+
                         <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
                         <hr>
                         {% if comments %}
                         {% for comment in comments %}
 
                         <section id="comments" class="comments wow fadeInRight animated">
+
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
                                     <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
@@ -162,9 +164,11 @@
                                     </p>
                                 </div>
                             </div>
+
                             <hr>
                             {% endfor %}
                             {% endif %}
+
                             <!-- /.comment -->
                         </section>
                         <section id="comment-form" class="add-comments">
@@ -186,14 +190,17 @@
                                 {% else %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
 
+
                                         <div class="col-sm-12">
                                             <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
                                                 <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                             </div>
+
                                         </div>
                                 </div>
                                 {% endif %}
+
 
                             </form>
                     </section>
