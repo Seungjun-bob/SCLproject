@@ -144,6 +144,11 @@ def comment_create(request, library_id):
             pass
     print(library_detail.lbrry_seq_no)
 
+    LibraryComment(comment=content,
+                     user_id=author,
+                     library_id=library_id,
+                   score=score,
+                   ).save()
 
     Library(avg=avg,
             lbrry_name=library_detail.lbrry_name,
@@ -159,11 +164,7 @@ def comment_create(request, library_id):
             ydnts=library_detail.ydnts,
             lbrry_seq_no=library_detail.lbrry_seq_no).save()
 
-    LibraryComment(comment=content,
-                     user_id=author,
-                     library_id=library_id,
-                   score=score,
-                   ).save()
+
 
     return redirect('libsearch:detail_l', library_id)
 
@@ -172,5 +173,28 @@ def comment_delete(request, library_id, comment_id):
     print(library_id, comment_id)
     comment = LibraryComment.objects.get(id=comment_id)
     comment.delete()
+    library_detail = get_object_or_404(Library, lbrry_seq_no=library_id)
+    comments = library_detail.librarycomment_set.order_by('-id').all()
+    sum = 0
+    avg = 0
+    for comment in comments:
+        sum += comment.score
+        if comments != 0:
+            avg = (sum / len(comments)) * 20
+        else:
+            pass
+    Library(avg=avg,
+            lbrry_name=library_detail.lbrry_name,
+            gu_code=library_detail.gu_code,
+            code_value=library_detail.code_value,
+            adres=library_detail.adres,
+            tel_no=library_detail.tel_no,
+            hmpg_url=library_detail.hmpg_url,
+            op_time=library_detail.op_time,
+            fdrm_close_date=library_detail.fdrm_close_date,
+            lbrry_se_name=library_detail.lbrry_se_name,
+            xcnts=library_detail.xcnts,
+            ydnts=library_detail.ydnts,
+            lbrry_seq_no=library_detail.lbrry_seq_no).save()
     return redirect('libsearch:detail_l', library_id)
 
