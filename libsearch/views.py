@@ -32,23 +32,15 @@ def libsearch(request):
                                     code_value__icontains=library_gu,
                                     lbrry_name__icontains=search)
 
-
     # paging
-
-
     page = request.GET.get('page', '1')
 
     paginator = Paginator(total, 5)
     page_obj = paginator.get_page(page)
 
+
     # gmap
     ydnts = []; xcnts = []; hname = []; adres = []; hmpg_url = [];
-
-    for i in hmpg_url:
-        if i == None:
-            print(i)
-
-
 
     for data in total:
             xcnts.append(data.xcnts)
@@ -57,15 +49,16 @@ def libsearch(request):
             adres.append(data.adres)
             hmpg_url.append(data.hmpg_url)
     num = len(total)
+
     # 결과 출력
     context = {
-        'total' : page_obj,
-        'num' : num, # 도서관 검색 출력 수
-        'xcnts' : xcnts,
-        'ydnts' : ydnts,
-        'hname' : hname,
-        'adres' : adres,
-        'hmpg_url' : hmpg_url,
+        'total': page_obj,
+        'num': num, # 도서관 검색 출력 수
+        'xcnts': xcnts,
+        'ydnts': ydnts,
+        'hname': hname,
+        'adres': adres,
+        'hmpg_url': hmpg_url
     }
     return render(request, 'libsearch.html', context)
 
