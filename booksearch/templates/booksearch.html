@@ -89,7 +89,8 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">도서 검색</h1>
+                        <h1 class="page-title" style="font-weight:bold;">도서 검색</h1>
+                        <p style="color:#808080;margin-left:18px;">서울특별시교육청 소속 도서관의 보유 도서 정보를 보여드립니다.</p>
                     </div>
                 </div>
             </div>
@@ -130,11 +131,11 @@
                         {% if total %}
                             {% for list in total %}
                             <div class="col-md-12">
-                                <h4>{{ list.title | default_if_none:''}}</h4>
-                                    저자 : {{ list.author  | default_if_none:''}} <br>
+                                <h4 style="color:#AC7D0C;font-weight:bold;">{{ list.title | default_if_none:''}}</h4>
+                                    저자 : <strong>{{ list.author  | default_if_none:''}}</strong> <br>
                                     청구기호 : {{ list.callno  | default_if_none:''}} <br>
                                     ISBN  : {{ list.isbn  | default_if_none:''}} <br>
-                                    소장도서관  : {{ list.libname  | default_if_none:''}} <br>
+                                    소장도서관  : <strong>서울특별시교육청 {{ list.libname  | default_if_none:''}}</strong> <br>
                                     발행년도  : {{ list.pubyear  | default_if_none:''}} <br>
                                     출판사  : {{ list.publisher  | default_if_none:''}} <br>
                                     <hr>
