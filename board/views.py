@@ -3,7 +3,7 @@ from django.views.decorators.http import require_http_methods, require_GET
 from django.core.paginator import Paginator
 from .models import Board, Comment
 from django.contrib.auth.models import User
-import time
+from django.db.models import Q
 
 def board(request) :
     # 데이터를 최신순으로 정렬
@@ -13,16 +13,30 @@ def board(request) :
     # 유저 정보
     users = User.objects.all()
 
+    # 검색 처리
+    search = request.GET.get('search', "")
+    type = request.GET.get('type', "")
+
+    if type == "전체":
+        total = boards.filter(Q(title__icontains=search) | Q(content__icontains=search))
+    elif type == "제목":
+        total = boards.filter(title__icontains=search)
+    elif type == "내용":
+        total = boards.filter(content__icontains=search)
+    else:
+        total = boards.filter(Q(title__icontains=search) | Q(content__icontains=search))
+
     # 페이징 처리리
     page = request.GET.get('page', 1)
-    paginator = Paginator(boards, 15)
-    vlistpage = paginator.get_page(page)
+    paginator = Paginator(total, 15)
+    listpage = paginator.get_page(page)
 
     context = {
-        "vlist": vlistpage,
+        "total": listpage,
         "comment": comment,
         "users": users,
     }
+
     return render(request, 'board.html', context)
 
 def submit(request):
@@ -52,7 +66,7 @@ def result(request, board_id):
     user_name = User.objects.get(pk=user_pk).last_name
 
     comments = board.comment_set.order_by('-id').all()
-    print(comments)
+
     context = {
         'board': board,
         'user_name': user_name,
@@ -60,8 +74,25 @@ def result(request, board_id):
     }
     return render(request, 'result.html', context)
 
+def delete(request, board_id):
+    board = Board.objects.get(id=board_id)
+    board.delete()
+    return redirect('/board/')
 
-# @require_http_methods(['POST'])
+def edit(request, board_id):
+    board = Board.objects.get(id=board_id)
+    context = {'board': board}
+    return render(request, 'update.html', context)
+
+def update(request, board_id):
+    title = request.POST.get('title')
+    content = request.POST.get('content')
+    board = Board.objects.get(id=board_id)
+    board.title = title
+    board.content = content
+    board.save()
+    return redirect('board:result', board_id)
+
 
 def comment_create(request, board_id):
 
@@ -75,42 +106,15 @@ def comment_create(request, board_id):
 
     return redirect('board:result', board_id)
 
-
-def delete(request, board_id):
-    board = Board.objects.get(id=board_id)
-    board.delete()
-    return redirect('/board/')
-
-
 def comment_delete(request, board_id, comment_id):
-    print(board_id, comment_id)
     comment = Comment.objects.get(id=comment_id)
     comment.delete()
     return redirect('board:result', board_id)
 
 
-def update(request, board_id):
-    update = get_object_or_404(Board, id=board_id)
-    if request.method == 'GET':
-        context = {'update': update}
-        return render(request, 'update.html', context)
-    else:
-        id = update.id
-        update.title = request.POST['title1']
-        update.content = request.POST['content1']
-        author_id = 1
-        date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-        Board(title=update.title,
-              content=update.content,
-              author_id=author_id,
-              Cdate=date,
-              Udate=date,
-              id=id).save()
-        return redirect('board:result', board_id)
-
-
 def my_review(request):
     return render(request, 'my_review.html')
+
 
 
 

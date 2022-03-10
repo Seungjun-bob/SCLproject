@@ -111,7 +111,7 @@
                 <div class="row  pr0 padding-top-40 properties-page">
                     <div class="col-md-12 padding-bottom-40 large-search">
                         <div class="search-form wow pulse">
-                            <form action="" class=" form-inline">
+                            <form action="" class="form-inline">
                                 <div class="col-md-12">
                                     <div class="col-md-4">
                                         <input type="text" class="form-control" placeholder="도서관명" name="search">
@@ -155,7 +155,6 @@
                                             <option>종로구</option>
                                             <option>중구</option>
                                             <option>중랑구</option>
-
                                         </select>
                                     </div>
                                         <div class="row">
@@ -180,6 +179,7 @@
         <div class="col-md-4" style="overflow-y:scroll; height:700px;">
             {% for list in total %}
                 <div class="col-md-12">
+                    {{ list.xcnts }}
                     <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
                             <span class="star-rating">
                             <span style="width:{{ list.avg }}%"></span>
@@ -200,7 +200,7 @@
             {% endfor %}
             </div>
         <div class="col-md-8">
-            <div id="libmap"></div>
+            <div id="map" style="width:100%; height:700px;"></div>
         </div>
     </div>
                     <!--        페이징작업            -->
@@ -301,18 +301,19 @@
         <script src="{% static 'assets/js/main.js' %}"></script>
 
             <!--        gmaps        -->
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U&callback=initialize"></script>
-<!--        <script src="{% static 'assets/js/gmaps-lib.js' %}"></script>-->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U&callback=initMap"></script>
+<!--        <script src="{% static 'assets/js/gmapslib.js' %}"></script>-->
+        <script src="{% static 'assets/js/main.js' %}"></script>
         <script>
-            var map;
-            var xcntss = {{ xcnts }};
-            var ydntss = {{ ydnts }};
-            {% autoescape off %}
-            var hname = {{ hname }};
-            var adres = {{ adres }};
-            {% endautoescape %}
+        var map;
+        var xcntss = {{ xcnts }};
+        var ydntss = {{ ydnts }};
+        {% autoescape off %}
+        var hname = {{ hname }};
+        var adres = {{ adres }};
+        {% endautoescape %}
 
-            function average(array) {
+        function average(array) {
                 var sum = 0.0;
                       for (var i = 0; i < array.length; i++)
                         sum += array[i];
@@ -322,89 +323,84 @@
             var avgxc = average(xcntss);
             var avgyd = average(ydntss);
             var old;
-            if(isNaN(avgxc)) {
-                avgxc = 37.501256
-                avgyd = 127.039581
-            }
 
+        function initMap() {
+        var location = { lat: avgxc, lng: avgyd };
+        var lennum = hname.length;
 
-            function initialize() {
-                var location = { lat: avgxc, lng: avgyd };
-                var lennum = hname.length;
+        if(isNaN(avgxc)){
+            map = new google.maps.Map(
+            document.getElementById('map'), {
+              zoom: 16,
+              center: { lat: 37.501256, lng: 127.039581 }
+            });
+        }
 
-                map = new google.maps.Map(
-                document.getElementById('libmap'), {
-                  zoom: 13,
-                  center: { lat: avgxc, lag: avgyd}
+        else if(lennum<=5){
+            map = new google.maps.Map(
+            document.getElementById('map'), {
+              zoom: 16,
+              center: location
+            });
+        }
+        else if(lennum<=15){
+            map = new google.maps.Map(
+            document.getElementById('map'), {
+              zoom: 13,
+              center: location
+            });
+        }
+        else if(lennum<=100){
+            map = new google.maps.Map(
+            document.getElementById('map'), {
+              zoom: 13,
+              center: location
+            });
+        }
+        else if(100<lennum){
+            map = new google.maps.Map(
+            document.getElementById('map'), {
+              zoom: 11,
+              center: location
+            });
+        }
+
+            var marker = new Array(lennum);
+            var infowindow = new Array(lennum);
+            for(i=0; i<lennum; i++) {
+                var location = {lat: parseFloat(xcntss[i]), lng: parseFloat(ydntss[i])}
+                var contentString = "<h4 style='color:#AC7D0C; font-weight:bold;'>" + hname[i] + "</h4>" +
+                                    "<hr style='margin:0 0 5px 0;'>" +
+                                    "<p style='padding:0 0 0 0; font-weight:bold;'>" + "주소" + "</p>" +
+                                    "<p style='padding:0 0 0 0;'>" + adres[i] + "</p>"
+                var myinfowindow = new google.maps.InfoWindow({
+                    content: contentString
                 });
-
-                if(lennum<=5){
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 16,
-                      center: location
-                    });
-                }
-                else if(lennum<=15){
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 13,
-                      center: location
-                    });
-                }
-                else if(lennum<=100){
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 13,
-                      center: location
-                    });
-                }
-                else if(100<lennum){
-                    map = new google.maps.Map(
-                    document.getElementById('libmap'), {
-                      zoom: 11,
-                      center: location
-                    });
-                }
-
-
-                var marker = new Array(lennum);
-                var infowindow = new Array(lennum);
-                for(i=0; i<lennum; i++) {
-                    var location = {lat: xcntss[i], lng: ydntss[i]}
-                    var contentString = "<h4 style='color:#AC7D0C; font-weight:bold;'>" + hname[i] + "</h4>" +
-                                        "<hr style='margin:0 0 5px 0;'>" +
-                                        "<p style='padding:0 0 0 0; font-weight:bold;'>" + "주소" + "</p>" +
-                                        "<p style='padding:0 0 0 0;'>" + adres[i] + "</p>"
-                    var myinfowindow = new google.maps.InfoWindow({
-			            content: contentString
-			        });
-
-                    var marker = new google.maps.Marker({
-                                            position: location,
-                                            map: map,
-                                            infowindow: myinfowindow
-                    });
-                    marker.addListener('click', function() {      // 클릭 이벤트 발생 시 지도와 마커 출력
-                       if(old)
-                       old.close();
-                       this.infowindow.open(map, this);
-                       map.setCenter(this.getPosition());
-                       map.setZoom(15);
-                       old = this.infowindow;
-                    });
-                };
+                var marker = new google.maps.Marker({
+                                        position: location,
+                                        map: map,
+                                        infowindow: myinfowindow
+                });
+                marker.addListener('click', function() {      // 클릭 이벤트 발생 시 지도와 마커 출력
+                   if(old)
+                   old.close();
+                   this.infowindow.open(map, this);
+                   map.setCenter(this.getPosition());
+                   map.setZoom(15);
+                   old = this.infowindow;
+                });
+            };
             };
             function mypanTo(x, y) {
                 var latLng = new google.maps.LatLng(x, y);
                 map.panTo(latLng);
-
+                console.log(latLng)
                 return false;
 
             }
 
 
+
         </script>
-        <script src="{% static 'assets/js/main.js' %}"></script>
     </body>
 </html>
