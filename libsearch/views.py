@@ -52,7 +52,7 @@ def libsearch(request):
 
     # 결과 출력
     context = {
-        'total': page_obj,
+        'total': total,
         'num': num, # 도서관 검색 출력 수
         'xcnts': xcnts,
         'ydnts': ydnts,
