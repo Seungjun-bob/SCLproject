@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>SCL | Library Search</title>
+        <meta name="description" content="Seoul city library">
+        <meta name="author" content="TeamSCL">
+        <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'assets/css/Gothicfont.css' %}">
+        <!-- font end -->
+
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+        <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}">
+        <link href="{% static 'assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/fonts/icon-7-stroke/css/helper.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/icheck.min_all.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/price-range.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/owl.theme.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/owl.transitions.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+        <!--        gmaps        -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U"></script>
+
+        <style>
+            h2 {font-size:15px}
+            .star-rating {width:304px;}
+            .star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(/static/assets/img/star.png)no-repeat;}
+            .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;}
+        </style>
+
+    </head>
+    <body>
+
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- Body content -->
+
+        <nav class="navbar navbar-default ">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse yamm" id="navigation">
+                    <div class="button navbar-right">
+                        {% if user.is_authenticated %}
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
+                        {% else %}
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
+                        {% endif %}
+                    </div>
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a href="{% url 'index:about' %}" class="">About</a>
+                        </li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a class="active" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                        </li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s">
+                            <a href="{% url 'board:board' %}">게시판</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <!-- End of nav bar -->
+
+        <div class="page-head">
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">도서관 검색</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
+            <div class="container">
+                <div class="row">
+                    <section id="id-100" class="post single">
+                        <div class="post-header single">
+                            <div class="">
+                                <h2 class="wow fadeInLeft animated">{{ detail_library.lbrry_name }}</h2>
+                                <div class="title-line wow fadeInRight animated"></div>
+                            </div>
+                            <div class="row wow fadeInRight animated">
+                                <div class="col-sm-6">
+                                    <p class="author-category" style="margin-left:10px;">
+                                        도서관 구분 : <span style="color:#AC7D0C;font-weight:bold;">{{ detail_library.lbrry_se_name }}</span>&nbsp;&nbsp;&nbsp;&nbsp;자치구 :<span style="color:#AC7D0C;font-weight:bold;">{{ detail_library.code_value }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="image wow fadeInRight animated">
+                                    <div id="map" style="width:43%; height:500px; float:left; margin-left:30px;"></div>
+                                    <script>
+                                        var dom = document.getElementById("map");
+                                        		if(dom) {
+			                                        var latlng = { lat: {{ detail_library.xcnts }}, lng: {{ detail_library.ydnts }}}
+			                                        var map = new google.maps.Map(dom, {
+            	                                    center: latlng,
+            	                                    zoom: 16
+          	                                        });
+			                                        var marker = new google.maps.Marker({position: latlng, map: map});
+
+			                                        var contentString = "<h5 style='color:#AC7D0C;font-weight:bold;'>{{ detail_library.lbrry_name }}</h5>"
+			                                                            + "<hr style='margin:0 0 5px 0;'><p style='padding:0 0 0 0; font-weight:bold;'>주소</p>"
+			                                                            + "{{ detail_library.adres | default_if_none:''}}"
+
+			                                        var infowindow = new google.maps.InfoWindow({
+			                                        content: contentString
+			                                        });
+
+			                                        marker.addListener('click', function() {
+			                                        infowindow.open(map, marker);
+			                                        });
+                                                }
+                                    </script>
+                                    <div class="board_detail book" style="float:right; margin-top:50px;">
+                                        <p>{{ detail_library.lbrry_name }}</p>
+                                        <ul>
+                                            <li><span style="font-weight:bold">오픈시간 :&nbsp;</span>{{ detail_library.op_time | default_if_none:''}}</li>
+                                            <li><span style="font-weight:bold">휴관일 :&nbsp;</span>{{ detail_library.fdrm_close_date | default_if_none:''}}</li>
+                                            <li><span style="font-weight:bold">전화번호 :&nbsp;</span>{{ detail_library.tel_no | default_if_none:''}}</li>
+                                            <li><span style="font-weight:bold">홈페이지 :&nbsp;</span><a href="{{ detail_library.hmpg_url }}" target="_blank">{{ detail_library.hmpg_url | default_if_none:''}}</a></li>
+                                            <li><span style="font-weight:bold">주소 :&nbsp;</span>{{ detail_library.adres | default_if_none:''}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                <hr>
+
+<h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
+                        <hr>
+                        {% if comments %}
+                        {% for comment in comments %}
+
+                        <section id="comments" class="comments wow fadeInRight animated">
+                            <div class="row comment">
+                                <div class="col-sm-9 col-md-8">
+                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
+                                    <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
+                                    {% if comment.score == 0 %}
+                                    <span class="star-rating">
+                                    <span style="width:0%"></span>
+                                    </span>
+                                    {% elif comment.score == 1 %}
+                                    <span class="star-rating">
+                                    <span style="width:20%"></span>
+                                    </span>
+                                    {% elif comment.score == 2 %}
+                                    <span class="star-rating">
+                                    <span style="width:40%"></span>
+                                    </span>
+                                    {% elif comment.score == 3 %}
+                                    <span class="star-rating">
+                                    <span style="width:60%"></span>
+                                    </span>
+                                    {% elif comment.score == 4 %}
+                                    <span class="star-rating">
+                                    <span style="width:80%"></span>
+                                    </span>
+                                    {% elif comment.score == 5 %}
+                                    <span class="star-rating">
+                                    <span style="width:100%"></span>
+                                    </span>
+                                    {% endif %}
+                                    <form action="{% url 'libsearch:comment_delete' library_detail.lbrry_seq_no comment.id %}" method="post">
+                                        {% csrf_token %}
+                                        <span>{{ comment.date }}&nbsp&nbsp</span>
+                                        <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                    </form>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                            {% endfor %}
+                            {% endif %}
+                            <!-- /.comment -->
+                        </section>
+                        <div class="post-footer single wow fadeInBottum animated">
+                                <ul class="pager">
+                                    <li class="next disabled"><a href="{% url 'libsearch:libsearch' %}">목록<i class=""></i> </a></li>
+                                </ul>
+                            </div>
+                    </section>
+                        <section id="comment-form" class="add-comments">
+
+                            {% if user.is_authenticated %}
+
+                            <form method="POST" action="{% url 'libsearch:comment_create' library_detail.lbrry_seq_no %}">
+                                {% csrf_token %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
+                                            </div>
+                                            <div class="col-xs-2" style="margin-top:63px;">
+                                            <div class="form-group">
+                                                <select class="selectpicker show-tick form-control" title="평점" name="score" required>
+                                                    <option>1</option>점
+                                                    <option>2</option>점
+                                                    <option>3</option>점
+                                                    <option>4</option>점
+                                                    <option>5</option>점
+                                                </select>
+                                            </div>
+                                        </div>
+                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
+                                        </div>
+                                </div>
+                                {% else %}
+                                    <div class="row comment-rounded wow fadeInLeft animated">
+
+                                        <div class="col-sm-12">
+                                            <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="form-group">
+                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                            </div>
+                                        </div>
+                                </div>
+                                {% endif %}
+
+                            </form>
+                    </section>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+          <!-- Footer area-->
+            <div class="footer-area">
+
+                <div class=" footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
+                                <div class="single-footer">
+                                    <h4 style="text-align: center">About us </h4>
+                                    <div class="footer-title-line"></div>
+                                    <span style="margin: 20px">권진우</span>
+                                    <span style="margin: 20px">강승준</span>
+                                    <span style="margin: 20px">성민아</span>
+                                    <span style="margin: 20px">조민석</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-copy text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="pull-left">
+                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
+
+        <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap-hover-dropdown.js' %}"></script>
+
+        <script src="{% static 'assets/js/easypiechart.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.easypiechart.min.js' %}"></script>
+
+        <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'assets/js/wow.js' %}"></script>
+
+        <script src="{% static 'assets/js/icheck.min.js' %}"></script>
+        <script src="{% static 'assets/js/price-range.js' %}"></script>
+
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+        <script>
+
+        </script>
+
+    </body>
+</html>

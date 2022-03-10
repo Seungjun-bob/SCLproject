@@ -1,10 +1,10 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html class="no-js">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SCL | Recommend</title>
+        <title>SCL | Review Board</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -41,23 +41,6 @@
         </div>
         <!-- Body content -->
 
-
-        <div class="header-connect">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5 col-sm-8  col-xs-12">
-                        <div class="header-half header-call">
-                            <p>
-                                <span><i class="pe-7s-call"></i> +1 234 567 7890</span>
-                                <span><i class="pe-7s-mail"></i> your@company.com</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End top header -->
-
         <nav class="navbar navbar-default ">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -68,13 +51,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt=""></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                          {% if user.is_authenticated %}
+                                               {% if user.is_authenticated %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
                         {% else %}
@@ -93,68 +76,57 @@
                             <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board:board' %}">게시판</a>
-                        </li>
+
+                            <a class="active" href="{% url 'board:board' %}">게시판</a>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
+
         <!-- End of nav bar -->
 
         <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">도서 추천</h1>
+                        <h1 class="page-title">자유게시판</h1>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End page header -->
 
-        <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
-            <div class="container">
-                <div class="row">
-                    <div class="blog-lst col-md-12 pl0">
-                        <section class="post">
-                            <div class="text-center padding-b-50">
-                                <h2 class="wow fadeInLeft animated">추천 도서</h2>
-                                <div class="title-line wow fadeInRight animated"></div>
+        <form method="POST" action="{% url 'board:update' board.id  %}">
+            {% csrf_token %}
+                <div class="container">
+                    <div class="row" >
+                        <div class="col-md-12" style="margin-top: 30px;">
+                            <div class="col-sm-12">
+                                <h4><b>제목</b></h4>
+                                <input type="hidden">
+                                <input type="text" name="title" class="form-control" value="{{ board.title }}">
                             </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p class="author-category">
-                                        추천 도서 1
-                                    </p>
-                                </div>
-                                <div class="col-sm-6 right" >
-                                    <p class="date-comments">
-                                        <i class="fa fa-calendar-o"></i> June 20, 2013
-                                        <i class="fa fa-comment-o"></i> 8 Comments
-                                    </p>
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <h5>작성내용</h5>
+                                    <textarea rows="15" type="text" name="content" class="form-control">{{ board.content }}</textarea>
                                 </div>
                             </div>
-                            <p class="intro">사서 추천 글</p>
-                            <p class="read-more">
-                                <a href=" /recommend " class="btn btn-default btn-border">목록</a>
-                            </p>
-                        </section>
+                        </div>
+                        <div class="col-md-12" style="float:right; padding:0 10px; 10px; 0;">
+                            <div class="col-sm-12" style="float:right; padding-bottom:15px;">
+                                <button style="float:right;" class="btn btn-default btn-border" type="submit" value="글쓰기" >글쓰기</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
+            </form>
           <!-- Footer area-->
-       <div class="footer-area">
-
+        <div class="footer-area">
             <div class=" footer">
                 <div class="container">
                     <div class="row">
@@ -166,7 +138,6 @@
                                 <span style="margin: 20px">강승준</span>
                                 <span style="margin: 20px">성민아</span>
                                 <span style="margin: 20px">조민석</span>
-
                             </div>
                         </div>
                     </div>
@@ -182,11 +153,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-        </div>
-
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
         <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
@@ -204,6 +171,15 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
+    <script>
+        function ConfirmDelete(){
+            var x = confirm("정말 삭제 하시겠습니까?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+    </script>
 
     </body>
 </html>

@@ -76,7 +76,7 @@
                             <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board:board' %}">게시판</a>
+                            <a class="active" href="{% url 'board:board' %}">게시판</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -88,127 +88,79 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">리뷰 작성 페이지</h1>
+                        <h1 class="page-title">자유게시판</h1>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End page header -->
 
-        <!-- property area -->
-        <div class="content-area submit-property" style="background-color: #FCFCFC;">&nbsp;
-            <div class="container">
-                <div class="clearfix" >
-                    <div class="wizard-container">
 
-                        <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                            <div class="wizard-header">
-                                    <h3>
-                                        <b>리뷰를 작성하세요</b> <br>
-                                        <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
-                                    </h3>
-                                </div>
-                            <form action="" method="">
-
-                                <div class="tab-content">
-                                    <!--  End step 1 -->
-
-                                    <div>
-                                        <h4 class="info-text"> How much your Property is Beautiful ? </h4>
-                                            <form action="" class=" form-inline">
-                                                <div class="col-md-12">
-                                                    <div class="col-md-4">
-                                                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="도서관명을 입력하세요">
-                                                            <option>New york, CA</option>
-                                                            <option>Paris</option>
-                                                            <option>Casablanca</option>
-                                                            <option>Tokyo</option>
-                                                            <option>Marraekch</option>
-                                                            <option>kyoto , shibua</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>Property Description :</label>
-                                                        <textarea rows="10" name="discrition" class="form-control" ></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 padding-top-15">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label for="property-geo">Min bed :</label>
-                                                        <input type="text" class="span2" value="" data-slider-min="0"
-                                                               data-slider-max="600" data-slider-step="5"
-                                                               data-slider-value="[250,450]" id="min-bed" ><br />
-                                                        <b class="pull-left color">1</b>
-                                                        <b class="pull-right color">120</b>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane" id="step3">
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                             <div class="form-group">
-                                                             <label for="property-images">Chose Images :</label>
-                                                            <input class="form-control" type="file" id="property-images">
-                                                            <p class="help-block">Select multipel images for your property .</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                <div class="container">
+                        <div class="row">
+                            <form action="{% url 'board:submit' %}" method="post">
+                                {% csrf_token %}
+                                    <div class="col-md-12" style="margin-top: 30px;">
+                                        <div class="col-sm-12">
+                                            <h4><b>제목</b></h4>
+                                            <input type="hidden">
+                                            <input type="text" class="form-control" name="title" required>
                                         </div>
+                                    </div>
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h5>작성내용</h5>
+                                            <textarea rows="15" name="content" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="float:right; padding:0 10px; 10px; 0;">
+                                    <div class="col-sm-12" style="float:right; padding-bottom:30px;">
+                                        <button style="float:right" class="btn btn-default btn-border" type="submit" value="글쓰기" >글쓰기</button>
 
-                                <div class="wizard-footer">
-                                    <div class="pull-right">
-                                        <input type='button' class='btn btn-finish btn-primary ' name='finish' value='Finish' />
                                     </div>
                                 </div>
                             </form>
                         </div>
+                </div>
+                <!-- End submit form -->
 
-                        <!-- End submit form -->
+
+
+
+    <!-- Footer area-->
+    <div class="footer-area">
+
+    <div class=" footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
+                    <div class="single-footer">
+                        <h4 style="text-align: center">About us </h4>
+                        <div class="footer-title-line"></div>
+                        <span style="margin: 20px">권진우</span>
+                        <span style="margin: 20px">강승준</span>
+                        <span style="margin: 20px">성민아</span>
+                        <span style="margin: 20px">조민석</span>
+
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-           <!-- Footer area-->
-        <div class="footer-area">
+    </div>
 
-            <div class=" footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
-                            <div class="single-footer">
-                                <h4 style="text-align: center">About us </h4>
-                                <div class="footer-title-line"></div>
-                                <span style="margin: 20px">권진우</span>
-                                <span style="margin: 20px">강승준</span>
-                                <span style="margin: 20px">성민아</span>
-                                <span style="margin: 20px">조민석</span>
-
-                            </div>
-                        </div>
-                    </div>
+    <div class="footer-copy text-center">
+        <div class="container">
+            <div class="row">
+                <div class="pull-left">
+                    <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                 </div>
             </div>
-
-            <div class="footer-copy text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="pull-left">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
+    </div>
+
+</div>
 
         <script src="{% static 'assets/js/vendor/modernizr-2.6.2.min.js' %}"></script>
         <script src="{% static 'assets/js//jquery-1.10.2.min.js' %}"></script>

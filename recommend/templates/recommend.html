@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load recommend_extras %}
 {% load static %}
 <html class="no-js">
     <head>
@@ -35,27 +36,10 @@
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     </head>
     <body>
-
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
         <!-- Body content -->
-
-        <div class="header-connect">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5 col-sm-8  col-xs-12">
-                        <div class="header-half header-call">
-                            <p>
-                                <span><i class="pe-7s-call"></i> +1 234 567 7890</span>
-                                <span><i class="pe-7s-mail"></i> your@company.com</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End top header -->
 
         <nav class="navbar navbar-default ">
             <div class="container">
@@ -89,7 +73,7 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                            <a class="active" href="{% url 'recommend:recommend' %}" >도서 추천</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a href="{% url 'board:board' %}">게시판</a>
@@ -113,41 +97,153 @@
 
         <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row">
-                    <div class="blog-lst col-md-12 pl0">
-                        <section class="post">
-                            <div class="text-center padding-b-50">
-                                <h2 class="wow fadeInLeft animated">추천 도서</h2>
-                                <div class="title-line wow fadeInRight animated"></div>
+                    <div class="row">
+                        <div class="col-md-12 padding-bottom-40 large-search">
+                            <div class="search-form wow pulse">
+                                <form action="" class=" form-inline">
+                                    <div class="col-md-12">
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="도서명" name="search">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select id="lunchBegins" class="selectpicker" title="추천 연도" name="recomYear">
+                                                <option>전체</option>
+                                                <option>2022</option>
+                                                <option>2021</option>
+                                                <option>2020</option>
+                                                <option>2019</option>
+                                                <option>2018</option>
+                                                <option>2016</option>
+                                                <option>2015</option>
+                                                <option>2014</option>
+                                                <option>2013</option>
+                                                <option>2012</option>
+                                                <option>2011</option>
+                                                <option>2010</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select id="basic" class="selectpicker show-tick form-control" title="추천 월" style="overflow: scroll;" name="recomMonth">
+                                                <option>전체</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                                <option>10</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="selectpicker show-tick form-control" title="분류" style="overflow: scroll;" name="drCodeName">
+                                                <option>전체</option>
+                                                <option>어문학</option>
+                                                <option>인문과학</option>
+                                                <option>사회과학</option>
+                                                <option>자연과학</option>
+                                            </select>
+                                        </div>
+                                            <div class="row">
+     <!--                                                수정 확인용-->
+                                                <div id=search_button class="col-xs-12">
+                                                    <input class="button btn largesearch-btn" value="검 색" type="submit">
+                                                </div>
+                                            </div>
+                                    </div>
+                                </form>
                             </div>
+                        </div>
+                            <s class="post">
+                                <section class="post">
+                                    <div class="col-md-12 clear ">
+                                        <div class="row">
+                                            <div class="col-md-12 left" style="">
+                                                <p class="date-comments">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총 <i class="fa fa-comment-o">{{ num }}</i>건
+                                                </p>
+                                            </div>
+                                        </div>
+                                        {% if total %}
+                                            {% for list in total %}
+                                            {{ list.id }}
+                                            <div id="list-type" class="proerty-th-list">
+                                                <div class="col-sm-6 col-md-3 p0">
+                                                    <div class="box-two proerty-item">
+                                                        <div class="item-thumb">
+                                                            <a href="detail_r/{{ list.id }}" ><img src="{{ list.recomfilepath | default_if_none:'' }}"></a>
+                                                        </div>
+                                                        <div class="item-entry overflow">
+                                                            <h5><a href="detail_r/{{ list.id }}"> {{ list.recomtitle | default_if_none:'' }} </a></h5>
+                                                            <div class="dot-hr"></div>
+                                                            <span class="pull-left"><b> 저자 :</b> {{ list.recomauthor | default_if_none:'' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                            <span class="pull-left"><b> 출판사 :</b> {{list.recompublisher | default_if_none:''}}</span>
+                                                            <p style="display: none;">{{ list.recomcontens | default_if_none:'' }}</p>
+                                                            <a href="{% url 'recommend:detail_r' list.id %}" class="btn btn-default btn-border" style="float : right;">상세</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <div style="height:300px;"></div>
+                                        {% endif %}
+                                    </div>
+                                </section>
+                            </s>
 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p class="author-category">
-                                        추천 도서 1
-                                    </p>
-                                </div>
-                        <section class="post">
-                             <div class="row">
-                                <div class="col-sm-6 right" >
-                                    <p class="date-comments">
-                                        <i class="fa fa-calendar-o"></i> June 20, 2013&nbsp
-                                        <i class="fa fa-comment-o"></i>Comments
-                                    </p>
+
+                            <!--        페이징작업            -->
+                        <div class="col-md-12 clear">
+                            <div class="pull-right">
+                                <div class="pagination">
+                                    <ul>
+                                    {% if total.has_previous %}
+                                    <li>
+                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
+                                    </li>
+                                    {% else %}
+                                    <li>
+                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                                    </li>
+                                    {% endif %}
+                                    <!-- 페이지 번호 -->
+                                    {% for page_number in total.paginator.page_range %}
+                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
+                                        {% if page_number == total.number %}
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                                        </li>
+                                        {% else %}
+                                        <li>
+                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                                        </li>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    <!-- 다음 페이지 -->
+                                    {% if total.has_next %}
+                                        <li>
+                                            <a class="page-link" href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                                        </li>
+                                    {% endif %}
+                                <!-- 페이징처리 끝 -->
+                                </ul>
                                 </div>
                             </div>
-                            <div class="image wow fadeInLeft animated">
-                                    <img src="assets/img/blog2.jpg" class="img-responsive" alt="Example blog post alt">
-                            </div>
-                            <p class="intro">사서 추천 글</p>
-                            <p class="read-more">
-                                <a href="detail" class="btn btn-default btn-border">읽기</a>
-                            </p>
+                        </div>
+                        <!-- 페이징처리 끝 -->
                     </div>
                 </div>
-
-            </div>
-        </div>
 
      <!-- Footer area-->
         <div class="footer-area">
@@ -199,6 +295,5 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
-
     </body>
 </html>
