@@ -8,7 +8,6 @@ from django.db.models import Q
 def board(request) :
     # 데이터를 최신순으로 정렬
     boards = Board.objects.all().order_by('-id')
-    comment = Comment.objects.all()
 
     # 유저 정보
     users = User.objects.all()
@@ -33,7 +32,6 @@ def board(request) :
 
     context = {
         "total": listpage,
-        "comment": comment,
         "users": users,
     }
 

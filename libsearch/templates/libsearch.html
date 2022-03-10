@@ -180,9 +180,7 @@
             {% for list in total %}
                 <div class="col-md-12">
                     <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
-                            <span class="star-rating">
-                            <span style="width:{{ list.avg }}%"></span>
-                            </span><br>
+                            <span class="star-rating"><span style="width:{{ list.avg }}%"></span></span><span>[{{ list.librarycomment_set.count }}]</span><br>
                     오픈시간 : {{ list.op_time | default_if_none:''}} <br>
                     휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
                     전화번호 : {{ list.tel_no | default_if_none:''}} <br>
