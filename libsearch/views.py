@@ -136,6 +136,7 @@ def comment_create(request, library_id):
             avg = (sum / len(comments)) * 20
         else:
             pass
+
     library.avg = avg
     library.save()
 
@@ -150,6 +151,7 @@ def comment_delete(request, library_id, comment_id):
     # comment 삭제
     comment.delete()
 
+
     comments = library.librarycomment_set.order_by('-id').all()
     if comments:
         # avg 값 재 계산
@@ -158,6 +160,7 @@ def comment_delete(request, library_id, comment_id):
         avg = 0
     library.avg = avg
     library.save()
+
 
     return redirect('libsearch:detail_l', library_id)
 

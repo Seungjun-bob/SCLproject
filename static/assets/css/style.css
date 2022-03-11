@@ -909,6 +909,15 @@ label small{
         padding: 10px 20px;
     }
 }
+
+@media (max-width: 992px) {
+        #scl {
+    display:none;
+    }
+}
+
+
+
 .yamm .dropdown.yamm-fw .dropdown-menu {
     left: 0;
     right: 0;
