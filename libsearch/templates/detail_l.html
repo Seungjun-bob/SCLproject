@@ -157,13 +157,11 @@
                                 </div>
                             </div>
                         </div>
-                                <hr>
 
-<h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
-                        <hr>
+                        <h3 class="text-uppercase wow fadeInLeft animated" style="padding-top:50px;"><strong>comments</strong></h3>
                         {% if comments %}
                         {% for comment in comments %}
-
+                        <hr style="margin-top: 10px;margin-bottom: 10px;">
                         <section id="comments" class="comments wow fadeInRight animated">
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
@@ -201,10 +199,8 @@
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                         {% endif %}
                                     </form>
-                                    </p>
                                 </div>
                             </div>
-                            <hr>
                             {% endfor %}
                             {% endif %}
                             <!-- /.comment -->
@@ -241,7 +237,7 @@
                                                 </select>
                                             </div>
 
-                                </div>
+                                        </div>
                                 {% else %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
 
@@ -251,9 +247,9 @@
                                                 <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="3" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                             </div>
                                         </div>
-                                </div>
+                                    </div>
                                 {% endif %}
-
+                                </div>
                             </form>
                     </section>
 
@@ -264,13 +260,12 @@
         </div>
 
           <!-- Footer area-->
-            <div class="footer-area">
-
-                <div class=" footer">
+        <div class="footer-area">
+        <div class=" footer">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                        <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
                                 <div class="footer-title-line"></div>
@@ -282,7 +277,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                            <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
 
                                         <li>
@@ -291,7 +286,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                            <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
 
                                         <li>
@@ -300,7 +295,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                            <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
 
                                         <li>
@@ -309,7 +304,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                            <p style="padding-top:40px;padding-right:40px;">조민석</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -318,18 +313,17 @@
                     </div>
                 </div>
             </div>
-                </div>
-
-                <div class="footer-copy text-center">
-                    <div class="container">
-                        <div class="row">
-                            <div style="text-align:center">
-                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
-                            </div>
+            <div class="footer-copy text-center">
+                <div class="container">
+                    <div class="row">
+                        <div style="text-align:center">
+                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
 
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
