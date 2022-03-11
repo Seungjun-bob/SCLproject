@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.contrib.auth.hashers import check_password
 
 def index(request):
     return render(request, 'index.html')
+
+def about(request):
+    return render(request, 'about.html')
 
 def register(request):
     res_data = None
@@ -20,9 +24,9 @@ def register(request):
             res_data['error']='비밀번호가 다릅니다.'
         else:
             user = User.objects.create_user(username = useremail,
-                            first_name = username,
-                            last_name = usernickname,
-                            password = password)
+                                            first_name = username,
+                                            last_name = usernickname,
+                                            password = password)
             auth.login(request, user)
             return render(request, 'index.html')
     return render(request, 'register.html', res_data)
@@ -47,15 +51,35 @@ def logout(request):
         auth.logout(request)
     return render(request, "index.html")
 
-def only_member(request) :
-    context = None
-    if request.user.is_authenticated:
-        context = {'logineduser': request.user.last_name+request.user.first_name}
-    return render(request, 'member.html', context)
-
-
-def about(request):
-    return render(request, 'about.html')
+def user_del(request):
+    if not request.user.is_authenticated:
+        return redirect('index:index')
+    error = None
+    if request.method == "POST":
+        password = request.POST["password"]
+        re_password = request.POST["re_password"]
+        user = request.user
+        if password == re_password:
+            if check_password(password, user.password):
+                user.delete()
+                return redirect('index:index')
+            else:
+                error = "비밀번호를 확인해주세요."
+    return render(request, 'mypage.html', error)
 
 def changepassword(request):
-    return render(request, 'change_password.html')
+    error = None
+    if request.method == "POST":
+        user = request.user
+        password = request.POST['password']
+        new_password = request.POST['new_password']
+        new_password2 = request.POST['new_password2']
+        if check_password(password, user.password):
+            if new_password == new_password2:
+                user.set_password(new_password)
+                user.save()
+                return redirect('index:login')
+        else:
+            error = '비밀번호를 확인해주세요'
+
+    return render(request, 'mypage.html', error)
