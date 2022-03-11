@@ -36,12 +36,10 @@
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     </head>
     <body>
-
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
         <!-- Body content -->
-
         <nav class="navbar navbar-default ">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,16 +52,15 @@
                     </button>
                     <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                           {% if user.is_authenticated %}
+                       {% if user.is_authenticated %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:mypage' %}'" style="padding: 4% 10px;">회원정보</button>
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'" style="padding: 4% 10px;">로그아웃</button>
-                        {% else %}
+                       {% else %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
-                        {% endif %}
+                       {% endif %}
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
@@ -84,7 +81,6 @@
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
-
         <div class="page-head">
             <div class="container">
                 <div class="row">
@@ -96,7 +92,6 @@
             </div>
         </div>
         <!-- End page header -->
-
         <!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container">
@@ -113,61 +108,52 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control" placeholder="ISBN" name="isbn">
-
                                     </div>
                                         <div class="row">
                                             <div id=search_button class="col-xs-12">
                                                 <input class="button btn largesearch-btn" value="검 색" type="submit">
                                             </div>
                                         </div>
-                                </div>
-
-                                        <!-- End of  -->
-                            </form>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-
                     <div class="col-md-12;">
                         {% if total %}
                             {% for list in total %}
-                            <div class="col-md-6" style="height:270px;">
-                                <h4 style="color:#AC7D0C;font-weight:bold;">{{ list.title | default_if_none:''}}</h4>
-                                    저자 : <strong>{{ list.author  | default_if_none:''}}</strong> <br>
-                                    청구기호 : {{ list.callno  | default_if_none:''}} <br>
-                                    ISBN  : {{ list.isbn  | default_if_none:''}} <br>
-                                    소장도서관  : <strong>서울특별시교육청 {{ list.libname  | default_if_none:''}}</strong> <br>
-                                    발행년도  : {{ list.pubyear  | default_if_none:''}} <br>
-                                    출판사  : {{ list.publisher  | default_if_none:''}} <br>
+                                <div class="col-md-6" style="height:270px;">
+                                    <h4 style="color:#AC7D0C;font-weight:bold;">{{ list.title | default_if_none:''}}</h4>
+                                        저자 : <strong>{{ list.author  | default_if_none:''}}</strong> <br>
+                                        청구기호 : {{ list.callno  | default_if_none:''}} <br>
+                                        ISBN  : {{ list.isbn  | default_if_none:''}} <br>
+                                        소장도서관  : <strong>서울특별시교육청 {{ list.libname  | default_if_none:''}}</strong> <br>
+                                        발행년도  : {{ list.pubyear  | default_if_none:''}} <br>
+                                        출판사  : {{ list.publisher  | default_if_none:''}} <br>
                                     <hr>
-                            </div>
+                                </div>
                             {% endfor %}
                         {% else %}
                             <div style="height:400px;"></div>
                         {% endif %}
-
                     </div>
-
                     <!--        페이징작업            -->
                     <div class="col-md-12 clear">
                         <div class="pull-right">
                             <div class="pagination">
                                 <ul>
                                     {% if total.has_previous %}
-                                    <li>
-                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
-
-                                    </li>
+                                        <li>
+                                            <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
+                                        </li>
                                     {% else %}
-                                    <li>
-                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-                                    </li>
+                                        <li>
+                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                                        </li>
                                     {% endif %}
                                     <!-- 페이지 번호 -->
-
                                     {% for page_number in total.paginator.page_range %}
                                     {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
                                         {% if page_number == total.number %}
-
                                         <li class="page-item active" aria-current="page">
                                             <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
                                         </li>
@@ -182,15 +168,12 @@
                                     {% if total.has_next %}
                                         <li>
                                             <a class="page-link" href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
-
                                         </li>
                                     {% else %}
                                         <li>
                                             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
                                         </li>
                                     {% endif %}
-                                <!-- 페이징처리 끝 -->
-
                                 </ul>
                             </div>
                         </div>
@@ -199,16 +182,11 @@
             </div>
         </div>
 
-                </div>
-            </div>
-        </div>
-
-          <!-- Footer area-->
-        <div class="footer-area">
+        <!-- Footer area-->
+    <div class="footer-area">
         <div class=" footer">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
@@ -223,7 +201,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/DNCEDNCE" target="_blank">
@@ -232,7 +209,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/Minah-Seong" target="_blank">
@@ -241,7 +217,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/he63" target="_blank">
@@ -252,12 +227,11 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="footer-copy text-center">
+                <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
                         <div style="text-align:center">
@@ -267,7 +241,7 @@
                 </div>
             </div>
         </div>
-
+    </div>
 
        <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
         <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>

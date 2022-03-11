@@ -35,7 +35,6 @@
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     </head>
     <body>
-
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
@@ -53,7 +52,6 @@
                     </button>
                     <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <span>안녕하세요 {{ user.id }}님 {{ user.username }}</span>
@@ -81,7 +79,6 @@
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
-
         <!--Welcome area -->
         <div style="width:100% height:100%" class="Welcome-area">
             <div class="container">
@@ -97,8 +94,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="col-md-5 col-sm-12 col-xs-12">
                             <div  class="welcome_services wow fadeInLeft" data-wow-delay="0.3s" data-wow-offset="100">
@@ -119,12 +114,9 @@
                                             <h4>도서 검색</h4>
                                         </div>
                                     </div>
-
-
                                     <div class="col-xs-12 text-center">
                                         <i class="welcome-circle"></i>
                                     </div>
-
                                     <div class="col-xs-6 m-padding">
                                         <div class="welcome-estate">
                                             <div class="welcome-icon" onClick="location.href='{% url 'recommend:recommend' %}'">
@@ -142,8 +134,7 @@
                                         </div>
                                     </div>
                                 </div>
-                        </div>
-
+                            </div>
 
                     <div class="col-md-12 large-search2" >
                         <div class="search-form wow fadeInLeft" data-wow-delay="0.3s" data-wow-offset="100">
@@ -191,7 +182,6 @@
                                             <option>종로구</option>
                                             <option>중구</option>
                                             <option>중랑구</option>
-
                                         </select>
                                     </div>
                                         <div class="row">
@@ -200,21 +190,20 @@
                                             </div>
                                         </div>
                                     </div>
-                            </form>
-                        </div>
-                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
           <!-- Footer area-->
         <div class="footer-area">
         <div class=" footer">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
@@ -229,7 +218,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/DNCEDNCE" target="_blank">
@@ -238,7 +226,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/Minah-Seong" target="_blank">
@@ -247,7 +234,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/he63" target="_blank">
@@ -258,16 +244,16 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="footer-copy text-center">
-                <div class="container">
-                    <div class="row">
-                        <div style="text-align:center">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e" target="_blank">TeamSCL</a> , All rights reserved 2022  </span>
+                <div class="footer-copy text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div style="text-align:center">
+                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e" target="_blank">TeamSCL</a> , All rights reserved 2022  </span>
+                            </div>
                         </div>
                     </div>
                 </div>
