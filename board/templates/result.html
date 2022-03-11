@@ -102,10 +102,10 @@
                         <section id="id-100" class="post single" style="">
                             <div class="post-header single">
                                 <div>
-                                    <h3 class="wow fadeInLeft animated"><strong>{{ board.title }}</strong></h3>
-                                    <div class="title-line wow fadeInRight animated"></div>
+                                    <h3><strong>{{ board.title }}</strong></h3>
+                                    <div class="title-line"></div>
                                 </div>
-                                <div class="row wow fadeInRight animated">
+                                <div class="row">
                                     <div class="col-sm-8">
                                         <p class="author-category">
                                             By <a>{{ user_name }}</a>
@@ -116,7 +116,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="post-content" class="post-body single wow fadeInLeft animated" style="background-color:#fff">
+                            <div id="post-content" class="post-body single" style="background-color:#fff">
                                 <div style="padding:15px 15px;">
                                     <p>{{ board.content }}</p>
                                     {% if board.photo %}
@@ -128,10 +128,10 @@
                             </div>
                         </section>
                         <div style="width:97%; margin-left:auto; margin-right:auto;">
-                        <h3 class="text-uppercase wow fadeInLeft animated"><strong>comments</strong></h3>
+                        <h3 class="text-uppercase"><strong>comments</strong></h3>
                         {% for comment in comments %}
                         <hr style="margin-top: 10px;margin-bottom: 10px;">
-                            <section id="comments" class="comments wow fadeInRight animated">
+                            <section id="comments" class="comments">
                                 <div class="row comment">
                                     <div class="col-sm-9 col-md-8">
                                         <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
@@ -155,9 +155,9 @@
                             {% if user.is_authenticated %}
                                 <form method="POST" action="{% url 'board:comment_create' board.id %}" style="width:97%; margin-left:auto; margin-right:auto;">
                                     {% csrf_token %}
-                                        <div class="row comment-rounded wow fadeInLeft animated">
+                                        <div class="row comment-rounded">
                                             <div class="col-sm-12" style="padding: 10px 12px 12px 15px;">
-                                                <h5 class="text-uppercase wow fadeInLeft animated"><strong>{{ user.last_name }}</strong></h5>
+                                                <h5 class="text-uppercase"><strong>{{ user.last_name }}</strong></h5>
                                                 <div class="form-group">
                                                     <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
                                                 </div>
@@ -165,9 +165,9 @@
                                             </div>
                                     </div>
                                     {% else %}
-                                        <div class="row comment-rounded wow fadeInLeft animated">
+                                        <div class="row comment-rounded">
                                             <div class="col-sm-12">
-                                                <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                                <h5 style="font-size:14px;" class="text-uppercase">{{ user.last_name }}</h5>
                                                 <div class="form-group">
                                                     <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible; resize:None;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                                 </div>
@@ -176,7 +176,7 @@
                                     {% endif %}
                                 </form>
 
-                             <div class="post-footer single wow fadeInBottum animated">
+                             <div class="post-footer single">
                                 <div class="left_area">
                                     <button onclick="location.href='{% url 'board:submit' %}'" style="float:left;" type="button" class="btn">글쓰기</button>
                                     {% if request.user == board.author %}

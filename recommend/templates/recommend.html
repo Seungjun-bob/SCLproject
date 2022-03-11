@@ -176,7 +176,7 @@
                                                             <a href="detail_r/{{ list.id }}" ><img src="{{ list.recomfilepath | default_if_none:'' }}"></a>
                                                         </div>
                                                         <div class="item-entry overflow">
-                                                            <h5><a href="detail_r/{{ list.id }}"> {{ list.recomtitle | default_if_none:'' }} </a></h5>
+                                                            <h5><a href="{% url 'recommend:detail_r' list.id %}"> {{ list.recomtitle | default_if_none:'' }} </a></h5>
                                                             <div class="dot-hr"></div>
                                                             <span class="pull-left"><b> 저자 :</b> {{ list.recomauthor | default_if_none:'' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                                             <span class="pull-left"><b> 출판사 :</b> {{list.recompublisher | default_if_none:''}}</span>
