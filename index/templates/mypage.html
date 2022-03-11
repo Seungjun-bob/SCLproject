@@ -57,7 +57,7 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         {% if user.is_authenticated %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:mypage' %}'">작성글</button>
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
                         {% else %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
@@ -97,86 +97,81 @@
 
         <!-- register-area -->
 
-<div class="register-area" style="background-color: rgb(249, 249, 249);">
-    <div class="container">
-        <div class="col-md-6">
-            <div class="box-for overflow">
-                <div class="col-md-12 col-xs-12 register-blocks">
-                    <h2>회원탈퇴</h2>
-                        <div class="row">
-                            <div class="col-md-12 text-center" style="color:red">
-                                {{error}}
+        <div class="register-area" style="background-color: rgb(249, 249, 249);">
+            <div class="container">
+                <div class="col-md-6">
+                    <div class="box-for overflow">
+                        <div class="col-md-12 col-xs-12 register-blocks">
+                            <h2>비밀번호 변경</h2>
+                            <div class="row">
+                                <div class="col-md-12 text-center" style="color:red">
+                                   {{error}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
                             <div class="col-md-12">
-                                <form method="POST" action="{% url 'index:user_del' %}">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="password">비밀번호</label>
-                                        <input type="password" class="form-control" placeholder="비밀번호" name="password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="re_password">비밀번호 확인</label>
-                                        <input type="password" class="form-control" placeholder="비밀번호 확인" name="re_password" required>
-                                    </div>
-                                    <button style="float:right;" type="submit" class="btn btn-primary" onclick="return ConfirmDelete()">회원탈퇴</button>
-                                </form>
+                                <div class="col-md-12">
+                                            <form method="POST" action="{% url 'index:update' %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="password">현재 비밀번호</label>
+                                            <input type="password" class="form-control" placeholder="이름" name="password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="new_password">변경할 비밀번호</label>
+                                            <input type="password" class="form-control" placeholder="비밀번호" name="new_password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="new_password2">변경할 비밀번호 확인</label>
+                                            <input type="password" class="form-control" placeholder="비밀번호 확인" name="new_password2" required>
+                                        </div>
+                                        <button style="float:right;" type="submit" class="btn btn-primary">비밀번호 변경</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box-for overflow">
+                        <div class="col-md-12 col-xs-12 register-blocks">
+                            <h2>회원탈퇴</h2>
+                            <div class="row">
+                                <div class="col-md-12 text-center" style="color:red">
+                                    {{error}}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <form method="POST" action="{% url 'index:mypage' %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="password">비밀번호</label>
+                                            <input type="password" class="form-control" placeholder="비밀번호" name="password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="re_password">비밀번호 확인</label>
+                                            <input type="password" class="form-control" placeholder="비밀번호 확인" name="re_password" required>
+                                        </div>
+                                        <button style="float:right;" type="submit" class="btn btn-primary" onclick="return ConfirmDelete()">회원탈퇴</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-    <div class="box-for overflow">
-
- <div class="col-md-12 col-xs-12 register-blocks">
-                    <h2>비밀번호 변경</h2>
-                        <div class="row">
-                            <div class="col-md-12 text-center" style="color:red">
-                                {{error}}
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-12">
-                                        <form method="POST" action="{% url 'index:update' %}">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="password">현재 비밀번호</label>
-                                        <input type="password" class="form-control" placeholder="이름" name="password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="new_password">변경할 비밀번호</label>
-                                        <input type="password" class="form-control" placeholder="비밀번호" name="new_password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="new_password2">변경할 비밀번호 확인</label>
-                                        <input type="password" class="form-control" placeholder="비밀번호 확인" name="new_password2" required>
-                                    </div>
-                                    <button style="float:right;" type="submit" class="btn btn-primary">비밀번호 변경</button>
-                                </form>
-
-
-
-    </div>
-</div>
- </div>
-    </div>
-        </div>
-    </div>
-</div>
 
 
 
 
           <!-- Footer area-->
         <div class="footer-area">
-
-            <div class=" footer">
+        <div class=" footer">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                        <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
                                 <div class="footer-title-line"></div>
@@ -188,7 +183,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                            <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
 
                                         <li>
@@ -197,7 +192,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                            <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
 
                                         <li>
@@ -206,7 +201,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                            <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
 
                                         <li>
@@ -215,7 +210,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                            <p style="padding-top:40px;padding-right:40px;">조민석</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -224,8 +219,6 @@
                     </div>
                 </div>
             </div>
-            </div>
-
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
@@ -236,6 +229,7 @@
                 </div>
             </div>
         </div>
+
 
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
