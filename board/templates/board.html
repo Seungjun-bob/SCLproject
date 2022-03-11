@@ -146,9 +146,7 @@
                     <div class="col-md-9  pr0 padding-top-40 properties-page" style="height:800px;">
                         <div class="col-md-12 clear">
                             <button class="btn btn-primary" onclick="location.href='{% url 'board:submit' %}'" style="padding:5px 15px; float:right;">작성하기</button>
-
                         </div>
-
 
                 <!-------------- Board ---------------->
 
@@ -167,17 +165,15 @@
                             <tbody>
 
                             {% for dlist in total %}
-                            <tr>
-
-                                <th scope="row" width="5%">{{ dlist.id }}</th>
-                                    <td style="table-layout:fixed; width:55%">
-                                        <a style="color:black; font-weight:normal;" href='/board/{{ dlist.id }}'>{{ dlist.title }} [{{ dlist.comment_set.count }}]</a></td>
-                                    <td style="table-layout:fixed; text-align:center;" width="10%">{{ dlist.author.last_name }}</td>
-                                    <td style="table-layout:fixed; text-align:center;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
-                                    <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.view_cnt }}</td>
-                                    <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.like }}</td>
-
-                            </tr>
+                                <tr>
+                                    <th scope="row" width="5%">{{ dlist.id }}</th>
+                                        <td style="table-layout:fixed; width:55%">
+                                            <a style="color:black; font-weight:normal;" href='/board/{{ dlist.id }}'>{{ dlist.title }} [{{ dlist.comment_set.count }}]</a></td>
+                                        <td style="table-layout:fixed; text-align:center;" width="10%">{{ dlist.author.last_name }}</td>
+                                        <td style="table-layout:fixed; text-align:center;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
+                                        <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.view_cnt }}</td>
+                                        <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.like }}</td>
+                                </tr>
                             {% endfor %}
                             </tbody>
                         </table>
@@ -188,27 +184,27 @@
                             <div class="pagination">
                                 <ul>
                                     {% if total.has_previous %}
-                                    <li>
-                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
-                                    </li>
+                                        <li>
+                                            <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
+                                        </li>
                                     {% else %}
-                                    <li>
-                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-                                    </li>
+                                        <li>
+                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                                        </li>
                                     {% endif %}
                                     <!-- 페이지 번호 -->
                                     {% for page_number in total.paginator.page_range %}
-                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
-                                        {% if page_number == total.number %}
-                                        <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                                        </li>
-                                        {% else %}
-                                        <li>
-                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                                        </li>
+                                        {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
+                                            {% if page_number == total.number %}
+                                                <li class="page-item active" aria-current="page">
+                                                    <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                                                </li>
+                                            {% else %}
+                                                <li>
+                                                    <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
+                                                </li>
+                                            {% endif %}
                                         {% endif %}
-                                    {% endif %}
                                     {% endfor %}
                                     <!-- 다음 페이지 -->
                                     {% if total.has_next %}
@@ -220,22 +216,19 @@
                                             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
                                         </li>
                                     {% endif %}
-
                                 </ul>
                             </div>
                         </div>
                         <!-- 페이징처리 끝 -->
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
 
           <!-- Footer area-->
         <div class="footer-area">
         <div class=" footer">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
@@ -279,11 +272,10 @@
                                         </li>
                                     </ul>
                                 </div>
+                           </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">

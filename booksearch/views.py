@@ -15,21 +15,12 @@ def booksearch(request):
         total = book_info.filter(title__icontains=title,
                                  author__icontains=author,
                                  isbn__icontains=isbn)
-
-
     # paging
-    # num = total.count()
     page = request.GET.get('page', '1')
-
     paginator = Paginator(total, 10)
     page_obj = paginator.get_page(page)
 
-
-
     # 결과 출력
-    context = {
-        'total' : page_obj,
-    }
-
+    context = {'total': page_obj}
     return render(request, 'booksearch.html', context)
 

@@ -54,9 +54,13 @@ def logout(request):
     return render(request, "index.html")
 
 def mypage(request):
+    if not request.user.is_authenticated:
+        return redirect('index:login')
     return render(request, "mypage.html")
 
 def user_del(request):
+    if not request.user.is_authenticated:
+        return redirect('index:login')
     error = None
     if request.method == "POST":
         user = request.user
@@ -74,6 +78,8 @@ def user_del(request):
     return render(request, 'mypage.html', context)
 
 def changepassword(request):
+    if not request.user.is_authenticated:
+        return redirect('index:login')
     error = None
     if request.method == "POST":
         user = request.user
