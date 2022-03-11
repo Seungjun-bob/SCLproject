@@ -2319,7 +2319,7 @@ Welcom
 ======================================*/
 .Welcome-area{
     background: url("../../assets/img/bg-img.jpg") no-repeat scroll center top;
-    height: 73vh;
+    height: 74vh;
     background-size : cover;
     position: relative;
 
@@ -2954,10 +2954,8 @@ background: rgba(255, 255, 255, 0.89) none repeat scroll 0% 0%;
 } 
 .footer-copy{
     background: rgba(213, 213, 213, 0.9) none repeat scroll 0% 0%;
-    border-top: 0.051px solid rgba(162, 162, 162, 0.46);
     padding-bottom: 0px;
-    padding-bottom: 7px;
-padding-top: 7px;
+
 }
 .single-footer{
     margin-top: 2px;

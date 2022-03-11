@@ -7,7 +7,7 @@
         <title>SCL | Register</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
-        <meta name="keyword" conatent="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+        <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- font -->
@@ -35,7 +35,6 @@
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     </head>
     <body>
-
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
@@ -88,7 +87,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title" style="font-weight:bold;">비밀번호 변경</h1>
+                        <h1 class="page-title" style="font-weight:bold;">회원탈퇴</h1>
                     </div>
                 </div>
             </div>
@@ -100,39 +99,76 @@
 
 <div class="register-area" style="background-color: rgb(249, 249, 249);">
     <div class="container">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="box-for overflow">
                 <div class="col-md-12 col-xs-12 register-blocks">
-                    <h2>비밀번호 변경</h2>
+                    <h2>회원탈퇴</h2>
                         <div class="row">
                             <div class="col-md-12 text-center" style="color:red">
+                                {{error}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="col-md-12">
-                                <form method="POST" action="{% url 'index:update' %}">
+                                <form method="POST" action="{% url 'index:user_del' %}">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <label for="password">현재 비밀번호</label>
-                                        <input type="password" class="form-control" placeholder="현재 비밀번호" name="pass" required>
+                                        <label for="password">비밀번호</label>
+                                        <input type="password" class="form-control" placeholder="비밀번호" name="password" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="new_password">변경할 비밀번호</label>
-                                        <input type="password" class="form-control" placeholder="변경할 비밀번호" name="new_password" required>
+                                        <label for="re_password">비밀번호 확인</label>
+                                        <input type="password" class="form-control" placeholder="비밀번호 확인" name="re_password" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="new_password2">변경할 비밀번호 확인</label>
-                                        <input type="password" class="form-control" placeholder="변경할 비밀번호 확인" name="new_password2" required>
-                                    </div>
-                                    <button style="float:right;" type="submit" class="btn btn-primary">비밀번호 변경</button>
+                                    <button style="float:right;" type="submit" class="btn btn-primary" onclick="return ConfirmDelete()">회원탈퇴</button>
                                 </form>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+    <div class="box-for overflow">
+
+ <div class="col-md-12 col-xs-12 register-blocks">
+                    <h2>비밀번호 변경</h2>
+                        <div class="row">
+                            <div class="col-md-12 text-center" style="color:red">
+                                {{error}}
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                        <form method="POST" action="{% url 'index:update' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="password">현재 비밀번호</label>
+                                        <input type="password" class="form-control" placeholder="이름" name="password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new_password">변경할 비밀번호</label>
+                                        <input type="password" class="form-control" placeholder="비밀번호" name="new_password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new_password2">변경할 비밀번호 확인</label>
+                                        <input type="password" class="form-control" placeholder="비밀번호 확인" name="new_password2" required>
+                                    </div>
+                                    <button style="float:right;" type="submit" class="btn btn-primary">비밀번호 변경</button>
+                                </form>
+
+
+
     </div>
+</div>
+ </div>
+    </div>
+        </div>
+    </div>
+</div>
+
+
+
+
           <!-- Footer area-->
         <div class="footer-area">
 
@@ -154,6 +190,7 @@
                                             </div>
                                             <p style="padding-top:50px;padding-right:15px;">강승준</p>
                                         </li>
+
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/DNCEDNCE">
@@ -162,6 +199,7 @@
                                             </div>
                                             <p style="padding-top:50px;padding-right:15px;">권진우</p>
                                         </li>
+
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/Minah-Seong">
@@ -170,6 +208,7 @@
                                             </div>
                                             <p style="padding-top:50px;padding-right:15px;">성민아</p>
                                         </li>
+
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/he63">
@@ -180,11 +219,12 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
                         </div>
+
                     </div>
                 </div>
-                </div>
+            </div>
+            </div>
 
             <div class="footer-copy text-center">
                 <div class="container">
@@ -214,6 +254,15 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
+        <script>
+        function ConfirmDelete(){
+            var x = confirm("정말 삭제 하시겠습니까?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+        </script>
 
     </body>
 </html>

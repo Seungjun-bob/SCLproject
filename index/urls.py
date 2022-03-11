@@ -4,11 +4,11 @@ from django.contrib.auth import views as auth_views
 
 app_name = 'index'
 urlpatterns = [
-    path('register/', views.register, name='register'),
+    path('', views.index, name='index'),
     path('about/', views.about, name='about'),
-    path('changepassword/', views.changepassword, name='changepassword'),
+    path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
-    path('', views.index, name='index'),
-    path('update/', views.changepassword, name='update'),
-    ]
+    path('mypage/', views.user_del, name='user_del'),
+    path('mypage/', views.changepassword, name='update'),
+]
