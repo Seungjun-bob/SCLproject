@@ -24,9 +24,9 @@ def register(request):
             res_data['error']='비밀번호가 다릅니다.'
         else:
             user = User.objects.create_user(username = useremail,
-                            first_name = username,
-                            last_name = usernickname,
-                            password = password)
+                                            first_name = username,
+                                            last_name = usernickname,
+                                            password = password)
             auth.login(request, user)
             return render(request, 'index.html')
     return render(request, 'register.html', res_data)
@@ -53,8 +53,8 @@ def logout(request):
 
 def user_del(request):
     if not request.user.is_authenticated:
-
         return redirect('index:index')
+    error = None
     if request.method == "POST":
         password = request.POST["password"]
         re_password = request.POST["re_password"]
@@ -63,10 +63,12 @@ def user_del(request):
             if check_password(password, user.password):
                 user.delete()
                 return redirect('index:index')
-    context = {'error': "비밀번호를 확인해주세요."}
-    return render(request, 'user_del.html', context)
+            else:
+                error = "비밀번호를 확인해주세요."
+    return render(request, 'mypage.html', error)
 
 def changepassword(request):
+    error = None
     if request.method == "POST":
         user = request.user
         password = request.POST['password']
@@ -77,8 +79,7 @@ def changepassword(request):
                 user.set_password(new_password)
                 user.save()
                 return redirect('index:login')
-            else:
-                '변경할 비밀번호가 일치하지 않습니다.'
-    else:
-        '현재 비밀번호가 일치하지 않습니다.'
-    return redirect('index:user_del')
+        else:
+            error = '비밀번호를 확인해주세요'
+
+    return render(request, 'mypage.html', error)
