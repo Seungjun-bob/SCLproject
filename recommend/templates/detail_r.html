@@ -142,17 +142,16 @@
 
                         <div class="post-footer single wow fadeInBottum animated">
                                 <ul class="pager">
-                                    <li class="next disabled"><a href="{% url 'recommend:recommend' %}">목록<i class=""></i> </a></li>
+                                    <li class="next disabled"><a href="{% url 'recommend:recommend' %}" style="padding: 12px 15px;border-radius:2px;">목록</a></li>
                                 </ul>
                             </div>
                         </div>
                     </section>
                         <div class="col-md-12" style="padding:0 50px 40px 50px;">
-                        <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
-                        <hr>
+                        <h3 class="text-uppercase wow fadeInLeft animated"><strong>comments</strong></h3>
                         {% if comments %}
                         {% for comment in comments %}
-
+                        <hr style="margin-top: 10px;margin-bottom: 10px;">
                         <section id="comments" class="comments wow fadeInRight animated">
 
                             <div class="row comment">
@@ -166,11 +165,10 @@
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                         {% endif %}
                                     </form>
-                                    </p>
                                 </div>
                             </div>
 
-                            <hr>
+
                             {% endfor %}
                             {% endif %}
 
@@ -184,8 +182,8 @@
                                 {% csrf_token %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
 
-                                        <div class="col-sm-12">
-                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                        <div class="col-sm-12" style="padding: 10px 12px 12px 15px;">
+                                            <h5 class="text-uppercase wow fadeInLeft animated"><strong>{{ user.last_name }}</strong></h5>
                                             <div class="form-group">
                                                 <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
                                             </div>
@@ -196,7 +194,7 @@
                                     <div class="row comment-rounded wow fadeInLeft animated">
 
 
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-12" style="padding: 10px 15px 15px 20px;">
                                             <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
                                                 <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
@@ -218,13 +216,12 @@
         </div>
 
           <!-- Footer area-->
-            <div class="footer-area">
-
-                <div class=" footer">
+        <div class="footer-area">
+        <div class=" footer">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                        <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
                                 <div class="footer-title-line"></div>
@@ -236,7 +233,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                            <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
 
                                         <li>
@@ -245,7 +242,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                            <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
 
                                         <li>
@@ -254,7 +251,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                            <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
 
                                         <li>
@@ -263,7 +260,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                            <p style="padding-top:40px;padding-right:40px;">조민석</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -272,18 +269,17 @@
                     </div>
                 </div>
             </div>
-                </div>
-
-                <div class="footer-copy text-center">
-                    <div class="container">
-                        <div class="row">
-                            <div style="text-align:center">
-                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
-                            </div>
+            <div class="footer-copy text-center">
+                <div class="container">
+                    <div class="row">
+                        <div style="text-align:center">
+                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
 
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
