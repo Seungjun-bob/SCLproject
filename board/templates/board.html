@@ -59,8 +59,8 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         {% if user.is_authenticated %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:mypage' %}'">작성글</button>
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:mypage' %}'" style="padding: 4% 10px;">회원정보</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'" style="padding: 4% 10px;">로그아웃</button>
                         {% else %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
                         {% endif %}
@@ -244,7 +244,7 @@
                                     <ul class="footer-blog">
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/Seungjun-bob/">
+                                                <a href="https://github.com/Seungjun-bob/" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
@@ -253,7 +253,7 @@
 
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/DNCEDNCE">
+                                                <a href="https://github.com/DNCEDNCE" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
@@ -262,7 +262,7 @@
 
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/Minah-Seong">
+                                                <a href="https://github.com/Minah-Seong" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
@@ -271,7 +271,7 @@
 
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/he63">
+                                                <a href="https://github.com/he63" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
@@ -288,7 +288,7 @@
                 <div class="container">
                     <div class="row">
                         <div style="text-align:center">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e" target="_blank">TeamSCL</a> , All rights reserved 2022  </span>
                         </div>
                     </div>
                 </div>
