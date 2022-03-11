@@ -45,12 +45,10 @@
 
     </head>
     <body>
-
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
         <!-- Body content -->
-
         <nav class="navbar navbar-default ">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -63,7 +61,6 @@
                     </button>
                     <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
@@ -93,7 +90,6 @@
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
-
         <div class="page-head">
             <div class="container">
                 <div class="row">
@@ -105,7 +101,6 @@
             </div>
         </div>
         <!-- End page header -->
-
         <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
                 <div class="row rounded" style="padding:40px 40px;">
@@ -157,7 +152,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <h3 class="text-uppercase wow fadeInLeft animated" style="padding-top:50px;"><strong>comments</strong></h3>
                         {% if comments %}
                         {% for comment in comments %}
@@ -213,13 +207,10 @@
                             </div>
                     </section>
                         <section id="comment-form" class="add-comments">
-
                             {% if user.is_authenticated %}
-
-                            <form method="POST" action="{% url 'libsearch:comment_create' library_detail.lbrry_seq_no %}">
-                                {% csrf_token %}
+                                <form method="POST" action="{% url 'libsearch:comment_create' library_detail.lbrry_seq_no %}">
+                                    {% csrf_token %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
-
                                         <div class="col-sm-12">
                                             <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
@@ -237,35 +228,29 @@
                                                     <option>5</option>점
                                                 </select>
                                             </div>
-
                                         </div>
-                                {% else %}
-                                    <div class="row comment-rounded wow fadeInLeft animated">
-
-                                        <div class="col-sm-12">
-                                            <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
-                                            <div class="form-group">
-                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible; resize:none;" id="comment" rows="3" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                    {% else %}
+                                        <div class="row comment-rounded wow fadeInLeft animated">
+                                            <div class="col-sm-12">
+                                                <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                                <div class="form-group">
+                                                    <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible; resize:none;" id="comment" rows="3" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                                </div>
                                             </div>
                                         </div>
+                                    {% endif %}
                                     </div>
-                                {% endif %}
-                                </div>
-                            </form>
-                    </section>
-
+                                </form>
+                        </section>
                     </div>
                 </div>
-
             </div>
-        </div>
 
-          <!-- Footer area-->
+        <!-- Footer area-->
         <div class="footer-area">
         <div class=" footer">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
@@ -280,7 +265,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/DNCEDNCE">
@@ -289,7 +273,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/Minah-Seong">
@@ -298,7 +281,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/he63">
@@ -309,22 +291,21 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="footer-copy text-center">
-                <div class="container">
-                    <div class="row">
-                        <div style="text-align:center">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                <div class="footer-copy text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div style="text-align:center">
+                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
