@@ -97,7 +97,7 @@
 
         <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row">
+                <div class="row rounded">
                     <section id="id-100" class="post single">
                         <div class="post-header single">
 <!--                            <div class="">-->
@@ -111,7 +111,7 @@
 <!--                                    </p>-->
 <!--                                </div>-->
 <!--                            </div>-->
-                            <div>
+                            <div style="padding-top:40px;">
                                 <div class="image wow fadeInRight animated" id="detail_image">
                                     <img src="{{ recommend_detail.recomfilepath | default_if_none:'' }}" class="img-responsive" alt="Example blog post alt" >
                                     <div class="board_detail book">
@@ -128,6 +128,7 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12" style="padding:0 50px;">
                                 <hr>
                         <h3 style="padding: 10px 0px 10px 0px;"><strong>책 소개</strong></h3>
                             <div id="post-content" class="post-body single wow fadeInLeft animated">
@@ -144,8 +145,9 @@
                                     <li class="next disabled"><a href="{% url 'recommend:recommend' %}">목록<i class=""></i> </a></li>
                                 </ul>
                             </div>
+                        </div>
                     </section>
-
+                        <div class="col-md-12" style="padding:0 50px 40px 50px;">
                         <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
                         <hr>
                         {% if comments %}
@@ -207,6 +209,7 @@
 
                             </form>
                     </section>
+                    </div>
 
                     </div>
                 </div>
