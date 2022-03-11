@@ -10,6 +10,8 @@ def about(request):
     return render(request, 'about.html')
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('index:index')
     res_data = None
     if request.method =='POST':
         useremail = request.POST.get('useremail')
@@ -51,21 +53,25 @@ def logout(request):
         auth.logout(request)
     return render(request, "index.html")
 
+def mypage(request):
+    return render(request, "mypage.html")
+
 def user_del(request):
-    if not request.user.is_authenticated:
-        return redirect('index:index')
     error = None
     if request.method == "POST":
+        user = request.user
         password = request.POST["password"]
         re_password = request.POST["re_password"]
-        user = request.user
+        error = {}
+        print(password, re_password)
         if password == re_password:
             if check_password(password, user.password):
                 user.delete()
                 return redirect('index:index')
-            else:
-                error = "비밀번호를 확인해주세요."
-    return render(request, 'mypage.html', error)
+        else:
+            error = "비밀번호를 확인해주세요."
+    context = {'del_error': error}
+    return render(request, 'mypage.html', context)
 
 def changepassword(request):
     error = None
@@ -74,6 +80,7 @@ def changepassword(request):
         password = request.POST['password']
         new_password = request.POST['new_password']
         new_password2 = request.POST['new_password2']
+        print(new_password)
         if check_password(password, user.password):
             if new_password == new_password2:
                 user.set_password(new_password)
@@ -81,5 +88,5 @@ def changepassword(request):
                 return redirect('index:login')
         else:
             error = '비밀번호를 확인해주세요'
-
-    return render(request, 'mypage.html', error)
+    context = {'pw_error': error}
+    return render(request, 'mypage.html', context)
