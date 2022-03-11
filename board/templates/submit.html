@@ -51,7 +51,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -73,7 +73,7 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="active" href="{% url 'board:board' %}">게시판</a>
@@ -88,7 +88,8 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">자유게시판</h1>
+                        <h1 class="page-title" style="font-weight:bold;">자유게시판</h1>
+                        <p style="color:#808080;margin-left:18px;">도서관과 도서에 관한 자유로운 의견을 남길 수 있습니다.</p>
                     </div>
                 </div>
             </div>
@@ -110,7 +111,7 @@
                                 <div class="col-sm-12">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <h5>작성내용</h5>
+                                            <h5><strong>작성내용</strong></h5>
                                             <textarea rows="15" name="content" class="form-control" required></textarea>
                                         </div>
                                     </div>
@@ -134,26 +135,62 @@
 
     <div class=" footer">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
-                    <div class="single-footer">
-                        <h4 style="text-align: center">About us </h4>
-                        <div class="footer-title-line"></div>
-                        <span style="margin: 20px">권진우</span>
-                        <span style="margin: 20px">강승준</span>
-                        <span style="margin: 20px">성민아</span>
-                        <span style="margin: 20px">조민석</span>
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                            <div class="single-footer">
+                                <h4 style="margin-right:15px;">About US</h4>
+                                <div class="footer-title-line"></div>
+                                <div style="display:table;margin-left:auto;margin-right:auto;">
+                                    <ul class="footer-blog">
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/Seungjun-bob/">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/DNCEDNCE">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/Minah-Seong">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/he63">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                        </div>
 
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <div class="footer-copy text-center">
         <div class="container">
             <div class="row">
-                <div class="pull-left">
+                <div style="text-align:center">
                     <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                 </div>
             </div>

@@ -38,8 +38,8 @@
 
         <style>
             h2 {font-size:15px}
-            .star-rating {width:304px;}
-            .star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(/static/assets/img/star.png)no-repeat;}
+            .star-rating {width:138px;}
+            .star-rating,.star-rating span {display:inline-block; height:25px; overflow:hidden; background:url(/static/assets/img/star_small.png)no-repeat;}
             .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;}
         </style>
 
@@ -61,7 +61,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -83,7 +83,7 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a href="{% url 'board:board' %}">게시판</a>
@@ -98,7 +98,8 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">도서관 검색</h1>
+                        <h1 class="page-title" style="font-weight:bold;">도서관 검색</h1>
+                        <p style="color:#808080;margin-left:18px;">내 주변에 위치한 도서관을 분류에 따라 검색하고 이용자 평점을 조회할 수 있습니다.</p>
                     </div>
                 </div>
             </div>
@@ -107,13 +108,9 @@
 
         <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row">
+                <div class="row rounded" style="padding:40px 40px;">
                     <section id="id-100" class="post single">
                         <div class="post-header single">
-                            <div class="">
-                                <h2 class="wow fadeInLeft animated">{{ detail_library.lbrry_name }}</h2>
-                                <div class="title-line wow fadeInRight animated"></div>
-                            </div>
                             <div class="row wow fadeInRight animated">
                                 <div class="col-sm-6">
                                     <p class="author-category" style="margin-left:10px;">
@@ -170,7 +167,7 @@
                         <section id="comments" class="comments wow fadeInRight animated">
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
-                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ user_name }}</b></h5>
+                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
                                     <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
                                     {% if comment.score == 0 %}
                                     <span class="star-rating">
@@ -199,8 +196,10 @@
                                     {% endif %}
                                     <form action="{% url 'libsearch:comment_delete' library_detail.lbrry_seq_no comment.id %}" method="post">
                                         {% csrf_token %}
-                                        <span>{{ comment.date }}&nbsp&nbsp</span>
+                                        <span>{{ comment.date|date:"Y.m.d H:i" }}&nbsp&nbsp</span>
+                                        {% if request.user == comment.user %}
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                        {% endif %}
                                     </form>
                                     </p>
                                 </div>
@@ -229,9 +228,11 @@
                                             <div class="form-group">
                                                 <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
                                             </div>
-                                            <div class="col-xs-2" style="margin-top:63px;">
-                                            <div class="form-group">
-                                                <select class="selectpicker show-tick form-control" title="평점" name="score" required>
+                                            <div>
+                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 0 5px; height:40px;">등록</button>
+                                            </div>
+                                            <div class="form-group" style="float:right;">
+                                                <select class="selectpicker dropup show-tick form-control" data-dropup-auto="false" title="평점" name="score" required>
                                                     <option>1</option>점
                                                     <option>2</option>점
                                                     <option>3</option>점
@@ -239,9 +240,7 @@
                                                     <option>5</option>점
                                                 </select>
                                             </div>
-                                        </div>
-                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
-                                        </div>
+
                                 </div>
                                 {% else %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
@@ -249,7 +248,7 @@
                                         <div class="col-sm-12">
                                             <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
-                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="3" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                             </div>
                                         </div>
                                 </div>
@@ -268,27 +267,63 @@
             <div class="footer-area">
 
                 <div class=" footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
-                                <div class="single-footer">
-                                    <h4 style="text-align: center">About us </h4>
-                                    <div class="footer-title-line"></div>
-                                    <span style="margin: 20px">권진우</span>
-                                    <span style="margin: 20px">강승준</span>
-                                    <span style="margin: 20px">성민아</span>
-                                    <span style="margin: 20px">조민석</span>
+                <div class="container">
+                    <div class="row">
 
+                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                            <div class="single-footer">
+                                <h4 style="margin-right:15px;">About US</h4>
+                                <div class="footer-title-line"></div>
+                                <div style="display:table;margin-left:auto;margin-right:auto;">
+                                    <ul class="footer-blog">
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/Seungjun-bob/">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/DNCEDNCE">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/Minah-Seong">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/he63">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </div>
                         </div>
+
                     </div>
+                </div>
+            </div>
                 </div>
 
                 <div class="footer-copy text-center">
                     <div class="container">
                         <div class="row">
-                            <div class="pull-left">
+                            <div style="text-align:center">
                                 <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                             </div>
                         </div>

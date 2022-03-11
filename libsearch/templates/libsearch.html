@@ -37,8 +37,8 @@
 
         <style>
             h2 {font-size:15px}
-            .star-rating {width:304px;}
-            .star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(/static/assets/img/star.png)no-repeat;}
+            .star-rating {width:138px;}
+            .star-rating,.star-rating span {display:inline-block; height:25px; overflow:hidden; background:url(/static/assets/img/star_small.png)no-repeat;}
             .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;}
         </style>
 
@@ -61,7 +61,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/scl.png' %}" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -83,7 +83,7 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">도서 추천</a>
+                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a href="{% url 'board:board' %}">게시판</a>
@@ -98,7 +98,8 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">도서관 검색</h1>
+                        <h1 class="page-title" style="font-weight:bold;">도서관 검색</h1>
+                        <p style="color:#808080;margin-left:18px;">내 주변에 위치한 도서관을 분류에 따라 검색하고 이용자 평점을 조회할 수 있습니다.</p>
                     </div>
                 </div>
             </div>
@@ -108,7 +109,7 @@
         <!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container">
-                <div class="row  pr0 padding-top-40 properties-page">
+                <div class="row pr0 padding-top-40 properties-page" style="padding-bottom:50px;">
                     <div class="col-md-12 padding-bottom-40 large-search">
                         <div class="search-form wow pulse">
                             <form action="" class="form-inline">
@@ -176,14 +177,11 @@
         </div>
 
     <div class="=col-md-12">
-        <div class="col-md-4" style="overflow-y:scroll; height:700px;">
+        <div class="col-md-4" style="overflow-y:scroll; height:700px;" id="element_within_div">
             {% for list in total %}
-                <div class="col-md-12">
-                    {{ list.xcnts }}
+                <div class="col-md-12" id="{{ list.lbrry_seq_no }}">
                     <h4><a href="javascript:mypanTo({{ list.xcnts }},{{ list.ydnts }});">{{ list.lbrry_name | default_if_none:''}}</a></h4>
-                            <span class="star-rating">
-                            <span style="width:{{ list.avg }}%"></span>
-                            </span>
+                            <span class="star-rating"><span style="width:{{ list.avg }}%"></span></span><span>[{{ list.librarycomment_set.count }}]</span><br>
                     오픈시간 : {{ list.op_time | default_if_none:''}} <br>
                     휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
                     전화번호 : {{ list.tel_no | default_if_none:''}} <br>
@@ -203,49 +201,6 @@
             <div id="map" style="width:100%; height:700px;"></div>
         </div>
     </div>
-                    <!--        페이징작업            -->
-                    <div class="col-md-12 clear">
-                        <div class="pull-right">
-                            <div class="pagination">
-                                <ul>
-                                    {% if total.has_previous %}
-                                    <li>
-                                        <a class="page-link" href="{% my_url total.previous_page_number 'page' request.GET.urlencode %}">이전</a>
-                                    </li>
-                                    {% else %}
-                                    <li>
-                                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-                                    </li>
-                                    {% endif %}
-                                    <!-- 페이지 번호 -->
-                                    {% for page_number in total.paginator.page_range %}
-                                    {% if page_number >= total.number|add:-3 and page_number <= total.number|add:3 %}
-                                        {% if page_number == total.number %}
-                                        <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                                        </li>
-                                        {% else %}
-                                        <li>
-                                            <a class="page-link" href="{% my_url page_number 'page' request.GET.urlencode %}">{{ page_number }}</a>
-                                        </li>
-                                        {% endif %}
-                                    {% endif %}
-                                    {% endfor %}
-                                    <!-- 다음 페이지 -->
-                                    {% if total.has_next %}
-                                        <li>
-                                            <a class="page-link" href="{% my_url total.next_page_number 'page' request.GET.urlencode %}">다음</a>
-                                        </li>
-                                    {% else %}
-                                        <li>
-                                            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-                                        </li>
-                                    {% endif %}
-                                <!-- 페이징처리 끝 -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -259,25 +214,61 @@
             <div class=" footer">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated" style="text-align: center">
-                            <div class="single-footer">
-                                <h4 style="text-align: center">About us </h4>
-                                <div class="footer-title-line"></div>
-                                <span style="margin: 20px">권진우</span>
-                                <span style="margin: 20px">강승준</span>
-                                <span style="margin: 20px">성민아</span>
-                                <span style="margin: 20px">조민석</span>
 
-                            </div>
+                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                            <div class="single-footer">
+                                <h4 style="margin-right:15px;">About US</h4>
+                                <div class="footer-title-line"></div>
+                                <div style="display:table;margin-left:auto;margin-right:auto;">
+                                    <ul class="footer-blog">
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/Seungjun-bob/">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/DNCEDNCE">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/Minah-Seong">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/he63">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                        </li>
+                                    </ul>
+                                </div>
                         </div>
+
                     </div>
                 </div>
+            </div>
             </div>
 
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
-                        <div class="pull-left">
+                        <div style="text-align:center">
                             <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                         </div>
                     </div>
@@ -311,6 +302,7 @@
         {% autoescape off %}
         var hname = {{ hname }};
         var adres = {{ adres }};
+        var lib_loc = {{ lib_id }};
         {% endautoescape %}
 
         function average(array) {
@@ -381,6 +373,8 @@
                                         map: map,
                                         infowindow: myinfowindow
                 });
+                let lib_location = document.getElementById(lib_loc[i]).offsetTop;
+
                 marker.addListener('click', function() {      // 클릭 이벤트 발생 시 지도와 마커 출력
                    if(old)
                    old.close();
@@ -388,19 +382,16 @@
                    map.setCenter(this.getPosition());
                    map.setZoom(15);
                    old = this.infowindow;
+                   $('div').animate({scrollTop : lib_location}, 400);
                 });
             };
             };
             function mypanTo(x, y) {
                 var latLng = new google.maps.LatLng(x, y);
                 map.panTo(latLng);
-                console.log(latLng)
                 return false;
 
             }
-
-
-
         </script>
     </body>
 </html>

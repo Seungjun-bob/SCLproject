@@ -139,7 +139,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                        </div>
+
 
                     <div class="col-md-12 large-search2" >
                         <div class="search-form wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
@@ -149,7 +150,7 @@
                                         <input type="text" class="form-control" placeholder="도서관명" name="search">
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="lunchBegins" class="selectpicker" title="구분" name="lbrry_se_name">
+                                        <select id="lunchBegins" class="selectpicker dropup show-tick form-control" data-dropup-auto="false" title="구분" name="lbrry_se_name">
                                             <option>전체</option>
                                             <option>공공도서관</option>
                                             <option>국립도서관</option>
@@ -160,7 +161,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select id="basic" class="selectpicker show-tick form-control" data-size="15" title="자치구" style="overflow: scroll;" name="code_value">
+                                        <select id="basic" class="selectpicker dropup show-tick form-control" data-dropup-auto="false" data-size="15" title="자치구" style="overflow: scroll;" name="code_value">
                                             <option>전체</option>
                                             <option>강남구</option>
                                             <option>강동구</option>
@@ -195,56 +196,74 @@
                                                 <input type="submit" class="button btn largesearch-btn" value="검 색">
                                             </div>
                                         </div>
-                                </div>
+                                    </div>
                             </form>
                         </div>
-                </div>
-
-
-
-
-                        </div>
-
-
-
-
-
-
                     </div>
-
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-
-
-
-
           <!-- Footer area-->
         <div class="footer-area">
-
-            <div class=" footer">
+        <div class=" footer">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 col-sm-12 wow fadeInRight animated" style="text-align: center">
-                            <div class="single-footer">
-                                <h4 style="text-align: center">About us </h4>
-                                <div class="footer-title-line"></div>
-                                <span style="margin: 20px">권진우</span>
-                                <span style="margin: 20px">강승준</span>
-                                <span style="margin: 20px">성민아</span>
-                                <span style="margin: 20px">조민석</span>
 
-                            </div>
+                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                            <div class="single-footer">
+                                <h4 style="margin-right:15px;">About US</h4>
+                                <div class="footer-title-line"></div>
+                                <div style="display:table;margin-left:auto;margin-right:auto;">
+                                    <ul class="footer-blog">
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/Seungjun-bob/">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/DNCEDNCE">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/Minah-Seong">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                        </li>
+
+                                        <li>
+                                            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                                <a href="https://github.com/he63">
+                                                    <img src="{% static 'assets/img/demo/github.png' %}">
+                                                </a>
+                                            </div>
+                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                        </li>
+                                    </ul>
+                                </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
-                        <div class="pull-left">
+                        <div style="text-align:center">
                             <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
                         </div>
                     </div>

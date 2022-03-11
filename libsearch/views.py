@@ -32,23 +32,15 @@ def libsearch(request):
                                     code_value__icontains=library_gu,
                                     lbrry_name__icontains=search)
 
-
     # paging
-
-
     page = request.GET.get('page', '1')
 
     paginator = Paginator(total, 5)
     page_obj = paginator.get_page(page)
 
+
     # gmap
-    ydnts = []; xcnts = []; hname = []; adres = []; hmpg_url = [];
-
-    for i in hmpg_url:
-        if i == None:
-            print(i)
-
-
+    ydnts = []; xcnts = []; hname = []; adres = []; hmpg_url = []; lib_id = [];
 
     for data in total:
             xcnts.append(data.xcnts)
@@ -56,16 +48,19 @@ def libsearch(request):
             hname.append(data.lbrry_name)
             adres.append(data.adres)
             hmpg_url.append(data.hmpg_url)
+            lib_id.append(data.lbrry_seq_no)
     num = len(total)
+
     # 결과 출력
     context = {
-        'total' : page_obj,
-        'num' : num, # 도서관 검색 출력 수
-        'xcnts' : xcnts,
-        'ydnts' : ydnts,
-        'hname' : hname,
-        'adres' : adres,
-        'hmpg_url' : hmpg_url,
+        'total': total,
+        'num': num, # 도서관 검색 출력 수
+        'xcnts': xcnts,
+        'ydnts': ydnts,
+        'hname': hname,
+        'adres': adres,
+        'hmpg_url': hmpg_url,
+        'lib_id': lib_id
     }
     return render(request, 'libsearch.html', context)
 
@@ -75,19 +70,12 @@ def detail_library(request, library_id):
     library_detail = get_object_or_404(Library, lbrry_seq_no=library_id)
     comments = library_detail.librarycomment_set.order_by('-id').all()
 
-
-
     # gmap
     ydnts = [];
     xcnts = [];
     hname = [];
     adres = [];
     hmpg_url = [];
-
-
-    for i in hmpg_url:
-        if i == None:
-            print(i)
 
     # 댓글 작성자 구현
     all_user = User.objects.all()
@@ -132,8 +120,14 @@ def comment_create(request, library_id):
     author = request.user.id
     score = request.POST['score']
 
-    library_detail = get_object_or_404(Library, lbrry_seq_no=library_id)
-    comments = library_detail.librarycomment_set.order_by('-id').all()
+    LibraryComment(comment=content,
+                   user_id=author,
+                   library_id=library_id,
+                   score=score).save()
+
+    library = get_object_or_404(Library, lbrry_seq_no=library_id)
+    comments = library.librarycomment_set.order_by('-id').all()
+
     sum = 0
     avg = 0
     for comment in comments:
@@ -142,59 +136,31 @@ def comment_create(request, library_id):
             avg = (sum / len(comments)) * 20
         else:
             pass
-    print(library_detail.lbrry_seq_no)
 
-    LibraryComment(comment=content,
-                     user_id=author,
-                     library_id=library_id,
-                   score=score,
-                   ).save()
-
-    Library(avg=avg,
-            lbrry_name=library_detail.lbrry_name,
-            gu_code=library_detail.gu_code,
-            code_value=library_detail.code_value,
-            adres=library_detail.adres,
-            tel_no=library_detail.tel_no,
-            hmpg_url=library_detail.hmpg_url,
-            op_time=library_detail.op_time,
-            fdrm_close_date=library_detail.fdrm_close_date,
-            lbrry_se_name=library_detail.lbrry_se_name,
-            xcnts=library_detail.xcnts,
-            ydnts=library_detail.ydnts,
-            lbrry_seq_no=library_detail.lbrry_seq_no).save()
-
-
+    library.avg = avg
+    library.save()
 
     return redirect('libsearch:detail_l', library_id)
 
-
 def comment_delete(request, library_id, comment_id):
-    print(library_id, comment_id)
     comment = LibraryComment.objects.get(id=comment_id)
+    library = get_object_or_404(Library, lbrry_seq_no=library_id)
+    comments = library.librarycomment_set.order_by('-id').all()
+    # 기존 avg 값 저장
+    avg = (library.avg/20)*len(comments) - comment.score
+    # comment 삭제
     comment.delete()
-    library_detail = get_object_or_404(Library, lbrry_seq_no=library_id)
-    comments = library_detail.librarycomment_set.order_by('-id').all()
-    sum = 0
-    avg = 0
-    for comment in comments:
-        sum += comment.score
-        if comments != 0:
-            avg = (sum / len(comments)) * 20
-        else:
-            avg = 0
-    Library(avg=avg,
-            lbrry_name=library_detail.lbrry_name,
-            gu_code=library_detail.gu_code,
-            code_value=library_detail.code_value,
-            adres=library_detail.adres,
-            tel_no=library_detail.tel_no,
-            hmpg_url=library_detail.hmpg_url,
-            op_time=library_detail.op_time,
-            fdrm_close_date=library_detail.fdrm_close_date,
-            lbrry_se_name=library_detail.lbrry_se_name,
-            xcnts=library_detail.xcnts,
-            ydnts=library_detail.ydnts,
-            lbrry_seq_no=library_detail.lbrry_seq_no).save()
+
+
+    comments = library.librarycomment_set.order_by('-id').all()
+    if comments:
+        # avg 값 재 계산
+        avg = (avg/len(comments))*20
+    else:
+        avg = 0
+    library.avg = avg
+    library.save()
+
+
     return redirect('libsearch:detail_l', library_id)
 
