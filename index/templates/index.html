@@ -58,8 +58,8 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         {% if user.is_authenticated %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'" style="padding: 4% 10px;">회원정보</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'" style="padding: 4% 10px;">로그아웃</button>
                         {% else %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
                         {% endif %}
@@ -87,10 +87,12 @@
                 <div class="row">
                     <div class="col-md-12 Welcome-entry  col-sm-12">
                         <div class="col-md-5 col-md-offset-2 col-sm-6 col-xs-12">
-                            <div class="welcome_text wow fadeInLeft" data-wow-delay="0.3s" data-wow-offset="100">
+                            <div class="welcome_text wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100" >
                                 <div class="row">
                                     <div class="col-md-12 col-md-offset-1 col-sm-12 page-title">
-                                        <h1>SEOUL<br>CITY<br>LIBRARY</h1>
+                                        <h1>SEOUL
+                                            CITY
+                                            LIBRARY</h1>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +100,7 @@
 
                         </div>
                         <div class="col-md-5 col-sm-6 col-xs-12">
-                            <div  class="welcome_services wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
+                            <div  class="welcome_services wow fadeInLeft" data-wow-delay="0.3s" data-wow-offset="100">
                                 <div class="row">
                                     <div class="col-xs-6 m-padding">
                                         <div class="welcome-estate">
@@ -143,7 +145,7 @@
 
 
                     <div class="col-md-12 large-search2" >
-                        <div class="search-form wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
+                        <div class="search-form wow fadeInLeft" data-wow-delay="0.3s" data-wow-offset="100">
                             <form action="{% url 'libsearch:libsearch' %}" class=" form-inline" method="get">
                                 <div class="col-md-12">
                                     <div class="col-md-4">

@@ -157,13 +157,11 @@
                                 </div>
                             </div>
                         </div>
-                                <hr>
 
-<h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
-                        <hr>
+                        <h3 class="text-uppercase wow fadeInLeft animated" style="padding-top:50px;"><strong>comments</strong></h3>
                         {% if comments %}
                         {% for comment in comments %}
-
+                        <hr style="margin-top: 10px;margin-bottom: 10px;">
                         <section id="comments" class="comments wow fadeInRight animated">
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
@@ -201,10 +199,8 @@
                                         <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
                                         {% endif %}
                                     </form>
-                                    </p>
                                 </div>
                             </div>
-                            <hr>
                             {% endfor %}
                             {% endif %}
                             <!-- /.comment -->
