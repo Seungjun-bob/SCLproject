@@ -42,6 +42,7 @@
             .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;}
         </style>
 
+
     </head>
     <body>
         <div id="preloader">
@@ -79,9 +80,11 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a></li>
+                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a>
+                        </li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board:board' %}">게시판</a></li>
+                            <a href="{% url 'board:board' %}">게시판</a>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -99,6 +102,7 @@
             </div>
         </div>
         <!-- End page header -->
+
         <!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container">
@@ -160,9 +164,6 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
         <!-- 검색 영역 -->
         <div class="col-md-12">
@@ -171,7 +172,6 @@
                 필터: <strong>{{ request.GET.code_value }} {{ request.GET.lbrry_se_name }}</strong>
             </p>
         </div>
-
     <div class="=col-md-12">
         <div class="col-md-4" style="overflow-y:scroll; height:700px;" id="element_within_div">
             {% for list in total %}
@@ -181,7 +181,9 @@
                     오픈시간 : {{ list.op_time | default_if_none:''}} <br>
                     휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
                     전화번호 : {{ list.tel_no | default_if_none:''}} <br>
-                    홈페이지 : <a href="{{ list.hmpg_url }}" target="_blank">{{ list.hmpg_url | default_if_none:''}} </a><br>
+                    홈페이지 : <a href="{{ list.hmpg_url }}" target="_blank">
+
+                                {{ list.hmpg_url | default_if_none:''}} </a><br>
                     주소 : {{ list.adres | default_if_none:''}}<br>
                     <div>
                         <a href="{% url 'libsearch:detail_l' list.lbrry_seq_no %}" class="btn btn-default btn-border" style="padding: 7px 15px;">리뷰</a>
@@ -189,15 +191,18 @@
                     <hr>
                 </div>
             {% endfor %}
-        </div>
-        <div class="col-md-8">
-            <div id="map" style="width:100%; height:700px;"></div>
+            </div>
+                <div class="col-md-8">
+                    <div id="map" style="width:100%; height:700px;"></div>
+                </div>
+                </div>
+            </div>
         </div>
     </div>
 
-        <!-- Footer area-->
+          <!-- Footer area-->
         <div class="footer-area">
-            <div class=" footer">
+        <div class=" footer">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
