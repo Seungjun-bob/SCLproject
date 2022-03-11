@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.decorators.http import require_http_methods, require_GET
 from django.core.paginator import Paginator
 from .models import Board, Comment
 from django.contrib.auth.models import User
@@ -108,11 +107,6 @@ def comment_delete(request, board_id, comment_id):
     comment = Comment.objects.get(id=comment_id)
     comment.delete()
     return redirect('board:result', board_id)
-
-
-def my_review(request):
-    return render(request, 'my_review.html')
-
 
 
 

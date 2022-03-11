@@ -95,7 +95,7 @@
         <div class="register-area" style="background-color: rgb(249, 249, 249);">
             <div class="container">
                 <div class="col-md-12">
-                    <div class="box-for overflow">
+                    <div class="box-for overflow" style="width: 60%; margin-left: auto; margin-right: auto;">
                         <div class="col-md-12 col-xs-12 login-blocks">
                             <h2>로그인</h2>
                                 <form method="POST" action="">
@@ -121,7 +121,7 @@
                             <div align="center">
                                 <p style="color:red">{{error}}</p>
                             </div>
-                            <div style="text-align:center">
+                            <div style="text-align:center; right:60px;">
                             <a style="color:grey;"  href="{% url 'index:register' %}">아직 회원이 아니신가요?</a>
                             </div>
                             <br>
@@ -133,12 +133,11 @@
 
           <!-- Footer area-->
         <div class="footer-area">
-
-            <div class=" footer">
+        <div class=" footer">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                        <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
                                 <div class="footer-title-line"></div>
@@ -150,7 +149,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                            <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
 
                                         <li>
@@ -159,7 +158,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                            <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
 
                                         <li>
@@ -168,7 +167,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                            <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
 
                                         <li>
@@ -177,7 +176,7 @@
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                            <p style="padding-top:40px;padding-right:40px;">조민석</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -186,8 +185,6 @@
                     </div>
                 </div>
             </div>
-            </div>
-
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
@@ -198,6 +195,7 @@
                 </div>
             </div>
         </div>
+
 
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
