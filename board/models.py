@@ -5,10 +5,10 @@ class Board(models.Model):
     author = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     content = models.TextField()
-
+    photo = models.FileField(blank=True, upload_to="photo_%Y_%m_%d")
     view_cnt = models.PositiveIntegerField(default=0)
     Cdate = models.DateTimeField(auto_now_add=True)
-    like = models.PositiveIntegerField(default=0)
+
 
     @property
     def view_counter(self):

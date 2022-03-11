@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SCL | Review Board</title>
+        <title>SCL | Board</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -97,9 +97,9 @@
             <div class="container">
                 <div class="row rounded col-md-12" style="width:850px; margin-left: 150px; padding-bottom:30px;">
                     <div class="blog-lst col-md-12">
-                        <section id="id-100" class="post single">
+                        <section id="id-100" class="post single" style="">
                             <div class="post-header single">
-                                <div class="">
+                                <div>
                                     <h3 class="wow fadeInLeft animated"><strong>{{ board.title }}</strong></h3>
                                     <div class="title-line wow fadeInRight animated"></div>
                                 </div>
@@ -114,15 +114,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="post-content" class="post-body single wow fadeInLeft animated" style="height:200px; background-color:#fff">
+                            <div id="post-content" class="post-body single wow fadeInLeft animated" style="background-color:#fff">
                                 <div style="padding:15px 15px;">
                                     <p>{{ board.content }}</p>
+                                    {% if board.photo %}
+                                    <div style="max-width:100%; height:auto;">
+                                        <img src="{{ board.photo.url }}" alt="">
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </section>
-                        <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
-                        <hr>
+                        <div style="width:97%; margin-left:auto; margin-right:auto;">
+                        <h3 class="text-uppercase wow fadeInLeft animated"><strong>comments</strong></h3>
                         {% for comment in comments %}
+                        <hr style="margin-top: 10px;margin-bottom: 10px;">
                             <section id="comments" class="comments wow fadeInRight animated">
                                 <div class="row comment">
                                     <div class="col-sm-9 col-md-8">
@@ -138,17 +144,18 @@
                                     </div>
                                 </div>
                             </section>
-                            <hr>
                         {% endfor %}
+                       <p></p>
+                        </div>
                         <!-- /.comment -->
 
                         <section id="comment-form" class="add-comments">
                             {% if user.is_authenticated %}
-                                <form method="POST" action="{% url 'board:comment_create' board.id %}">
+                                <form method="POST" action="{% url 'board:comment_create' board.id %}" style="width:97%; margin-left:auto; margin-right:auto;">
                                     {% csrf_token %}
                                         <div class="row comment-rounded wow fadeInLeft animated">
-                                            <div class="col-sm-12">
-                                                <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <div class="col-sm-12" style="padding: 10px 12px 12px 15px;">
+                                                <h5 class="text-uppercase wow fadeInLeft animated"><strong>{{ user.last_name }}</strong></h5>
                                                 <div class="form-group">
                                                     <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
                                                 </div>
@@ -160,7 +167,7 @@
                                             <div class="col-sm-12">
                                                 <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                                 <div class="form-group">
-                                                    <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                                    <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible; resize:None;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                                 </div>
                                             </div>
                                         </div>

@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SCL | Review Board</title>
+        <title>SCL | Board</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -159,7 +159,6 @@
                                     <th scope="col" style="text-align:center; font-weight:bold;">작성자</th>
                                     <th scope="col" style="text-align:center; font-weight:bold;">작성일</th>
                                     <th scope="col" style="text-align:center; font-weight:bold;">조회수</th>
-                                    <th scope="col" style="text-align:center; font-weight:bold;">좋아요</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -172,7 +171,6 @@
                                         <td style="table-layout:fixed; text-align:center;" width="10%">{{ dlist.author.last_name }}</td>
                                         <td style="table-layout:fixed; text-align:center;" width="16%">{{ dlist.Cdate|date:'Y-m-d' }}</td>
                                         <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.view_cnt }}</td>
-                                        <td style="table-layout:fixed; text-align:center;" width="7%">{{ dlist.like }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
