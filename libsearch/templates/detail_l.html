@@ -114,7 +114,7 @@
                             <div class="row wow fadeInRight animated">
                                 <div class="col-sm-6">
                                     <p class="author-category" style="margin-left:10px;">
-                                        도서관 구분 : <span style="color:#AC7D0C;font-weight:bold;">{{ detail_library.lbrry_se_name }}</span>&nbsp;&nbsp;&nbsp;&nbsp;자치구 :<span style="color:#AC7D0C;font-weight:bold;">{{ detail_library.code_value }}</span>
+                                        도서관 구분 : <span style="color:#AC7D0C;font-weight:bold;">{{ detail_library.lbrry_se_name }}</span>&nbsp;&nbsp;&nbsp;&nbsp;자치구 : <span style="color:#AC7D0C;font-weight:bold;">{{ detail_library.code_value }}</span>
                                     </p>
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
                                     <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
-                                    <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
+                                    <p style="white-space:pre-line;padding: 0px 0px 7px;" class="posted">{{ comment.comment }}</p>
                                     {% if comment.score == 0 %}
                                     <span class="star-rating">
                                     <span style="width:0%"></span>
@@ -192,6 +192,7 @@
                                     <span style="width:100%"></span>
                                     </span>
                                     {% endif %}
+                                    <p style="padding: 7px 0px 0px;"></p>
                                     <form action="{% url 'libsearch:comment_delete' library_detail.lbrry_seq_no comment.id %}" method="post">
                                         {% csrf_token %}
                                         <span>{{ comment.date|date:"Y.m.d H:i" }}&nbsp&nbsp</span>
@@ -207,7 +208,7 @@
                         </section>
                         <div class="post-footer single wow fadeInBottum animated">
                                 <ul class="pager">
-                                    <li class="next disabled"><a href="{% url 'libsearch:libsearch' %}">목록<i class=""></i> </a></li>
+                                    <li class="next disabled"><a href="{% url 'libsearch:libsearch' %}" style="padding: 12px 15px; border-radius: 2px;">목록</a></li>
                                 </ul>
                             </div>
                     </section>
@@ -244,7 +245,7 @@
                                         <div class="col-sm-12">
                                             <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
                                             <div class="form-group">
-                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="3" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible; resize:none;" id="comment" rows="3" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                             </div>
                                         </div>
                                     </div>
