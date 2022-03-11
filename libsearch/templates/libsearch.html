@@ -42,15 +42,12 @@
             .star-rating span{background-position:left bottom; line-height:0; vertical-align:top;}
         </style>
 
-
     </head>
     <body>
-
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
         <!-- Body content -->
-
         <nav class="navbar navbar-default ">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -63,7 +60,6 @@
                     </button>
                     <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
@@ -83,11 +79,9 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a>
-                        </li>
+                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board:board' %}">게시판</a>
-                        </li>
+                            <a href="{% url 'board:board' %}">게시판</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -105,7 +99,6 @@
             </div>
         </div>
         <!-- End page header -->
-
         <!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container">
@@ -163,10 +156,13 @@
                                                 <input class="button btn largesearch-btn" value="검 색" type="submit">
                                             </div>
                                         </div>
-                                </div>
-                            </form>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
         <!-- 검색 영역 -->
         <div class="col-md-12">
@@ -185,35 +181,25 @@
                     오픈시간 : {{ list.op_time | default_if_none:''}} <br>
                     휴관일 : {{ list.fdrm_close_date | default_if_none:''}} <br>
                     전화번호 : {{ list.tel_no | default_if_none:''}} <br>
-                    홈페이지 : <a href="{{ list.hmpg_url }}" target="_blank">
-
-                                {{ list.hmpg_url | default_if_none:''}} </a><br>
+                    홈페이지 : <a href="{{ list.hmpg_url }}" target="_blank">{{ list.hmpg_url | default_if_none:''}} </a><br>
                     주소 : {{ list.adres | default_if_none:''}}<br>
-
                     <div>
                         <a href="{% url 'libsearch:detail_l' list.lbrry_seq_no %}" class="btn btn-default btn-border" style="padding: 7px 15px;">리뷰</a>
                     </div>
                     <hr>
                 </div>
             {% endfor %}
-            </div>
+        </div>
         <div class="col-md-8">
             <div id="map" style="width:100%; height:700px;"></div>
         </div>
     </div>
-                </div>
-            </div>
-        </div>
 
-
-
-
-          <!-- Footer area-->
+        <!-- Footer area-->
         <div class="footer-area">
-        <div class=" footer">
+            <div class=" footer">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-md-12 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
@@ -228,7 +214,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/DNCEDNCE" target="_blank">
@@ -237,7 +222,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/Minah-Seong" target="_blank">
@@ -246,7 +230,6 @@
                                             </div>
                                             <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                                 <a href="https://github.com/he63" target="_blank">
@@ -257,22 +240,21 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="footer-copy text-center">
-                <div class="container">
-                    <div class="row">
-                        <div style="text-align:center">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e" target="_blank">TeamSCL</a> , All rights reserved 2022  </span>
+                <div class="footer-copy text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div style="text-align:center">
+                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e" target="_blank">TeamSCL</a> , All rights reserved 2022  </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
 
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
