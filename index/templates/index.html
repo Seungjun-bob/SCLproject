@@ -40,6 +40,7 @@
         </div>
         <!-- Body content -->
         <nav class="navbar navbar-default ">
+
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -53,6 +54,7 @@
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse yamm" id="navigation">
+                    <span>안녕하세요 {{ user.id }}님 {{ user.username }}</span>
                     <div class="button navbar-right">
                         {% if user.is_authenticated %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:mypage' %}'" style="padding: 4% 10px;">회원정보</button>
