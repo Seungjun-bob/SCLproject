@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.contrib.auth.hashers import check_password
 
 def index(request):
     return render(request, 'index.html')
+
+def about(request):
+    return render(request, 'about.html')
 
 def register(request):
     res_data = None
@@ -47,15 +51,34 @@ def logout(request):
         auth.logout(request)
     return render(request, "index.html")
 
-def only_member(request) :
-    context = None
-    if request.user.is_authenticated:
-        context = {'logineduser': request.user.last_name+request.user.first_name}
-    return render(request, 'member.html', context)
+def user_del(request):
+    if not request.user.is_authenticated:
 
-
-def about(request):
-    return render(request, 'about.html')
+        return redirect('index:index')
+    if request.method == "POST":
+        password = request.POST["password"]
+        re_password = request.POST["re_password"]
+        user = request.user
+        if password == re_password:
+            if check_password(password, user.password):
+                user.delete()
+                return redirect('index:index')
+    context = {'error': "비밀번호를 확인해주세요."}
+    return render(request, 'user_del.html', context)
 
 def changepassword(request):
-    return render(request, 'change_password.html')
+    if request.method == "POST":
+        user = request.user
+        password = request.POST['password']
+        new_password = request.POST['new_password']
+        new_password2 = request.POST['new_password2']
+        if check_password(password, user.password):
+            if new_password == new_password2:
+                user.set_password(new_password)
+                user.save()
+                return redirect('index:login')
+            else:
+                '변경할 비밀번호가 일치하지 않습니다.'
+    else:
+        '현재 비밀번호가 일치하지 않습니다.'
+    return redirect('index:user_del')
