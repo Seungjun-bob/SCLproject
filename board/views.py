@@ -7,10 +7,8 @@ from django.db.models import Q
 def board(request) :
     # 데이터를 최신순으로 정렬
     boards = Board.objects.all().order_by('-id')
-
     # 유저 정보
     users = User.objects.all()
-
     # 검색 처리
     search = request.GET.get('search', "")
     type = request.GET.get('type', "")
@@ -38,7 +36,6 @@ def board(request) :
 
 def submit(request):
     if not request.user.is_authenticated:
-
         return redirect('index:login')
     else:
         if request.method == "POST":
@@ -73,13 +70,17 @@ def result(request, board_id):
 
 def delete(request, board_id):
     board = Board.objects.get(id=board_id)
-    board.delete()
-    return redirect('/board/')
+    if request.user.id == board.author_id:
+        board.delete()
+    return redirect('board:board')
 
 def edit(request, board_id):
     board = Board.objects.get(id=board_id)
-    context = {'board': board}
-    return render(request, 'update.html', context)
+    if request.user.id == board.author_id:
+        context = {'board': board}
+        return render(request, 'update.html', context)
+    else:
+        return redirect('board:board')
 
 def update(request, board_id):
     title = request.POST.get('title')
@@ -90,9 +91,7 @@ def update(request, board_id):
     board.save()
     return redirect('board:result', board_id)
 
-
 def comment_create(request, board_id):
-
     content = request.POST['content']
     author = request.user.id
 
@@ -100,7 +99,6 @@ def comment_create(request, board_id):
             user_id=author,
             board_id=board_id,
             ).save()
-
     return redirect('board:result', board_id)
 
 def comment_delete(request, board_id, comment_id):

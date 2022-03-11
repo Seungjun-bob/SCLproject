@@ -1,7 +1,6 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from recommend.models import Recommend, RecommendComment
-
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 
@@ -22,7 +21,6 @@ def recommend(request):
                                   recomMonth__icontains=recomMonth,
                                   drCodeName__icontains=drCodeName,
                                   recomtitle__icontains=search)
-
     elif recomYear=='전체' and recomMonth=='전체':
         recomYear = ""
         recomMonth = ""
@@ -30,7 +28,6 @@ def recommend(request):
                                   recomMonth__icontains=recomMonth,
                                   drCodeName__icontains=drCodeName,
                                   recomtitle__icontains=search)
-
     elif recomYear=='전체' and drCodeName=='전체':
         recomYear = ""
         drCodeName = ""
@@ -38,7 +35,6 @@ def recommend(request):
                                   recomMonth__icontains=recomMonth,
                                   drCodeName__icontains=drCodeName,
                                   recomtitle__icontains=search)
-
     elif recomMonth=='전체' and drCodeName=='전체':
         recomMonth = ""
         drCodeName = ""
@@ -46,35 +42,29 @@ def recommend(request):
                                   recomMonth__icontains=recomMonth,
                                   drCodeName__icontains=drCodeName,
                                   recomtitle__icontains=search)
-
     elif recomMonth=='전체':
         recomMonth = ""
         total = recom_info.filter(recomYear__icontains=recomYear,
                                   recomMonth__icontains=recomMonth,
                                   drCodeName__icontains=drCodeName,
                                   recomtitle__icontains=search)
-
     elif recomYear=='전체':
         recomYear = ""
         total = recom_info.filter(recomYear__icontains=recomYear,
                                   recomMonth__icontains=recomMonth,
                                   drCodeName__icontains=drCodeName,
                                   recomtitle__icontains=search)
-
     elif drCodeName=='전체':
         drCodeName = ""
         total = recom_info.filter(recomYear__icontains=recomYear,
                                   recomMonth__icontains=recomMonth,
                                   drCodeName__icontains=drCodeName,
                                   recomtitle__icontains=search)
-
     else:
         total = recom_info.filter(recomYear__icontains=recomYear,
                                   recomMonth__icontains=recomMonth,
                                   drCodeName__icontains=drCodeName,
                                   recomtitle__icontains=search)
-
-
 
     # paging
     num = len(total)
@@ -88,11 +78,7 @@ def recommend(request):
         'total' : page_obj,
         'num' : num,
     }
-
-
     return render(request, 'recommend.html', context)
-
-    #
 
 def detail_recom(request, recommend_id):
     recommend_detail = get_object_or_404(Recommend, id=recommend_id)
@@ -105,9 +91,6 @@ def detail_recom(request, recommend_id):
         for user in user_info:
             user_name = user.last_name
 
-    context = {
-
-    }
     if comments:
         context = {
             'user_name': user_name,
@@ -120,8 +103,6 @@ def detail_recom(request, recommend_id):
             'comments': comments,
         }
     return render(request, 'detail_r.html', context)
-
-
 
 def comment_create(request, recommend_id):
     content = request.POST['content']
