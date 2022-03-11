@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SCL | Review Board</title>
+        <title>SCL | Board</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -83,7 +83,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">자유게시판</h1>
+                        <h1 class="page-title" style="font-weight:bold;">자유게시판</h1>
                     </div>
                 </div>
             </div>
@@ -109,6 +109,8 @@
                             </div>
                         </div>
                         <div class="col-md-12" style="float:right; padding:0 10px; 10px; 0;">
+                            <div style="padding-left:20px;">{{ board.photo }}<br>이미지를 등록하세요</div>
+                            <div><input type="file" name="photo"></div>
                             <div class="col-sm-12" style="float:right; padding-bottom:15px;">
                                 <button style="float:right;" class="btn btn-default btn-border" type="submit" value="글쓰기" >글쓰기</button>
                             </div>

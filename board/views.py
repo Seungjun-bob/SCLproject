@@ -42,10 +42,16 @@ def submit(request):
             title = request.POST['title']
             content = request.POST['content']
             author = request.user.id
-
-            data = Board(title=title,
-                         author_id=author,
-                         content=content,)
+            try:
+                photo = request.FILES['photo']
+                data = Board(title=title,
+                             author_id=author,
+                             content=content,
+                             photo=photo)
+            except:
+                data = Board(title=title,
+                             author_id=author,
+                             content=content)
             data.save()
             return redirect('board:result', data.id)
         else:

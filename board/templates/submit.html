@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SCL | Review submit</title>
+        <title>SCL | Board</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -93,7 +93,7 @@
         <!-- End page header -->
                 <div class="container">
                         <div class="row">
-                            <form action="{% url 'board:submit' %}" method="post">
+                            <form action="{% url 'board:submit' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                     <div class="col-md-12" style="margin-top: 30px;">
                                         <div class="col-sm-12">
@@ -111,6 +111,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="float:right; padding:0 10px; 10px; 0;">
+                                    <div style="padding-left:20px;">이미지를 등록하세요</div>
+                                    <div><input type="file" name="photo"></div>
                                     <div class="col-sm-12" style="float:right; padding-bottom:30px;">
                                         <button style="float:right" class="btn btn-default btn-border" type="submit" value="글쓰기" >글쓰기</button>
                                     </div>
