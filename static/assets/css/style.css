@@ -824,12 +824,14 @@ label small{
     padding-top: 5px;
 }
 .nav-button {
-    background-color: #c2c2c2;
+    background-color: rgb(194, 194, 194);
     border: medium none;
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-size: 16px;
-    padding: 8px 20px;
-    border-radius: 2px;
+    padding: 7% 17px;
+    border-radius: 6px;
+    transition: all 0.4s ease 0s;
+    margin-top: 9px;
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -ms-transition: all 0.4s ease;
@@ -2943,7 +2945,7 @@ background: #555 url("") repeat scroll 0% 0%;
 color: #535353;
 }
 .footer{
-padding: 0px 0px 10px;
+padding: 0px 0px 0px;
 background: rgba(255, 255, 255, 0.89) none repeat scroll 0% 0%;
 }
 .footer ul li i { 
@@ -2958,7 +2960,8 @@ background: rgba(255, 255, 255, 0.89) none repeat scroll 0% 0%;
 padding-top: 7px;
 }
 .single-footer{
-    margin-top: 10px
+    margin-top: 2px;
+    margin-bottom: 2px
 }
 .footer img{
     margin-bottom: 20px;
@@ -2986,7 +2989,7 @@ padding-top: 7px;
     width: auto;
     height: 2px;
     background: grey;
-    margin: 0px 0px 20px;
+    margin: 0px 0px 10px;
     position: relative;
     top: -2px;
 }
@@ -3038,15 +3041,15 @@ font-size: 13px;
     height: 0px;
 }
 ul.footer-blog li {
-    width: 80px;
+    width: 100px;
     height: 60px;
     display: table;
     margin-bottom: 5px;
     float:left;
 }
 .footer-blog img {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     margin-bottom: 0px;
     max-width: none;
     margin: 0px 12px 0px;
@@ -3076,7 +3079,7 @@ ul.footer-blog li {
 
 .footer-blog p {
     line-height: 17px;
-    padding: 8px 2px;
+    padding: 0px 2px;
 }
 .news-letter .form-control {
     display: block;
