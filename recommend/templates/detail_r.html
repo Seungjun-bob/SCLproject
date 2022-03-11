@@ -35,54 +35,52 @@
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     </head>
     <body>
-        <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
         <!-- Body content -->
-
         <nav class="navbar navbar-default ">
-            <div class="container">
+            <div style="width:59%;margin-left:auto;margin-right:auto;">
+                {% if user.is_authenticated %}
+                <p style="padding:5px 0 0 0;text-align:right;font-size:14px;">안녕하세요 <strong>{{ user.last_name }}</strong>님 &nbsp; {{ user.username }}</p>
+                {% else %}
+                <p></p>
+                {% endif %}
+            </div>
+            <div class="container" style="clear:both;padding-top:0px;">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
+                <div class="navbar-header" >
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}" style="padding:0px 25px;"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:100px;"></a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse yamm" id="navigation">
-                    <div class="button navbar-right">
-                         {% if user.is_authenticated %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
+                <div class="collapse navbar-collapse yamm" id="navigation" >
+                    <div class="button navbar-right" style="padding-top:0px;">
+                        {% if user.is_authenticated %}
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:mypage' %}'" style="padding: 4% 10px;">회원정보</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'" style="padding: 4% 10px;">로그아웃</button>
                         {% else %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
                         {% endif %}
                     </div>
-                    <ul class="main-nav nav navbar-nav navbar-right">
+                    <ul class="main-nav nav navbar-nav navbar-right" style="padding: 0px 0 0 40px;">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'index:about' %}" class="">About</a>
-                        </li>
+                            <a href="{% url 'index:about' %}" class="">About</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="active" href="{% url 'recommend:recommend' %}">추천 도서</a>
-                        </li>
+                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board:board' %}">게시판</a>
-                        </li>
+                            <a href="{% url 'board:board' %}">게시판</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
-
         <div class="page-head">
             <div class="container">
                 <div class="row">
@@ -94,24 +92,12 @@
             </div>
         </div>
         <!-- End page header -->
-
         <div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
-                <div class="row">
+                <div class="row rounded">
                     <section id="id-100" class="post single">
                         <div class="post-header single">
-<!--                            <div class="">-->
-<!--                                <h2 class="wow fadeInLeft animated">{{ recommend_detail.recomtitle | default_if_none:'' }}</h2>-->
-<!--                                <div class="title-line wow fadeInRight animated"></div>-->
-<!--                            </div>-->
-<!--                            <div class="row wow fadeInRight animated">-->
-<!--                                <div class="col-sm-6">-->
-<!--                                    <p class="author-category">-->
-<!--                                        By <span style="color:#AC7D0C;font-weight:bold;">{{ recommend_detail.recomauthor | default_if_none:'' }}</span>-->
-<!--                                    </p>-->
-<!--                                </div>-->
-<!--                            </div>-->
-                            <div>
+                            <div style="padding-top:40px;">
                                 <div class="image wow fadeInRight animated" id="detail_image">
                                     <img src="{{ recommend_detail.recomfilepath | default_if_none:'' }}" class="img-responsive" alt="Example blog post alt" >
                                     <div class="board_detail book">
@@ -128,7 +114,8 @@
                                 </div>
                             </div>
                         </div>
-                                <hr>
+                        <div class="col-md-12" style="padding:0 50px;">
+                            <hr>
                         <h3 style="padding: 10px 0px 10px 0px;"><strong>책 소개</strong></h3>
                             <div id="post-content" class="post-body single wow fadeInLeft animated">
                                 <p style="white-space: pre-line;">{{ recommend_detail.recomcontens | default_if_none:'' }}</p>
@@ -136,92 +123,73 @@
                         <hr>
                         <h3 style="padding: 10px 0px 10px 0px;"><strong>목 차</strong></h3>
                             <p style="white-space: pre-line;">{{ recommend_detail.recommokcha | default_if_none:'' }}</p>
-
-
-
                         <div class="post-footer single wow fadeInBottum animated">
                                 <ul class="pager">
-                                    <li class="next disabled"><a href="{% url 'recommend:recommend' %}">목록<i class=""></i> </a></li>
+                                    <li class="next disabled"><a href="{% url 'recommend:recommend' %}" style="padding: 12px 15px;border-radius:2px;">목록</a></li>
                                 </ul>
                             </div>
+                        </div>
                     </section>
-
-                        <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
-                        <hr>
-                        {% if comments %}
-                        {% for comment in comments %}
-
-                        <section id="comments" class="comments wow fadeInRight animated">
-
-                            <div class="row comment">
-                                <div class="col-sm-9 col-md-8">
-                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
-                                    <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
-                                    <form action="{% url 'recommend:comment_delete' recommend_detail.id comment.id %}" method="post">
-                                        {% csrf_token %}
-                                        <span>{{ comment.date|date:"Y.m.d H:i" }}&nbsp&nbsp</span>
-                                        {% if request.user == comment.user %}
-                                        <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
-                                        {% endif %}
-                                    </form>
-                                    </p>
+                        <div class="col-md-12" style="padding:0 50px 40px 50px;">
+                            <h3 class="text-uppercase wow fadeInLeft animated"><strong>comments</strong></h3>
+                            {% if comments %}
+                            {% for comment in comments %}
+                            <hr style="margin-top: 10px;margin-bottom: 10px;">
+                            <section id="comments" class="comments wow fadeInRight animated">
+                                <div class="row comment">
+                                    <div class="col-sm-9 col-md-8">
+                                        <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
+                                        <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
+                                        <form action="{% url 'recommend:comment_delete' recommend_detail.id comment.id %}" method="post">
+                                            {% csrf_token %}
+                                            <span>{{ comment.date|date:"Y.m.d H:i" }}&nbsp&nbsp</span>
+                                            {% if request.user == comment.user %}
+                                            <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                            {% endif %}
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <hr>
                             {% endfor %}
                             {% endif %}
-
                             <!-- /.comment -->
-                        </section>
+                            </section>
+                            <p><br></p>
                         <section id="comment-form" class="add-comments">
-
                             {% if user.is_authenticated %}
-
-                            <form method="POST" action="{% url 'recommend:comment_create' recommend_detail.id %}">
+                                <form method="POST" action="{% url 'recommend:comment_create' recommend_detail.id %}">
                                 {% csrf_token %}
                                     <div class="row comment-rounded wow fadeInLeft animated">
-
-                                        <div class="col-sm-12">
-                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                        <div class="col-sm-12" style="padding: 10px 12px 12px 15px;">
+                                            <h5 class="text-uppercase wow fadeInLeft animated"><strong>{{ user.last_name }}</strong></h5>
                                             <div class="form-group">
                                                 <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
                                             </div>
                                             <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                         </div>
-                                </div>
-                                {% else %}
-                                    <div class="row comment-rounded wow fadeInLeft animated">
-
-
-                                        <div class="col-sm-12">
-                                            <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
-                                            <div class="form-group">
-                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
-                                            </div>
-
+                                    </div>
+                            {% else %}
+                                <div class="row comment-rounded wow fadeInLeft animated">
+                                    <div class="col-sm-12" style="padding: 10px 15px 15px 20px;">
+                                        <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                        <div class="form-group">
+                                            <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible; resize: none;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                         </div>
+                                    </div>
                                 </div>
-                                {% endif %}
-
-
-                            </form>
-                    </section>
-
+                                </form>
+                            {% endif %}
+                        </section>
+                        </div>
                     </div>
                 </div>
-
             </div>
-        </div>
 
-          <!-- Footer area-->
-            <div class="footer-area">
-
-                <div class=" footer">
+        <!-- Footer area-->
+        <div class="footer-area">
+        <div class=" footer">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                        <div class="col-md-12" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
                                 <div class="footer-title-line"></div>
@@ -229,58 +197,53 @@
                                     <ul class="footer-blog">
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/Seungjun-bob/">
+                                                <a href="https://github.com/Seungjun-bob/" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                            <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/DNCEDNCE">
+                                                <a href="https://github.com/DNCEDNCE" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                            <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/Minah-Seong">
+                                                <a href="https://github.com/Minah-Seong" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                            <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/he63">
+                                                <a href="https://github.com/he63" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                            <p style="padding-top:40px;padding-right:40px;">조민석</p>
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-                </div>
-
                 <div class="footer-copy text-center">
                     <div class="container">
                         <div class="row">
                             <div style="text-align:center">
-                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                                <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e" target="_blank">TeamSCL</a> , All rights reserved 2022  </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 

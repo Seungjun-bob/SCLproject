@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SCL | Review Board</title>
+        <title>SCL | Board</title>
         <meta name="description" content="Seoul city library">
         <meta name="author" content="TeamSCL">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -35,48 +35,49 @@
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     </head>
     <body>
-
-        <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
         <!-- Body content -->
-
         <nav class="navbar navbar-default ">
-            <div class="container">
+            <div style="width:59%;margin-left:auto;margin-right:auto;">
+                {% if user.is_authenticated %}
+                <p style="padding:5px 0 0 0;text-align:right;font-size:14px;">안녕하세요 <strong>{{ user.last_name }}</strong>님 &nbsp; {{ user.username }}</p>
+                {% else %}
+                <p></p>
+                {% endif %}
+            </div>
+            <div class="container" style="clear:both;padding-top:0px;">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
+                <div class="navbar-header" >
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}" style="padding:0px 25px;"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:100px;"></a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse yamm" id="navigation">
-                    <div class="button navbar-right">
-                                               {% if user.is_authenticated %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
+
+
+                <div class="collapse navbar-collapse yamm" id="navigation" >
+                    <div class="button navbar-right" style="padding-top:0px;">
+                        {% if user.is_authenticated %}
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:mypage' %}'" style="padding: 4% 10px;">회원정보</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'" style="padding: 4% 10px;">로그아웃</button>
                         {% else %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
                         {% endif %}
                     </div>
-                    <ul class="main-nav nav navbar-nav navbar-right">
+                    <ul class="main-nav nav navbar-nav navbar-right" style="padding: 0px 0 0 40px;">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'index:about' %}" class="">About</a>
-                        </li>
+                            <a href="{% url 'index:about' %}" class="">About</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a>
-                        </li>
+                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="active" href="{% url 'board:board' %}">게시판</a>
+                            <a href="{% url 'board:board' %}">게시판</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -98,125 +99,107 @@
             <div class="container">
                 <div class="row rounded col-md-12" style="width:850px; margin-left: 150px; padding-bottom:30px;">
                     <div class="blog-lst col-md-12">
-                        <section id="id-100" class="post single">
-
+                        <section id="id-100" class="post single" style="">
                             <div class="post-header single">
-                                <div class="">
-                                    <h3 class="wow fadeInLeft animated"><strong>{{ board.title }}</strong></h3>
-                                    <div class="title-line wow fadeInRight animated"></div>
+                                <div>
+                                    <h3><strong>{{ board.title }}</strong></h3>
+                                    <div class="title-line"></div>
                                 </div>
-                                <div class="row wow fadeInRight animated">
+                                <div class="row">
                                     <div class="col-sm-8">
-
-                                            <p class="author-category">
-                                                By <a>{{ user_name }}</a>
-                                            </p>
-
+                                        <p class="author-category">
+                                            By <a>{{ user_name }}</a>
+                                        </p>
                                     </div>
-
                                     <div class="col-sm-4 right" >
-
-                                            <p style="float:right;" class="date-comments">{{ board.Cdate|date:"Y.m.d. H:i" }} <br> 댓글: {{ board.comment_set.count }}</p>
-
-
+                                        <p style="float:right;" class="date-comments">{{ board.Cdate|date:"Y.m.d. H:i" }} <br> 댓글: {{ board.comment_set.count }}</p>
                                     </div>
                                 </div>
                             </div>
-
-                            <div id="post-content" class="post-body single wow fadeInLeft animated" style="height:200px; background-color:#fff">
+                            <div id="post-content" class="post-body single" style="background-color:#fff">
                                 <div style="padding:15px 15px;">
                                     <p>{{ board.content }}</p>
+                                    {% if board.photo %}
+                                    <div style="max-width:100%; height:auto;">
+                                        <img src="{{ board.photo.url }}" alt="">
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
-
                         </section>
-                        <h4 class="text-uppercase wow fadeInLeft animated">comments</h4>
-                        <hr>
+                        <div style="width:97%; margin-left:auto; margin-right:auto;">
+                        <h3 class="text-uppercase"><strong>comments</strong></h3>
                         {% for comment in comments %}
-
-                        <section id="comments" class="comments wow fadeInRight animated">
-                            <div class="row comment">
-                                <div class="col-sm-9 col-md-8">
-                                    <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
-                                    <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
-                                    <form action="{% url 'board:comment_delete' board.id comment.id %}" method="post">
-                                        {% csrf_token %}
-                                        <span>{{ comment.Cdate|date:"Y.m.d. H:i" }}&nbsp&nbsp</span>
-                                        {% if request.user == comment.user %}
-                                        <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
-                                        {% endif %}
-                                    </form>
-                                    </p>
+                        <hr style="margin-top: 10px;margin-bottom: 10px;">
+                            <section id="comments" class="comments">
+                                <div class="row comment">
+                                    <div class="col-sm-9 col-md-8">
+                                        <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
+                                        <p style="white-space:pre-line;" class="posted">{{ comment.comment }}</p>
+                                        <form action="{% url 'board:comment_delete' board.id comment.id %}" method="post">
+                                            {% csrf_token %}
+                                            <span>{{ comment.Cdate|date:"Y.m.d. H:i" }}&nbsp&nbsp</span>
+                                            {% if request.user == comment.user %}
+                                            <button style="padding:0px 0px 3px 0px;" type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                            {% endif %}
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            {% endfor %}
-                            <!-- /.comment -->
-                        </section>
+                            </section>
+                        {% endfor %}
+                       <p></p>
+                        </div>
+                        <!-- /.comment -->
+
                         <section id="comment-form" class="add-comments">
-
                             {% if user.is_authenticated %}
-
-                            <form method="POST" action="{% url 'board:comment_create' board.id %}">
-                                {% csrf_token %}
-                                    <div class="row comment-rounded wow fadeInLeft animated">
-
-                                        <div class="col-sm-12">
-                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
-                                            <div class="form-group">
-                                                <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
-<!--                                                <textarea class="form-control" style="border:none; overflow:visible; white-space: pre-line;" name="content" placeholder="댓글을 남겨보세요"></textarea>-->
+                                <form method="POST" action="{% url 'board:comment_create' board.id %}" style="width:97%; margin-left:auto; margin-right:auto;">
+                                    {% csrf_token %}
+                                        <div class="row comment-rounded">
+                                            <div class="col-sm-12" style="padding: 10px 12px 12px 15px;">
+                                                <h5 class="text-uppercase"><strong>{{ user.last_name }}</strong></h5>
+                                                <div class="form-group">
+                                                    <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
+                                                </div>
+                                                <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
                                             </div>
-                                            <button class="btn btn-primary" type="submit" style="float:right; padding:5px 15px; margin:0 0 5px 0;">등록</button>
-                                        </div>
-                                </div>
-
-                                {% else %}
-                                    <div class="row comment-rounded wow fadeInLeft animated">
-
-                                        <div class="col-sm-12">
-                                            <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
-                                            <div class="form-group">
-                                                <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                    </div>
+                                    {% else %}
+                                        <div class="row comment-rounded">
+                                            <div class="col-sm-12">
+                                                <h5 style="font-size:14px;" class="text-uppercase">{{ user.last_name }}</h5>
+                                                <div class="form-group">
+                                                    <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible; resize:None;" id="comment" rows="1" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
+                                                </div>
                                             </div>
                                         </div>
+                                    {% endif %}
+                                </form>
 
-                                </div>
-                                {% endif %}
-                            </form>
-
-                             <div class="post-footer single wow fadeInBottum animated">
+                             <div class="post-footer single">
                                 <div class="left_area">
                                     <button onclick="location.href='{% url 'board:submit' %}'" style="float:left;" type="button" class="btn">글쓰기</button>
                                     {% if request.user == board.author %}
                                         <button onclick="location.href='{% url 'board:edit' board.id %}'" style="float:left;" type="submit" class="btn">수정</button>
-
-                                    <!---- 삭제 버튼 ---->
-
-                                    <form style="float:left;" action="{% url 'board:delete' board.id %}" method="post">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
-                                    </form>
+                                        <form style="float:left;" action="{% url 'board:delete' board.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn" onclick="return ConfirmDelete()">삭제</button>
+                                        </form>
                                     {% endif %}
                                 </div>
                             </div>
                             <button onclick="location.href='{% url 'board:board' %}'" style="float:right;" class="btn btn-light">목록</button>
-                    </section>
-
-                    </div>                                 
-
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
-
           <!-- Footer area-->
         <div class="footer-area">
-
-            <div class=" footer">
+        <div class=" footer">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                        <div class="col-md-12" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
                                 <div class="footer-title-line"></div>
@@ -224,57 +207,52 @@
                                     <ul class="footer-blog">
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/Seungjun-bob/">
+                                                <a href="https://github.com/Seungjun-bob/" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                            <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/DNCEDNCE">
+                                                <a href="https://github.com/DNCEDNCE" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                            <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/Minah-Seong">
+                                                <a href="https://github.com/Minah-Seong" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                            <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/he63">
+                                                <a href="https://github.com/he63" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                            <p style="padding-top:40px;padding-right:40px;">조민석</p>
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-            </div>
-
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
                         <div style="text-align:center">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e" target="_blank">TeamSCL</a> , All rights reserved 2022  </span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
 
@@ -296,24 +274,26 @@
         <script src="{% static 'assets/js/price-range.js' %}"></script>
 
         <script src="{% static 'assets/js/main.js' %}"></script>
-    <script>
-        function ConfirmDelete(){
-            var x = confirm("정말 삭제 하시겠습니까?");
-            if (x)
-                return true;
-            else
-                return false;
-        }
-    </script>
-    <script type="text/javascript">
-        $('document').ready(function() {
-            $('textarea').keyup(function(e) {
-                $(this).css('height', 'auto');
-                $(this).height(this.scrollHeight);
+
+        <script>
+            function ConfirmDelete(){
+                var x = confirm("정말 삭제 하시겠습니까?");
+                if (x)
+                    return true;
+                else
+                    return false;
+            }
+        </script>
+
+        <script type="text/javascript">
+            $('document').ready(function() {
+                $('textarea').keyup(function(e) {
+                    $(this).css('height', 'auto');
+                    $(this).height(this.scrollHeight);
+                });
             });
-        });
-    </script>
-       
-    </body>
-</html>
-{{ board.view_counter }}
+        </script>
+
+        </body>
+    </html>
+    {{ board.view_counter }}

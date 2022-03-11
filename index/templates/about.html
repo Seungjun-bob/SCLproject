@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load static %}
-
 <html class="no-js">
     <head>
         <meta charset="utf-8">
@@ -36,56 +35,55 @@
         <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     </head>
     <body>
-
-        <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
         <!-- Body content -->
-
         <nav class="navbar navbar-default ">
-            <div class="container">
+            <div style="width:59%;margin-left:auto;margin-right:auto;">
+                {% if user.is_authenticated %}
+                <p style="padding:5px 0 0 0;text-align:right;font-size:14px;">안녕하세요 <strong>{{ user.last_name }}</strong>님 &nbsp; {{ user.username }}</p>
+                {% else %}
+                <p></p>
+                {% endif %}
+            </div>
+            <div class="container" style="clear:both;padding-top:0px;">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
+                <div class="navbar-header" >
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index:index' %}"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:110px"></a>
+                    <a class="navbar-brand" href="{% url 'index:index' %}" style="padding:0px 25px;"><img src="{% static 'assets/img/logo.gif' %}" alt="" style="width:100px;"></a>
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse yamm" id="navigation">
-                    <div class="button navbar-right">
+
+
+                <div class="collapse navbar-collapse yamm" id="navigation" >
+                    <div class="button navbar-right" style="padding-top:0px;">
                         {% if user.is_authenticated %}
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'board:myreview' %}'">작성글</button>
-                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'">로그아웃</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:mypage' %}'" style="padding: 4% 10px;">회원정보</button>
+                            <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:logout' %}'" style="padding: 4% 10px;">로그아웃</button>
                         {% else %}
                             <button class="navbar-btn nav-button bounceInRight login" onclick="location.href='{% url 'index:login' %}'">로그인</button>
                         {% endif %}
                     </div>
-                    <ul class="main-nav nav navbar-nav navbar-right">
+                    <ul class="main-nav nav navbar-nav navbar-right" style="padding: 0px 0 0 40px;">
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'index:about' %}" class="active">About</a>
-                        </li>
+                            <a href="{% url 'index:about' %}" class="">About</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'libsearch:libsearch' %}">도서관 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
                             <a class="" href="{% url 'booksearch:booksearch' %}">도서 검색</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a>
-                        </li>
+                            <a class="" href="{% url 'recommend:recommend' %}">추천 도서</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s">
-                            <a href="{% url 'board:board' %}">게시판</a>
-                        </li>
+                            <a href="{% url 'board:board' %}">게시판</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
-
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
@@ -95,7 +93,6 @@
             </div>
         </div>
         <!-- End page header -->
-
         <!-- property area -->
         <div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
             <div class="container">
@@ -129,60 +126,18 @@
                             <!-- /.row -->
                             <hr>
                             <div id="map" style="position: relative; overflow: hidden;"></div>
-                            <hr>
-                            <h2>Contact form</h2>
-                            <form>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="firstname">Firstname</label>
-                                            <input type="text" class="form-control" id="firstname">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="lastname">Lastname</label>
-                                            <input type="text" class="form-control" id="lastname">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="text" class="form-control" id="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="subject">Subject</label>
-                                            <input type="text" class="form-control" id="subject">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label for="message">Message</label>
-                                            <textarea id="message" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-center">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send message</button>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-  <!-- Footer area-->
-        <div class="footer-area">
-
-            <div class="footer">
+        <!-- Footer area-->
+    <div class="footer-area">
+        <div class=" footer">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-md-12 col-sm-6 wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight; text-align:center">
+                        <div class="col-md-12" style="visibility: visible; animation-name: fadeInRight; text-align:center">
                             <div class="single-footer">
                                 <h4 style="margin-right:15px;">About US</h4>
                                 <div class="footer-title-line"></div>
@@ -190,57 +145,53 @@
                                     <ul class="footer-blog">
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/Seungjun-bob/">
+                                                <a href="https://github.com/Seungjun-bob/" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">강승준</p>
+                                            <p style="padding-top:40px;padding-right:41px;">강승준</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/DNCEDNCE">
+                                                <a href="https://github.com/DNCEDNCE" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">권진우</p>
+                                            <p style="padding-top:40px;padding-right:41px;">권진우</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/Minah-Seong">
+                                                <a href="https://github.com/Minah-Seong" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">성민아</p>
+                                            <p style="padding-top:40px;padding-right:41px;">성민아</p>
                                         </li>
-
                                         <li>
                                             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                                                <a href="https://github.com/he63">
+                                                <a href="https://github.com/he63" target="_blank">
                                                     <img src="{% static 'assets/img/demo/github.png' %}">
                                                 </a>
                                             </div>
-                                            <p style="padding-top:50px;padding-right:15px;">조민석</p>
+                                            <p style="padding-top:40px;padding-right:40px;">조민석</p>
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-
-            <div class="footer-copy text-center">
+                <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
                         <div style="text-align:center">
-                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e">TeamSCL</a> , All rights reserved 2022  </span>
+                            <span> (C) <a href="https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e" target="_blank">TeamSCL</a> , All rights reserved 2022  </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
 
