@@ -97,74 +97,70 @@
 
         <!-- register-area -->
 
-<div class="register-area" style="background-color: rgb(249, 249, 249);">
-    <div class="container">
-        <div class="col-md-6">
-            <div class="box-for overflow">
-                <div class="col-md-12 col-xs-12 register-blocks">
-                    <h2>회원탈퇴</h2>
-                        <div class="row">
-                            <div class="col-md-12 text-center" style="color:red">
-                                {{error}}
+        <div class="register-area" style="background-color: rgb(249, 249, 249);">
+            <div class="container">
+                <div class="col-md-6">
+                    <div class="box-for overflow">
+                        <div class="col-md-12 col-xs-12 register-blocks">
+                            <h2>비밀번호 변경</h2>
+                            <div class="row">
+                                <div class="col-md-12 text-center" style="color:red">
+                                   {{error}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
                             <div class="col-md-12">
-                                <form method="POST" action="{% url 'index:user_del' %}">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="password">비밀번호</label>
-                                        <input type="password" class="form-control" placeholder="비밀번호" name="password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="re_password">비밀번호 확인</label>
-                                        <input type="password" class="form-control" placeholder="비밀번호 확인" name="re_password" required>
-                                    </div>
-                                    <button style="float:right;" type="submit" class="btn btn-primary" onclick="return ConfirmDelete()">회원탈퇴</button>
-                                </form>
+                                <div class="col-md-12">
+                                            <form method="POST" action="{% url 'index:update' %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="password">현재 비밀번호</label>
+                                            <input type="password" class="form-control" placeholder="이름" name="password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="new_password">변경할 비밀번호</label>
+                                            <input type="password" class="form-control" placeholder="비밀번호" name="new_password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="new_password2">변경할 비밀번호 확인</label>
+                                            <input type="password" class="form-control" placeholder="비밀번호 확인" name="new_password2" required>
+                                        </div>
+                                        <button style="float:right;" type="submit" class="btn btn-primary">비밀번호 변경</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box-for overflow">
+                        <div class="col-md-12 col-xs-12 register-blocks">
+                            <h2>회원탈퇴</h2>
+                            <div class="row">
+                                <div class="col-md-12 text-center" style="color:red">
+                                    {{error}}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <form method="POST" action="{% url 'index:user_del' %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="password">비밀번호</label>
+                                            <input type="password" class="form-control" placeholder="비밀번호" name="password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="re_password">비밀번호 확인</label>
+                                            <input type="password" class="form-control" placeholder="비밀번호 확인" name="re_password" required>
+                                        </div>
+                                        <button style="float:right;" type="submit" class="btn btn-primary" onclick="return ConfirmDelete()">회원탈퇴</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-    <div class="box-for overflow">
-
- <div class="col-md-12 col-xs-12 register-blocks">
-                    <h2>비밀번호 변경</h2>
-                        <div class="row">
-                            <div class="col-md-12 text-center" style="color:red">
-                                {{error}}
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-12">
-                                        <form method="POST" action="{% url 'index:update' %}">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="password">현재 비밀번호</label>
-                                        <input type="password" class="form-control" placeholder="이름" name="password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="new_password">변경할 비밀번호</label>
-                                        <input type="password" class="form-control" placeholder="비밀번호" name="new_password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="new_password2">변경할 비밀번호 확인</label>
-                                        <input type="password" class="form-control" placeholder="비밀번호 확인" name="new_password2" required>
-                                    </div>
-                                    <button style="float:right;" type="submit" class="btn btn-primary">비밀번호 변경</button>
-                                </form>
-
-
-
-    </div>
-</div>
- </div>
-    </div>
-        </div>
-    </div>
-</div>
 
 
 
