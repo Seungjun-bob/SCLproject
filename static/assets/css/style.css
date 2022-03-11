@@ -908,6 +908,9 @@ label small{
     .yamm .yamm-content {
         padding: 10px 20px;
     }
+    #scl {
+    display:none;
+    }
 }
 .yamm .dropdown.yamm-fw .dropdown-menu {
     left: 0;
