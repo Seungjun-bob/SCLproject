@@ -93,7 +93,7 @@
             </div>
         </div>
         <!-- End page header -->
-        <form method="POST" action="{% url 'board:update' board.id  %}">
+        <form method="POST" action="{% url 'board:update' board.id  %}" enctype="multipart/form-data">
             {% csrf_token %}
                 <div class="container">
                     <div class="row" >
