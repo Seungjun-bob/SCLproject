@@ -94,7 +94,22 @@ def update(request, board_id):
     board = Board.objects.get(id=board_id)
     board.title = title
     board.content = content
-    board.save()
+    if board.photo:
+        try:
+            board.photo.delete()
+            photo = request.FILES['photo']
+            board.photo = photo
+            board.save()
+        except:
+            board.save()
+    else:
+        try:
+            photo = request.FILES['photo']
+            board.photo = photo
+            board.save()
+        except:
+            board.save()
+
     return redirect('board:result', board_id)
 
 def comment_create(request, board_id):
