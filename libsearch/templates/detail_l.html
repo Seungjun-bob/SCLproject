@@ -155,11 +155,11 @@
                                 </div>
                             </div>
                         </div>
-                        <h3 class="text-uppercase wow fadeInLeft animated" style="padding-top:50px;"><strong>comments</strong></h3>
+                        <h3 class="text-uppercase" style="padding-top:50px;"><strong>comments</strong></h3>
                         {% if comments %}
                         {% for comment in comments %}
                         <hr style="margin-top: 10px;margin-bottom: 10px;">
-                        <section id="comments" class="comments wow fadeInRight animated">
+                        <section id="comments" class="comments">
                             <div class="row comment">
                                 <div class="col-sm-9 col-md-8">
                                     <h5 class="text-uppercase"><small>작성자&nbsp&nbsp</small><b>{{ comment.user.last_name }}</b></h5>
@@ -203,7 +203,7 @@
                             {% endif %}
                             <!-- /.comment -->
                         </section>
-                        <div class="post-footer single wow fadeInBottum animated">
+                        <div class="post-footer single">
                                 <ul class="pager">
                                     <li class="next disabled"><a href="{% url 'libsearch:libsearch' %}" style="padding: 12px 15px; border-radius: 2px;">목록</a></li>
                                 </ul>
@@ -213,9 +213,9 @@
                             {% if user.is_authenticated %}
                                 <form method="POST" action="{% url 'libsearch:comment_create' library_detail.lbrry_seq_no %}">
                                     {% csrf_token %}
-                                    <div class="row comment-rounded wow fadeInLeft animated">
+                                    <div class="row comment-rounded">
                                         <div class="col-sm-12">
-                                            <h5 class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                            <h5 class="text-uppercase">{{ user.last_name }}</h5>
                                             <div class="form-group">
                                                 <textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden;" name="content" required></textarea>
                                             </div>
@@ -233,9 +233,9 @@
                                             </div>
                                         </div>
                                     {% else %}
-                                        <div class="row comment-rounded wow fadeInLeft animated">
+                                        <div class="row comment-rounded">
                                             <div class="col-sm-12">
-                                                <h5 style="font-size:14px;" class="text-uppercase wow fadeInLeft animated">{{ user.last_name }}</h5>
+                                                <h5 style="font-size:14px;" class="text-uppercase">{{ user.last_name }}</h5>
                                                 <div class="form-group">
                                                     <textarea readonly="readonly" class="form-control" style="border:none; overflow:visible; resize:none;" id="comment" rows="3" name="content" placeholder="로그인 이후 이용이 가능합니다."></textarea>
                                                 </div>

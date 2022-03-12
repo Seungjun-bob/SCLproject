@@ -67,7 +67,6 @@ def user_del(request):
         password = request.POST["password"]
         re_password = request.POST["re_password"]
         error = {}
-        print(password, re_password)
         if password == re_password:
             if check_password(password, user.password):
                 user.delete()
@@ -86,7 +85,6 @@ def changepassword(request):
         password = request.POST['password']
         new_password = request.POST['new_password']
         new_password2 = request.POST['new_password2']
-        print(new_password)
         if check_password(password, user.password):
             if new_password == new_password2:
                 user.set_password(new_password)
