@@ -6,9 +6,6 @@ from django.contrib.auth.hashers import check_password
 def index(request):
     return render(request, 'index.html')
 
-def about(request):
-    return render(request, 'about.html')
-
 def register(request):
     if request.user.is_authenticated:
         return redirect('index:index')
@@ -53,28 +50,13 @@ def logout(request):
         auth.logout(request)
     return render(request, "index.html")
 
+def about(request):
+    return render(request, 'about.html')
+
 def mypage(request):
     if not request.user.is_authenticated:
         return redirect('index:login')
     return render(request, "mypage.html")
-
-def user_del(request):
-    if not request.user.is_authenticated:
-        return redirect('index:login')
-    error = None
-    if request.method == "POST":
-        user = request.user
-        password = request.POST["password"]
-        re_password = request.POST["re_password"]
-        error = {}
-        if password == re_password:
-            if check_password(password, user.password):
-                user.delete()
-                return redirect('index:index')
-        else:
-            error = "비밀번호를 확인해주세요."
-    context = {'del_error': error}
-    return render(request, 'mypage.html', context)
 
 def changepassword(request):
     if not request.user.is_authenticated:
@@ -93,4 +75,22 @@ def changepassword(request):
         else:
             error = '비밀번호를 확인해주세요'
     context = {'pw_error': error}
+    return render(request, 'mypage.html', context)
+
+def user_del(request):
+    if not request.user.is_authenticated:
+        return redirect('index:login')
+    error = None
+    if request.method == "POST":
+        user = request.user
+        password = request.POST["password"]
+        re_password = request.POST["re_password"]
+        error = {}
+        if password == re_password:
+            if check_password(password, user.password):
+                user.delete()
+                return redirect('index:index')
+        else:
+            error = "비밀번호를 확인해주세요."
+    context = {'del_error': error}
     return render(request, 'mypage.html', context)
