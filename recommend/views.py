@@ -115,7 +115,6 @@ def comment_create(request, recommend_id):
 
 
 def comment_delete(request, recommend_id, comment_id):
-    print(recommend_id, comment_id)
     comment = RecommendComment.objects.get(id=comment_id)
     comment.delete()
     return redirect('recommend:detail_r', recommend_id)

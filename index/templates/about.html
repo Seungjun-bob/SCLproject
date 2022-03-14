@@ -211,8 +211,27 @@
 
         <!--        gmaps        -->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF06xVthOzaB1GixVm97tQ-0zSmxAK0_U&callback=initMap&region=kr"></script>
-        <script src="{% static 'assets/js/gmaps.js' %}"></script>
+
         <script src="{% static 'assets/js/main.js' %}"></script>
+        <script>
+        var map;
+
+        function initMap() {
+              var location = { lat: 37.501256, lng: 127.039581 };
+
+              var map = new google.maps.Map(
+                document.getElementById('map'), {
+                  zoom: 17,
+                  center: location
+                });
+
+              new google.maps.Marker({
+                position: location,
+                map: map,
+                label: "멀티캠퍼스"
+            });
+        }
+        </script>
 
     </body>
 </html>

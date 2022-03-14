@@ -360,9 +360,10 @@
                                         map: map,
                                         infowindow: myinfowindow
                 });
+
                 let lib_location = document.getElementById(lib_loc[i]).offsetTop;
 
-                marker.addListener('click', function() {      // 클릭 이벤트 발생 시 지도와 마커 출력
+                marker.addListener('click', function() {
                    if(old)
                    old.close();
                    this.infowindow.open(map, this);
@@ -372,13 +373,13 @@
                    $('div').animate({scrollTop : lib_location}, 400);
                 });
             };
-            };
-            function mypanTo(x, y) {
-                var latLng = new google.maps.LatLng(x, y);
-                map.panTo(latLng);
-                return false;
+                };
+                function mypanTo(x, y) {
+                    var latLng = new google.maps.LatLng(x, y);
+                    map.panTo(latLng);
+                    return false;
 
-            }
+                }
         </script>
     </body>
 </html>
