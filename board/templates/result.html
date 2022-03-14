@@ -120,9 +120,7 @@
                                 <div style="padding:15px 15px;">
                                     <p>{{ board.content }}</p>
                                     {% if board.photo %}
-                                    <div style="max-width:100%; height:auto;">
-                                        <img src="{{ board.photo.url }}" alt="">
-                                    </div>
+                                        <img style="max-width:100% height=auto;" src="{{ board.photo.url }}" alt="">
                                     {% endif %}
                                 </div>
                             </div>
