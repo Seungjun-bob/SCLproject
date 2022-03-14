@@ -6,10 +6,9 @@
 개발 기간: 2.24 ~ 3.14
 
 # Team
-- 권진우
-- 강승준
-- 성민아
-- 조민석
+- [강승준](https://github.com/Seungjun-bob)
+- [성민아](https://github.com/Minah-Seong)
+- [조민석](https://github.com/he63)
 
 # 기술 스택
 ### Front-end
