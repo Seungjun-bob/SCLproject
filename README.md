@@ -4,7 +4,8 @@
 <img style="width:700px;" src="https://user-images.githubusercontent.com/63000739/158383186-d16c211a-c66d-481d-be9e-41f50bcfbbae.gif">
 ## 프로젝트 소개
 주제: 서울시 도서관 통합 검색 웹 사이트 개발<br>
-개발 기간: 2.24 ~ 3.14
+개발 기간: 2.24 ~ 3.14<br>
+구현 기능: 로그인, 검색, 페이징, Map, 게시판
 
 ## Team
 - [강승준](https://github.com/Seungjun-bob)
