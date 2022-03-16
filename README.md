@@ -1,11 +1,11 @@
 # SCLproject
-개발 홈페이지: [링크](https://sclproject.pythonanywhere.com/index/)<br>
-프로젝트 관리: [노션링크](https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e)<br>
+개발 홈페이지 : [링크](https://sclproject.pythonanywhere.com/index/)<br>
+프로젝트 관리 : [노션링크](https://seungjunbob.notion.site/SCL-project-35cb8b3c827846b895c2bba9ca8b384e)<br>
 <img style="width:700px;" src="https://user-images.githubusercontent.com/63000739/158383186-d16c211a-c66d-481d-be9e-41f50bcfbbae.gif">
 ## 프로젝트 소개
-주제: 서울시 도서관 통합 검색 웹 사이트 개발<br>
-개발 기간: 2.24 ~ 3.14<br>
-구현 기능: 로그인, 검색, 페이징, Map, 게시판
+주제 : 서울시 도서관 통합 검색 웹 사이트 개발<br>
+개발 기간 : 2.24 ~ 3.14<br>
+구현 기능 : 로그인, 검색, 페이징, Map, 게시판
 
 ## Team
 - [강승준](https://github.com/Seungjun-bob)
